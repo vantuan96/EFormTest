@@ -1,0 +1,72 @@
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Biên bản hội chẩn', N'A01_057_050919_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Biên bản hội chẩn', N'A01_057_050919_VE', 'EOC')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Bảng đánh giá nhu cầu trang thiết bị/ nhân lực vận chuyển ngoại viện', N'A02_055_050919_V', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu truyền máu', N'A02_74_050919_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Bảng hồi sinh tim phổi', N'EDCAARRE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Bảng hồi sinh tim phổi', N'EOCCAARRE', 'EOC')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Biên bản hội chẩn bệnh nhân sử dụng thuốc có dấu sao(*)', N'A01_058_050919_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Giấy chứng nhận thương tích', N'EDEINCE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Biên bản hội chẩn thông qua mổ', N'A01_059_120522_VE', 'ED')
+
+Update Forms  
+set Name = N'Ghi nhận thực hiện thuốc standing order' where Code = N'A03_029_050919_VE'
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Ghi nhận thực hiện thuốc standing order', N'A03_029_050919_VE', 'OPD')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Ghi nhận thực hiện thuốc standing order', N'A03_029_050919_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Ghi nhận thực hiện thuốc standing order', N'A03_029_050919_VE', 'EOC')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu tóm tắt thủ thuật', N'EDPSV2', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu tóm tắt thủ thuật', N'EOCPSV2', 'EOC')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Biên bản kiểm thảo tử vong', N'EDMORE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu ghi nhận sử dụng thuốc do BN mang vào', N'A03_051_120421_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Xét nghiệm tại chỗ - Khí máu Cartridge CG4', N'A03_038_080322_V', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu phẫu thuật/ thủ thuật', N'A01_085_050919_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu phẫu thuật/ thủ thuật', N'A01_085_050919_VE', 'EOC')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Kết quả test da', N'ESKTR', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Kết quả test da', N'EOCSKTR', 'EOC')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Biên bản hội chẩn sử dụng kháng sinh cần ưu tiên quản lý', N'A01_060_120421_VE', 'ED')
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'Phiếu dự trù máu', N'EDPDTM', 'ED')

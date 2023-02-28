@@ -1,0 +1,285 @@
+Insert into DietCodes  (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Không phải dùng chế độ ăn bệnh lý, nhu cầu bồi dưỡng',N'Không phải dùng chế độ ăn bệnh lý, nhu cầu bồi dưỡng', N'BT01', '');
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Không phải dùng chế độ ăn bệnh lý ở dưới, nhu cầu bồi dưỡng',N'Không phải dùng chế độ ăn bệnh lý ở dưới, nhu cầu bồi dưỡng', N'BT02', '');
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Chế độ ăn mềm cho bệnh nhân không cần kiêng(cao tuổi, răng yếu, muốn ăn mềm)
+',N'Chế độ ăn mềm cho bệnh nhân không cần kiêng(cao tuổi, răng yếu, muốn ăn mềm)
+', N'BT03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Túi ăn sonde 500mL; 1 kcal/1mL',N'Túi ăn sonde 500mL; 1 kcal/1mL', N'AS01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Túi ăn sonde 500mL; 1.5 kcal/1mL',N'Túi ăn sonde 500mL; 1.5 kcal/1mL', N'AS02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Phụ nữ nuôi con bú 6 tháng đầu',N'Phụ nữ nuôi con bú 6 tháng đầu', N'SK01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường ở phụ nữ có thai',N'Đái tháo đường ở phụ nữ có thai', N'SK02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Ăn chay',N'Ăn chay', N'AC01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm cầu thận cấp, thể urê máu cao',N'Viêm cầu thận cấp, thể urê máu cao', N'TN01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm cầu thận cấp, thể cao huyết áp',N'Viêm cầu thận cấp, thể cao huyết áp', N'TN02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm cầu thận cấp, giai đoạn hồi phục',N'Viêm cầu thận cấp, giai đoạn hồi phục', N'TN03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm cầu thận mạn',N'Viêm cầu thận mạn', N'TN04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận cấp, giai đoạn trước lọc thận',N'Suy thận cấp, giai đoạn trước lọc thận', N'TN05', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận cấp, giai đoạn lọc máu (ngoài thận và màng bụng)',N'Suy thận cấp, giai đoạn lọc máu (ngoài thận và màng bụng)', N'TN06', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận mạn giai đoạn 1-2',N'Suy thận mạn giai đoạn 1-2', N'TN07', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận mạn giai đoạn 3- 4 không lọc máu, không tăng kali máu',N'Suy thận mạn giai đoạn 3- 4 không lọc máu, không tăng kali máu', N'TN08', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận mạn giai đoạn 3- 4 không lọc máu, tăng kali máu',N'Suy thận mạn giai đoạn 3- 4 không lọc máu, tăng kali máu', N'TN09', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận mạn có lọc máu ngoài thận hoặc thẩm phân phúc mạc 3 lần/tuần',N'Suy thận mạn có lọc máu ngoài thận hoặc thẩm phân phúc mạc 3 lần/tuần', N'TN10', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận mạn có lọc máu ngoài thận hoặc thẩm phân phúc mạc 2 lần/tuần',N'Suy thận mạn có lọc máu ngoài thận hoặc thẩm phân phúc mạc 2 lần/tuần', N'TN11', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận mạn có lọc máu ngoài thận hoặc thẩm phân phúc mạc 1 lần/tuần',N'Suy thận mạn có lọc máu ngoài thận hoặc thẩm phân phúc mạc 1 lần/tuần', N'TN12', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Hội chứng thận hư không có tổn thương cầu thận tối thiểu',N'Hội chứng thận hư không có tổn thương cầu thận tối thiểu', N'TN13', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Hội chứng thận hư có tổn thương cầu thận tối thiểu hoặc mức lọc cầu thận < 60 ml/phút',N'Hội chứng thận hư có tổn thương cầu thận tối thiểu hoặc mức lọc cầu thận < 60 ml/phút', N'TN14', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường đơn thuần',N'Đái tháo đường đơn thuần', N'DD01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường, rối loạn chuyển hóa lipid máu',N'Đái tháo đường, rối loạn chuyển hóa lipid máu', N'DD02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp viêm cầu thận, thể urê máu cao',N'Đái tháo đường kết hợp viêm cầu thận, thể urê máu cao', N'DD03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp viêm cầu thận, thể cao huyết áp',N'Đái tháo đường kết hợp viêm cầu thận, thể cao huyết áp', N'DD04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp viêm cầu thận, giai đoạn phục hồi',N'Đái tháo đường kết hợp viêm cầu thận, giai đoạn phục hồi', N'DD05', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp suy thận mạn độ 1- 2',N'Đái tháo đường kết hợp suy thận mạn độ 1- 2', N'DD06', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp suy thận mạn độ 3- 4',N'Đái tháo đường kết hợp suy thận mạn độ 3- 4', N'DD07', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp với suy tim 3-4',N'Đái tháo đường kết hợp với suy tim 3-4', N'DD08', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường kết hợp với gout',N'Đái tháo đường kết hợp với gout', N'DD09', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Bệnh gout đơn thuần',N'Bệnh gout đơn thuần', N'GO01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Bệnh gout có kết hợp với suy thận mạn độ 1, 2',N'Bệnh gout có kết hợp với suy thận mạn độ 1, 2', N'GO02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Bệnh gout có kết hợp với suy thận mạn độ 3, 4',N'Bệnh gout có kết hợp với suy thận mạn độ 3, 4', N'GO03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Tăng huyết áp',N'Tăng huyết áp', N'TM01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Rối loạn lipid máu',N'Rối loạn lipid máu', N'TM02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy tim giai đoạn 1- 2, nhồi máu cơ tim ổn định',N'Suy tim giai đoạn 1- 2, nhồi máu cơ tim ổn định', N'TM03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy tim giai đoạn 3, nhồi máu cơ tim sau 7 ngày',N'Suy tim giai đoạn 3, nhồi máu cơ tim sau 7 ngày', N'TM04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy tim giai đoạn 4 (suy tim mất bù)',N'Suy tim giai đoạn 4 (suy tim mất bù)', N'TM05', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Nhồi máu cơ tim, giai đoạn cấp 1- 3 ngày đầu',N'Nhồi máu cơ tim, giai đoạn cấp 1- 3 ngày đầu', N'TM06', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Nhồi máu cơ tim, giai đoạn tiếp theo',N'Nhồi máu cơ tim, giai đoạn tiếp theo', N'TM07', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm loét dạ dày tá tràng, chảy máu dạ dày- tá tràng giai đoạn ổn định',N'Viêm loét dạ dày tá tràng, chảy máu dạ dày- tá tràng giai đoạn ổn định', N'TH01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Chảy máu dạ dày- tá tràng',N'Chảy máu dạ dày- tá tràng', N'TH02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Chảy máu dạ dày- tá tràng, giai đoạn đã cầm máu',N'Chảy máu dạ dày- tá tràng, giai đoạn đã cầm máu', N'TH03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm đại tràng, rối loạn tiêu hóa',N'Viêm đại tràng, rối loạn tiêu hóa', N'TH04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn khởi động',N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn khởi động', N'VT01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn chuyển tiếp 1',N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn chuyển tiếp 1', N'VT02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn chuyển tiếp 2',N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn chuyển tiếp 2', N'VT03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn hồi phục',N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn hồi phục', N'VT04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn hồi phục',N'Viêm tụy cấp khi có chỉ định ăn, giai đoạn hồi phục', N'VT05', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm gan cấp, giai đoạn đầu',N'Viêm gan cấp, giai đoạn đầu', N'GM01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm gan cấp, giai đoạn tiếp theo',N'Viêm gan cấp, giai đoạn tiếp theo', N'GM02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Viêm gan mạn tính',N'Viêm gan mạn tính', N'GM03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Xơ gan',N'Xơ gan', N'GM04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Hôn mê gan',N'Hôn mê gan', N'GM05', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Nhiễm khuẩn cấp, giai đoạn toàn phát',N'Nhiễm khuẩn cấp, giai đoạn toàn phát', N'NK01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Nhiễm khuẩn cấp, giai đoạn hồi phục',N'Nhiễm khuẩn cấp, giai đoạn hồi phục', N'NK02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Nhiễm khuẩn mạn',N'Nhiễm khuẩn mạn', N'NK03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-12 tháng',N'7-12 tháng', N'2BT', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'1-3 tuổi',N'1-3 tuổi', N'3BT', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'4-6 tuổi',N'4-6 tuổi', N'4BT', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-9 tuổi',N'7-9 tuổi', N'5BT', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'10-15 tuổi',N'10-15 tuổi', N'6BT', '');
+
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-12 tháng',N'7-12 tháng', N'2TH1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'1-3 tuổi',N'1-3 tuổi', N'3TH1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'4-6 tuổi',N'4-6 tuổi', N'4TH1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-9 tuổi',N'7-9 tuổi', N'5TH1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'10-15 tuổi',N'10-15 tuổi', N'6TH1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-12 tháng',N'7-12 tháng', N'2TH2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'1-3 tuổi',N'1-3 tuổi', N'3TH2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'4-6 tuổi',N'4-6 tuổi', N'4TH2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-9 tuổi',N'7-9 tuổi', N'5TH2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'10-15 tuổi',N'10-15 tuổi', N'6TH2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-12 tháng',N'7-12 tháng', N'2SD1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'1-3 tuổi',N'1-3 tuổi', N'3SD1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'4-6 tuổi',N'4-6 tuổi', N'4SD1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-9 tuổi',N'7-9 tuổi', N'5SD1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'10-15 tuổi',N'10-15 tuổi', N'6SD1', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-12 tháng',N'7-12 tháng', N'2SD2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'1-3 tuổi',N'1-3 tuổi', N'3SD2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'4-6 tuổi',N'4-6 tuổi', N'4SD2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'7-9 tuổi',N'7-9 tuổi', N'5SD2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'10-15 tuổi',N'10-15 tuổi', N'6SD2', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn khởi động ruột',N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn khởi động ruột', N'PT01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn chuyển tiếp 1',N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn chuyển tiếp 1', N'PT02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn chuyển tiếp 2',N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn chuyển tiếp 2', N'PT03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn hồi phục',N'Phẫu thuật đường tiêu hoá và ngoài đường tiêu hoá, giai đoạn hồi phục', N'PT04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Bình thường',N'Bình thường', N'V01', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Đái tháo đường',N'Đái tháo đường', N'V02', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Suy thận',N'Suy thận', N'V03', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Tim mạch, ung bướu',N'Tim mạch, ung bướu', N'V04', '');
+
+Insert into DietCodes (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, AreaCode)
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'Tất cả các bệnh lý đặc biệt khác',N'Tất cả các bệnh lý đặc biệt khác', N'V05*', '');
+
+
+
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][Y LỆNH NỘI TRÚ] Thêm Mã chế độ dinh dưỡng' , N'MARDIETCODE', (select id from VisitTypeGroups where Code = 'IPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][Y LỆNH NỘI TRÚ] Lấy danh sách Mã chế độ dinh dưỡng' , N'DIETCODE', (select id from VisitTypeGroups where Code = 'IPD'));
+
+
+
+

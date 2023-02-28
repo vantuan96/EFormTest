@@ -1,0 +1,25 @@
+(select id from VisitTypeGroups where Code = 'IPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][XEM] PROM bệnh nhân mạch vành' , N'IPDPROMFCD1', (select id from VisitTypeGroups where Code = 'IPD'));
+(select id from VisitTypeGroups where Code = 'IPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][TẠO MỚI] PROM bệnh nhân mạch vành' , N'IPDPROMFCD2', (select id from VisitTypeGroups where Code = 'IPD'));
+(select id from VisitTypeGroups where Code = 'IPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][CHỈNH SỬA] PROM bệnh nhân mạch vành' , N'IPDPROMFCD3', (select id from VisitTypeGroups where Code = 'IPD'));
+(select id from VisitTypeGroups where Code = 'IPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][XÁC NHẬN] PROM bệnh nhân mạch vành' , N'IPDPROMFCD4', (select id from VisitTypeGroups where Code = 'IPD'));
+	
+(select id from VisitTypeGroups where Code = 'OPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD][XEM] PROM bệnh nhân mạch vành' , N'OPDPROMFCD1', (select id from VisitTypeGroups where Code = 'OPD'));
+(select id from VisitTypeGroups where Code = 'OPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD][TẠO MỚI] PROM bệnh nhân mạch vành' , N'OPDPROMFCD2', (select id from VisitTypeGroups where Code = 'OPD'));
+(select id from VisitTypeGroups where Code = 'OPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD][CHỈNH SỬA] PROM bệnh nhân mạch vành' , N'OPDPROMFCD3', (select id from VisitTypeGroups where Code = 'OPD'));
+(select id from VisitTypeGroups where Code = 'OPD')	insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD][XÁC NHẬN] PROM bệnh nhân mạch vành' , N'OPDPROMFCD4', (select id from VisitTypeGroups where Code = 'OPD'));
+
+
+
+
+
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'PROM bệnh nhân mạch vành', N'PROMFCD', 'IPD')
+
+
+insert into Forms (Id,IsDeleted, Name, Code, VisitTypeGroupCode)
+values (NEWID(), 0, N'PROM bệnh nhân mạch vành', N'PROMFCD', 'OPD')
+
+
+Insert into MasterDatas  (Id, CreatedAt, UpdatedAt, IsDeleted,ViName, EnName, Code, [Group], Form, [Level], [Order], DataType, Note, IsReadOnly,Data, Clinic, [Version]) 
+values (NEWID(), GETDATE(), GETDATE(), 'False', N'PROM bệnh nhân mạch vành',N'PROM for coronary disease',N'PROMFCD',N'OPDTIMMACH',N'PROMFCD',N'',N'',N'',N'OPD',N'',N'',N'', '');

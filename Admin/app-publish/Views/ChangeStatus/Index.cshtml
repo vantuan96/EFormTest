@@ -1,0 +1,141 @@
+﻿@using Admin.Models
+@using Admin.Common
+@model ChangeStatusViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-users {
+        width: 100% !important;
+    }
+
+    .ms-container {
+        width: 500px;
+    }
+</style>
+@Html.AntiForgeryToken()
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý trạng thái hồ sơ
+                </h6>
+                <hr />
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="filterName" placeholder="Mã hồ sơ" />
+                        </div>
+                        <div class="col-8">
+                            <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="filterTable()" id="btn_search">
+                                <i class="material-icons mdc-button__icon">search</i>
+                                Tìm kiếm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-unlocks" class="mdl-data-table" style="width: 100%"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popupPlaceholder"></div>
+@section script{
+<script src="~/Scripts/jquery.multi-select.js"></script>
+<script>
+    $(document).ready(function () {
+        var t = $('#tbl-unlocks').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            ajax: {
+                url: "@Url.Action("GetListChangeStatus", "ChangeStatus")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 5, visible: false, searchable: false, orderable: false },
+                { targets: 6, searchable: false, orderable: false }
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "Mã hồ sơ", data: "RecordCode", name: "RecordCode" },
+                { title: "Thông tin bệnh nhân", data: "CustomerInfo", name: "CustomerInfo" },
+                { title: "Điều dưỡng", data: "Nurse", name: "Nurse" },
+                { title: "Bác sĩ", data: "Doctor", name: "Doctor" },
+                { title: "StatusId", data: "StatusId", name: "StatusId" },
+                {
+                    title: "Trạng thái",
+                    data: "ListStatus",
+                    render: function (data, type, full, meta) {
+                        var option = "";
+                        for (var st of data) {
+                            var selected = "";
+                            if (st.Id == full.StatusId)
+                                selected = "selected"
+                            option += `<option value="${st.Id}" ${selected}>${st.ViName}</option>`
+                        }
+                        return `<select onchange="update_status('${full.Id}', this, '${full.StatusId}')">${option}</select>`;
+                    }
+                }
+            ]
+        });
+
+        var input = document.getElementById("filterName");
+        input.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+           event.preventDefault();
+           document.getElementById("btn_search").click();
+          }
+        });
+    })
+
+    function filterTable() {
+        var oTable = $('#tbl-unlocks').DataTable();
+        oTable.columns(1).search($("#filterName").val()).draw();
+    }
+
+    function update_status(visit_id, sel) {
+        if (!confirm("Chắc chắn thay đổi ?")) {
+            $('#tbl-unlocks').DataTable().ajax.reload();
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            data: {
+                visit_id: visit_id,
+                status_id: sel.value,
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value
+            },
+            url: "@Url.Action("UpdateChangeStatus", "ChangeStatus")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+</script>
+}

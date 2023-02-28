@@ -1,0 +1,355 @@
+﻿@using Admin.Models
+@using Admin.Common
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-users {
+        width: 100% !important;
+    }
+
+    .ms-container {
+        width: 500px;
+    }
+</style>
+
+@Html.AntiForgeryToken()
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý người dùng
+                    <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="showModalAddUser()">
+                        <i class="material-icons mdc-button__icon">add</i>
+                        Thêm
+                    </button>
+                </h6>
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-2" style="max-width: 100px; margin-top: 7px;"><b>Tìm kiếm:</b></div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" id="filterName" placeholder="Tài khoản" onchange="filterTable()" />
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-users" class="mdl-data-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalAddUser">
+    <div class="modal-dialog" role="document" style="max-width: 720px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm người dùng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddNewUser">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-3 mdc-label"><b>Tài khoản AD:</b></div>
+                        <div class="col-7">
+                            @Html.TextBoxFor(s => s.UserName, new { @class = "form-control" })
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kiểm tra" onclick="checkName()"><i class="material-icons mdc-button__icon">check</i></button>
+                        </div>
+                    </div>
+                    <div class="row col-12" id="userError" style="display: none;">
+                        <b style="color: red;" id="usrErrMsg"></b>
+                    </div>
+                    <div id="userDetail"></div>
+                    <div id="assignRoles" style="display: none;">
+                        @if (User.IsInRole(Constant.AdminRoles.SuperAdmin))
+                        {
+                            <div class="row">
+                                <div class="col-3 mdc-label"><b>Quản trị viên:</b></div>
+                                <div class="col-2">
+                                    <div class="toggle">
+                                        @Html.CheckBoxFor(s => s.IsAdminUser, new { @class = "check", onchange = "assignAdmin(this)" })
+                                        <b class="b switch"></b>
+                                        <b class="b track"></b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 5px; display: none;" id="assignAdminRoles">
+                                <div class="col-3 mdc-label"><b>Phân quyền quản trị:</b></div>
+                                <div class="col-9">
+                                    @Html.DropDownListFor(s => s.AdminRoles, Model.ListAdminRoles, new { multiple = "multiple" })
+                                </div>
+                            </div>
+                        }
+                        <div class="row" style="padding-top: 5px;">
+                            <div class="col-3 mdc-label"><b>Vị trí:</b></div>
+                            <div class="col-9">
+                                @Html.DropDownListFor(s => s.Positions, Model.ListPositions, new { multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 5px;">
+                            <div class="col-3 mdc-label"><b>Phân quyền:</b></div>
+                            <div class="col-9">
+                                @Html.DropDownListFor(s => s.Roles, Model.ListRoles, new { multiple = "multiple" })
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 5px;">
+                            <div class="col-3 mdc-label"><b>Khu vực:</b></div>
+                            <div class="col-9">
+                                @Html.DropDownListFor(s => s.Specialties, Model.ListSpecialties, new { multiple = "multiple" })
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="display: none;" id="userActions">
+                <button type="button" class="btn btn-success" onclick="searchAnotherUser()">Xóa</button>
+                <button type="button" class="btn btn-primary" onclick="addUser()">Thêm người dùng</button>
+                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popupPlaceholder"></div>
+@section script{
+    <script src="~/Scripts/jquery.quicksearch.js"></script>
+    <script src="~/Scripts/jquery.multi-select.js"></script>
+    <script>
+    function filterTable() {
+        var oTable = $('#tbl-users').DataTable();
+        oTable.columns(1).search($("#filterName").val()).draw();
+    }
+
+    function searchAnotherUser() {
+        $("#UserName").prop('readonly', false);
+        $("#UserName").val('');
+        $('#UserName').trigger('focus');
+        $('#IsAdminUser').prop('checked', false);
+        $('#IsAdminUser').trigger('change');
+        $('#Positions').multiSelect('deselect_all');
+        $('#Roles').multiSelect('deselect_all');
+        $('#Specialties').multiSelect('deselect_all');
+        $('#userActions').hide();
+        $('#userError').hide();
+        $('#userDetail').html('');
+        $('#assignRoles').hide();
+    }
+
+    function assignAdmin(elm) {
+        if (elm.checked) {
+            $('#assignAdminRoles').show();
+        } else {
+            $('#AdminRoles').multiSelect('deselect_all');
+            $('#assignAdminRoles').hide();
+        }
+    }
+
+    function checkName() {
+        $.ajax(
+            {
+                type: "POST",
+                data: { ad : $('#UserName').val(), "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("CheckName", "User")",
+                success: function (data) {
+                    if (data.IsExistedAccount) {
+                        $('#userError').show();
+                        $('#usrErrMsg').text('Người dùng đã tồn tại.');
+                    }
+                    else if (data.IsInvalidADAccount) {
+                        $('#userError').show();
+                        $('#usrErrMsg').text('Tài khoản AD không đúng.');
+                    }
+                    else if (data.IsSpamADAccount) {
+                        $('#userError').show();
+                        $('#usrErrMsg').text('Bạn đã nhập quá nhiều lần, hãy thử lại sau 2 phút');
+                    } else {
+                        $('#userActions').show();
+                        $('#assignRoles').show();
+                        $('#userError').hide();
+                        $("#UserName").prop('readonly', true);
+                        var html = '<div class="row"><div class="col-3"><b>Tên hiển thị:</b></div><div class="col-9">' + data.DisplayName + '</div></div>' +
+                            '<div class="row"><div class="col-3"><b>Phòng ban:</b></div><div class="col-9">' + data.Department + '</div></div>' +
+                            '<div class="row"><div class="col-3"><b>Chức danh:</b></div><div class="col-9">' + data.Title + '</div></div>';
+                        $('#userDetail').html(html);
+                    }
+                }
+            })
+    }
+
+    function showModalAddUser() {
+        $("#modalAddUser").modal();
+    }
+
+    $('#modalAddUser').on('hide.bs.modal', function () {
+        searchAnotherUser();
+        $('#tbl-users').DataTable().ajax.reload();
+    })
+
+    $('#modalAddUser').on('shown.bs.modal', function () {
+        $('#UserName').trigger('focus');
+    })
+
+    function viewDetail(id) {
+        var url = '@Url.Action("GetUserDetail", "User")';
+        $('#popupPlaceholder').load(url, { id: id }, function (response, status, xhr) {
+            $("#modalEditUser").modal();
+        });
+    }
+
+    function addUser() {
+        $.ajax(
+            {
+                type: "POST",
+                data: $('#frmAddNewUser').serializeArray(),
+                url: "@Url.Action("AddUser", "User")",
+                success: function (data) {
+                    if (data) {
+                        searchAnotherUser();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+    }
+
+    function deactiveUser(id) {
+        $.ajax(
+            {
+                type: "POST",
+                data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("DeactivateUser", "User")",
+                success: function (data) {
+                    if (data) {
+                        $('#tbl-users').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+    }
+
+    function activeUser(id) {
+        $.ajax(
+            {
+                type: "POST",
+                data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("ActivateUser", "User")",
+                success: function (data) {
+                    if (data) {
+                        $('#tbl-users').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+    }
+
+    $(document).ready(function () {
+        var t = $('#tbl-users').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            ajax: {
+                url: "@Url.Action("GetListUsers", "User")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 1, width: "150px" },
+                { targets: 3, width: "200px" },
+                { targets: 4, width: "200px" },
+                { targets: 5, visible: false, searchable: false, orderable: false },
+                { targets: 6, searchable: false, orderable: false }
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "AD Account", data: "UserName", name: "UserName" },
+                { title: "Tên hiển thị", data: "DisplayName", name: "DisplayName" },
+                { title: "Phòng ban", data: "Department", name: "Department" },
+                { title: "Chức danh", data: "Title", name: "Title" },
+                { title: "IsDeleted", data: "IsDeleted", name: "IsDeleted" },
+                {
+                    title: "Thao tác", render: function (data, type, full, meta) {
+                        var render = '';
+                        if (full.IsDeleted) {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kích hoạt" onclick="activeUser(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">check</i></button>';
+                        } else {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Vô hiệu" onclick="deactiveUser(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">clear</i></button>';
+                        }
+                        render += '&nbsp;<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" onclick="viewDetail(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">edit</i></button>';
+                        return render;
+                    }
+                }
+            ]
+        });
+
+        var config = {
+            selectableHeader: "<input type='text' class='form-control' autocomplete='off' placeholder='Tìm kiếm...'>",
+            selectionHeader: "<input type='text' class='form-control' autocomplete='off' placeholder='Tìm kiếm...'>",
+            afterInit: function (ms) {
+                let that = this,
+                    $selectableSearch = that.$selectableUl.prev(),
+                    $selectionSearch = that.$selectionUl.prev(),
+                    selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                    selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+                that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                    .on('keydown', function (e) {
+                        if (e.which === 40) {
+                            that.$selectableUl.focus();
+                            return false;
+                        }
+                    });
+
+                that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                    .on('keydown', function (e) {
+                        if (e.which == 40) {
+                            that.$selectionUl.focus();
+                            return false;
+                        }
+                    });
+            },
+
+            afterSelect: function () {
+                this.qs1.cache();
+                this.qs2.cache();
+            },
+
+            afterDeselect: function () {
+                this.qs1.cache();
+                this.qs2.cache();
+            }
+        };
+        $('#Positions').multiSelect(config);
+        $('#Roles').multiSelect(config);
+        $('#Specialties').multiSelect(config);
+        $('#AdminRoles').multiSelect();
+    })
+    </script>
+}

@@ -1,0 +1,99 @@
+﻿@using Admin.Models
+@model RoleViewModel
+
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.multi-select.js"></script>
+<script src="~/Scripts/jquery.quicksearch.js"></script>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalEditRole">
+    <div class="modal-dialog" role="document" style="min-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                @if (!Model.IsEdit)
+                {
+                    <h5 class="modal-title">Thêm quyền</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Sửa quyền</h5>
+                }
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmRoleDetail">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(s => s.Id)
+                    <div class="row">
+                        <div class="col-2 mdc-label"><b>Tên tiếng Việt:</b></div>
+                        <div class="col-10">
+                            @Html.TextBoxFor(s => s.ViName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 mdc-label"><b>Tên tiếng Anh:</b></div>
+                        <div class="col-10">
+                            @Html.TextBoxFor(s => s.EnName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 mdc-label"><b>Loại thăm khám:</b></div>
+                        @if (!Model.IsEdit)
+                        {
+                            <div class="col-10">
+                                @Html.DropDownListFor(s => s.VisitTypeGroupId, Model.ListVisitTypes, new { @class = "form-control", onchange = "changeVisitType(this)" })
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-10">
+                                @Html.DropDownListFor(s => s.VisitTypeGroupId, Model.ListVisitTypes, new { @class = "form-control", onchange = "changeVisitType(this)", disabled = "disabled" })
+                            </div>
+                        }
+                    </div>
+                    <div id="selectActionSpecialty"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @if (!Model.IsEdit)
+                {
+                    <button type="button" class="btn btn-success" onclick="saveRole()">Thêm</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-success" onclick="saveRole()">Lưu</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeVisitType(elm) {
+        var url = '@Url.Action("GetActionSpecialtyByVisit", "Role")';
+        $('#selectActionSpecialty').load(url, { id: $('#Id').val(), visitId: elm.value });
+    }
+
+    function saveRole() {
+        $.ajax(
+            {
+                type: "POST",
+                data: $('#frmRoleDetail').serializeArray(),
+                url: "@Url.Action("SaveRole", "Role")",
+                success: function (data) {
+                    if (data) {
+                        $("#modalEditRole").modal('hide');
+                        $('#tbl-roles').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+        }
+
+    $(document).ready(function () {
+        $('#VisitTypeGroupId').trigger('change');
+    })
+</script>

@@ -1,0 +1,55 @@
+
+trigger:
+  branches:
+      include:
+      - none
+pool:
+  name: 'EFormCI'
+stages:
+  - stage: copy_file_server_81
+    jobs:
+      - job:
+        steps:
+          - checkout: 'none'
+            displayName: 'Checkout code from repo'
+          - script: |
+              echo ##[command]
+              cd D:\\Project\\BACKUP
+              echo ##[command]
+              set temp=%DATE:/=%
+              echo ##[command]
+              set dirname="eform_backup_%temp:~8,4%%temp:~6,2%%temp:~4,2%"
+              echo ##[command]
+              if exist D:\\Project\\BACKUP\\%dirname% rmdir /S /Q D:\\Project\\BACKUP\\%dirname%
+              echo ##[command]
+              mkdir %dirname%
+              echo ##[command]
+              xcopy /S /I /Q /F D:\\Project\\APP\\bin D:\\Project\\BACKUP\\%dirname% /E /Y
+            displayName: 'Backup'
+          - script: |
+              echo ##[copy file]
+              xcopy C:\\agents\\_work\\2\\s\\Application\\EForm\\bin D:\\Project\\APP\\bin /E /Y
+  - stage: copy_file
+    jobs:
+      - job: copy_file_from_server_81
+        displayName: 'Copy file from server 81'
+        strategy:
+          matrix:
+            Server82:
+              AGENT_NAME: 'Agent-server-82'
+            Server83:
+              AGENT_NAME: 'Agent-server-83'
+            Server84:
+              AGENT_NAME: 'Agent-server-84'
+        pool:
+          name: 'EFormCI'
+          demands:
+          - agent.name -equals $(AGENT_NAME)
+        steps:
+        - checkout: 'none'
+          displayName: 'Checkout code from repo'
+        - script: |
+            echo ##[command]
+            cd  C:\\agents\\_work\\BAT_TO_COPY
+            echo ##[command]
+            copy_backend.bat

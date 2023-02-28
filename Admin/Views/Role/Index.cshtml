@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-roles {
+        width: 100% !important;
+    }
+
+    .badge-small-gray{
+        border: 1px solid darkgray;
+        border-radius: 10px;
+        padding: 4px;
+        font-size: 11px;
+        background: darkslategrey;
+        color: white;
+        margin: 2px;
+        text-align: center;
+    }
+
+    .badge-small-cyan{
+        border: 1px solid darkgray;
+        border-radius: 10px;
+        padding: 4px;
+        font-size: 11px;
+        background: darkcyan;
+        color: white;
+        margin: 2px;
+        text-align: center;
+    }
+</style>
+
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý nhóm quyền
+                    <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="showFormNewSpecialty()">
+                        <i class="material-icons mdc-button__icon">add</i>
+                        Thêm
+                    </button>
+                </h6>
+                <table id="tbl-roles" class="mdl-data-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.AntiForgeryToken()
+<div id="popupPlaceholder"></div>
+
+@section script{
+<script>
+    function showFormNewSpecialty() {
+        var url = '@Url.Action("GetRoleDetail", "Role")';
+        $('#popupPlaceholder').load(url, { id: 0 }, function (response, status, xhr) {
+            $("#modalEditRole").modal();
+        });
+    }
+
+    function viewDetail(id) {
+        var url = '@Url.Action("GetRoleDetail", "Role")';
+        $('#popupPlaceholder').load(url, { id: id }, function (response, status, xhr) {
+            $("#modalEditRole").modal();
+        });
+    }
+
+    function deactiveRole(id) {
+        $.ajax(
+            {
+                type: "POST",
+                data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("DeactivateRole", "Role")",
+                success: function (data) {
+                    if (data) {
+                        $('#tbl-roles').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+    }
+
+    function activeRole(id) {
+        $.ajax(
+            {
+                type: "POST",
+                data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("ActivateRole", "Role")",
+                success: function (data) {
+                    if (data) {
+                        $('#tbl-roles').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+        }
+
+    $(document).ready(function () {
+        tbl = $('#tbl-roles').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            //deferLoading: true,
+            ajax: {
+                url: "@Url.Action("GetListRoles", "Role")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 1, width: "150px" },
+                { targets: 2, orderable: false },
+                { targets: 3, searchable: false, orderable: false }
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "Tên tiếng Việt", data: "ViName", name: "ViName" },
+                { title: "Tên tiếng Anh", data: "EnName", name: "EnName" },
+                {
+                    title: "Thao tác", render: function (data, type, full, meta) {
+                        var render = '';
+                        if (full.IsDeleted) {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kích hoạt" onclick="activeRole(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">check</i></button>';
+                        } else {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Vô hiệu" onclick="deactiveRole(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">clear</i></button>';
+                        }
+                        render += '&nbsp;<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" onclick="viewDetail(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">edit</i></button>';
+                        return render;
+                    }
+                }
+            ]
+        });
+
+    })
+</script>
+}

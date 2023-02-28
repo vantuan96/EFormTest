@@ -1,0 +1,308 @@
+﻿@using Admin.Models
+@using Admin.Common
+@model DeleteRecordViewModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+<link href="~/assets/css/theme.css" rel="stylesheet" />
+<link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-users {
+        width: 100% !important;
+    }
+
+    .ms-container {
+        width: 500px;
+    }
+
+    .modal-popup {
+        margin: 10% auto !important;
+        max-width: 450px;
+    }
+
+    .title-header {
+        background: #3c8dbc !important;
+        height: 70px !important;
+        border-radius: 0px !important;
+    }
+
+    .title-popup {
+        color: white;
+        margin-top: -7px;
+        font-size: 20px;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+    }
+
+    .button-popup {
+        width: 100% !important;
+        border-color: #e2e2e2 !important;
+        font-size: 15px !important;
+        color: #232323 !important;
+        border-width: 2px !important;
+        font-weight: normal !important;
+        font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    /*textarea[type="cssTextarea"]::placeholder
+    {
+        padding-left:10px;
+        padding-top:5px;
+    } */
+</style>
+@Html.AntiForgeryToken()
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý xóa hồ sơ
+                </h6>
+                <hr />
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-4">
+                            <textarea style="height:36px" class="form-control" type="text" name="text" placeholder="Mã hồ sơ" id="filterName"></textarea>
+                        </div>
+                        <div class="col-8">
+                            <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="filterTable()" id="btn_search">
+                                <i class="material-icons mdc-button__icon">search</i>
+                                Tìm kiếm
+                            </button>
+                            <button class="mdc-button mdc-button--outlined outlined-button--danger mdc-ripple-upgraded" onclick="showPopupDeleteHsIpd()">
+                                <i class="material-icons mdc-button__icon">delete_forever</i>
+                                Xóa tất cả hồ sơ tìm thấy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-unlocks" class="mdl-data-table" style="width: 100%"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="modaDeleteHs">
+    <div class="modal-popup modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="title-header modal-header">
+                <p class="title-popup">
+                    BẠN CÓ MUỐN XÓA BỆNH NHÂN NÀY KHÔNG?
+                </p>
+            </div>
+            <div class="modal-body" style="margin-bottom:-12px">
+                <form style="margin-top:-10px">
+                    <div>
+                        <p style="font-size: 15px;">
+                            Hành động xóa hồ sơ bệnh án của bạn sẽ được lưu lại, dữ liệu đã nhập tại hồ sơ này sẽ bị mất.
+                        </p>
+                    </div>
+                    <div style="margin-bottom:-20px" class="form-group log-status" id="logContentDeleteHs">
+                        <textarea onKeyUp="textChange()" class="form-control" type="cssTextarea" rows="3" cols="50" name="text" placeholder="Vui lòng nhập lý do xóa" id="contentDeleteHs"></textarea>
+                        <br />
+                    </div>
+                    <span class="validateError" id="modaAlert"></span>
+                </form>
+                <div style="display:flex;">
+                    <div style="flex:3;">
+                        <button style="background: #f0f0f0;" class="button-popup mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded"
+                                onclick="executeDelete()">
+                            Đồng ý
+                        </button>
+                    </div>
+                    <div style="flex:0.3;">
+                    </div>
+                    <div style="flex:3;">
+                        <button style="background: #f39c12;" class="button-popup mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded"
+                                onclick="cancelDelete()">
+                            Hủy bỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popupPlaceholder"></div>
+@section script{
+    <script src="~/Scripts/jquery.multi-select.js"></script>
+    <script>
+    var idHsIpd;
+    var contentDeleteHs;
+    $(document).ready(function () {
+        var t = $('#tbl-unlocks').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            ajax: {
+                url: "@Url.Action("GetListDeleteRecord", "DeleteRecord")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 5, searchable: false, orderable: false }
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "Mã hồ sơ", data: "RecordCode", name: "RecordCode" },
+                { title: "Thông tin bệnh nhân", data: "CustomerInfo", name: "CustomerInfo" },
+                { title: "Điều dưỡng", data: "Nurse", name: "Nurse" },
+                { title: "Bác sĩ", data: "Doctor", name: "Doctor" },
+                {
+                    title: "Xóa", render: function (data, type, full, meta) {
+                        return `
+                        <button type="button" class="mdc-button mdc-button--raised icon-button filled-button--danger mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" onclick="showPopupDeleteHsIpd('${full.Id}')">
+                            <i class="material-icons mdc-button__icon">delete_forever</i>
+                        </button>
+                        `;
+                    }
+                }
+            ]
+        });
+
+        var input = document.getElementById("filterName");
+        input.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+           event.preventDefault();
+           document.getElementById("btn_search").click();
+          }
+        });
+    })
+
+    function filterTable() {
+        var oTable = $('#tbl-unlocks').DataTable();
+        oTable.columns(1).search($("#filterName").val().trim()).draw();
+    }
+    $('#modaDeleteHs').on('hide.bs.modal', function ()
+    {
+
+    })
+    function clearDataPopup()
+    {
+        $('#modaDeleteHs').modal('hide');
+        $("#contentDeleteHs").val('');
+        idHsIpd = null;
+    }
+    function cancelDelete()
+    {
+        clearDataPopup();
+    }
+
+    function showPopupDeleteHsIpd(id)
+    {
+        idHsIpd = id;
+        document.getElementById("contentDeleteHs").style.borderColor = "#ddd";
+        $('#modaDeleteHs').modal('show')
+    }
+
+    function textChange()
+    {
+        document.getElementById("contentDeleteHs").style.borderColor = "#ddd";
+    }
+
+    function executeDelete()
+    {
+        contentDeleteHs = $("#contentDeleteHs").val().trim();
+        if (contentDeleteHs == null || contentDeleteHs == undefined || contentDeleteHs == "")
+        {
+            //$('#logContentDeleteHs').addClass('wrong-entry');
+            document.getElementById("contentDeleteHs").style.borderColor = "#ed1c24";
+            $('#modaAlert').html('Bạn chưa nhập lý do xóa');
+            $('#modaAlert').fadeIn(500);
+            setTimeout( "$('#modaAlert').fadeOut(1500);",5000 );
+            return;
+        }
+        if (idHsIpd == null || idHsIpd == undefined || idHsIpd == "")
+        {
+            executeDeleteAll();
+        }
+        else
+        {
+            executeRecordById(idHsIpd)
+        }
+    }
+    function executeRecordById(idHsIpd)
+    {
+        $.ajax({
+            type: "POST",
+            data:
+            {
+                id: idHsIpd,
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                content: contentDeleteHs
+            },
+            url: "@Url.Action("DeleteRecordItem", "DeleteRecord")",
+            success: function (data)
+            {
+                if (data.IsDeleted)
+                {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                    clearDataPopup();
+                    alert(data.Message);
+                }
+                else
+                {
+                    alert(data.Message);
+                }
+            }
+        })
+    }
+    function executeDeleteAll()
+    {
+        var oTable = $('#tbl-unlocks').DataTable();
+        var ids = oTable.columns(0).data()[0];
+        if (ids.length == 0)
+        {
+            alert("Không tìm thấy hồ sơ nào");
+            return false;
+        }
+        //if (!confirm("Chắc chắn xóa ?"))
+        //{
+        //    return false;
+        //}
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data:
+            {
+                ids: ids,
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                content: contentDeleteHs
+            },
+            url: "@Url.Action("DeleteRecordAll", "DeleteRecord")",
+            success: function (data)
+            {
+                if (data.IsDeleted)
+                {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                    clearDataPopup();
+                    alert(data.Message);
+                }
+                else
+                {
+                    alert(data.Message);
+                }
+            }
+        })
+    }
+    </script>
+}

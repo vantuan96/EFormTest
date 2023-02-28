@@ -1,0 +1,32 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- sprint-20
+
+pool:
+  name: 'Default'
+
+steps:
+- checkout: 'none'
+  displayName: 'Checkout code from repo'
+- script: |
+    echo ##[command]
+    cd C:\\agents\\_work\\1\\s
+    echo ##[command]
+    git pull origin sprint-20
+  displayName: 'Get newest code'
+- task: MSBuild@1
+  inputs:
+    solution: '**/*.sln'
+    msbuildLocationMethod: 'location'
+    msbuildLocation: 'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin'
+    platform: 'Any CPU'
+    configuration: Release
+    clean: true
+
+- script: |
+    echo ##[copy file]
+    xcopy C:\\agents\\_work\\1\\s\\Application\\EForm\\bin E:\\Projects\\eform\\dev_ci\\bin /E /Y

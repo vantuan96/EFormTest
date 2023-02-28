@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    @*<title>@ViewBag.Title</title>*@
+    @*<link rel="icon" href="/static/favicon.ico">*@
+    <link href="~/Assets/css/DropdownSelectMoreApp.css" rel="stylesheet" />
+    <style>
+
+        .tooltip1 .textToolTip {
+            visibility: hidden;
+            /*  transition-delay: 0.1s;*/
+            position: absolute;
+            /*   z-index: 1;*/
+            top: 20px;
+            margin-left: 50px;
+            transform: translateX(-50%);
+        }
+
+        .tooltip1:hover .textToolTip {
+            visibility: visible;
+            transition-delay: 0.1s;
+        }
+
+        ._1EQVMQ {
+            position: static;
+            /* display: inline-block;*/
+            /* visibility: hidden; */
+            box-shadow: 0 1px 3.125rem 0 rgb(0 0 0 / 20%);
+            border-radius: 2.5px;
+            overflow: hidden;
+            background-color: #3f3f3b;
+            color: white;
+            padding: 5px;
+            width: 100px;
+            font-weight: 500;
+            margin-left: -80px;
+            justify-content: center;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+</head>
+<body>
+    @{ Html.RenderPartial("_SingleSignOut"); }
+
+    <div class="">
+        @RenderBody()
+        <hr />
+        @*<footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/Assets/lcStorage_cross/services/xd-utils.js"></script>
+    <script src="~/Assets/lcStorage_cross/xdLocalStorage.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+
+
+    var checklogin_url = ' @Url.Action("CheckLogin", "Authen")';
+
+    function postAjaxWithTokenWaitResponse (url, data, successFunc) {
+        //var token = $('[name=__RequestVerificationToken]').val();
+        //var tokenObj = { name: '__RequestVerificationToken', value: token };
+        data = data == null ? new Array() : data;
+
+     /*   data.push({ name: '__RequestVerificationToken', value: token });*/
+        $.ajax({
+            url: url,
+            async: false,
+            type: "POST",
+            data: data,
+            cache: false,
+            success: successFunc
+
+        });
+    }
+    function checkIsLoginInsideIframe() {
+        var returnValue = false;
+        postAjaxWithTokenWaitResponse(checklogin_url, null, function (ret) {
+            //console.log(ret);
+            if (ret.IsSuccess == 1) {
+                //Login
+                returnValue = true;
+            }
+            else {
+                //Logout. Redirect logout
+                        var host =  '@(System.Configuration.ConfigurationManager.AppSettings["uri"].ToString())'
+                        setTimeout(function () {
+                            $.ajax({
+                                type: "GET",
+                                dataType: "json",
+                                url: host + "api/Account/Logout"
+                            }).done(function (data) {
+                                console.log('"' + data.url + '"');
+                                window.location.href = data.url
+                                window.location.href = "/Authen/Login";
+                            });
+                        }, 100)
+            }
+        });
+        return returnValue;
+    };
+        function AJAX_Post (url, id) {
+        return $.ajax({
+            type: "POST",
+            datatype: "json",
+            data: { id: id },
+            url: url
+        });
+        }
+        function PostUniqueBrowserId(udid_browser) {
+            AJAX_Post("/Authen/PushUid", udid_browser).done(function (response) {
+            });
+
+        }
+        $(document).ready(function () {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            xdLocalStorage.init(
+                {
+                    iframeUrl: 'https://or-uat.vinmec.com/localStorage_Cross.html',
+                    initCallback: function () {
+                        console.log('Got iframe ready');
+                        xdLocalStorage.getItem('udid_browser', function (data) {
+                            if (data.value == null) {
+                                let result = '';
+                                const charactersLength = characters.length;
+                                for (let i = 0; i < 15; i++) {
+                                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                                }
+                                const randomNumber = Math.floor(Math.random() * 1000000);
+                                udid_browser = `${result}${randomNumber}`;
+                                xdLocalStorage.setItem('udid_browser', udid_browser);
+                            } else {
+                                udid_browser = data.value;
+                            } PostUniqueBrowserId(udid_browser);
+                        });
+                    }
+                })
+
+            $('.vmb_i').click(function () {
+                var cmd = $(this);
+                var value = cmd.attr("data-pid");
+                alert(value)
+            })
+
+        })
+    </script>
+</body>
+</html>

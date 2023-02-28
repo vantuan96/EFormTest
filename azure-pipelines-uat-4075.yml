@@ -1,0 +1,37 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- UAT
+
+pool:
+  name: 'Eform_UAT'
+
+variables:
+  solution: 'EFormCustomBuilder.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- checkout: 'none'
+  displayName: 'Checkout code from repo'
+- script: |
+    echo ##[command]
+    cd C:\\agents\\_work\\1\\s
+    echo ##[command]
+    git pull origin UAT
+  displayName: 'Get newest code from UAT'
+- task: MSBuild@1
+  inputs:
+    solution: 'EFormCustomBuilder.sln'
+    msbuildLocationMethod: 'location'
+    msbuildLocation: 'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin'
+    platform: 'Any CPU'
+    configuration: Release
+    clean: false
+
+#- script: |
+#    echo ##[copy file]
+#   xcopy C:\\agents\\_work\\1\\s\\Application\\EForm\\bin C:\EMR\UAT\bin /E /Y

@@ -1,0 +1,22 @@
+﻿@{
+    var token = (string)ViewBag.token;
+    //Layout = null;
+
+}
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        localStorage.setItem('api-access-token', '@token');
+        var AzureRedirect = '@(System.Configuration.ConfigurationManager.AppSettings["AzureRedirect"].ToString())'
+        localStorage.setItem('logined', '1');
+     /*   window.location.href = AzureRedirect + "Home/RedircePage";*/
+        setTimeout(function () {
+            var token = localStorage.getItem('api-access-token');
+            if (token != null) {
+                window.location.href = AzureRedirect + "#";
+            }
+        }, 100)
+    });
+</script>
+
+

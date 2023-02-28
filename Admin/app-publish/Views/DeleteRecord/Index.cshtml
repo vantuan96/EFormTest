@@ -1,0 +1,162 @@
+﻿@using Admin.Models
+@using Admin.Common
+@model DeleteRecordViewModels
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-users {
+        width: 100% !important;
+    }
+
+    .ms-container {
+        width: 500px;
+    }
+</style>
+@Html.AntiForgeryToken()
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý xóa hồ sơ
+                </h6>
+                <hr />
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-4">
+                            <input type="text" class="form-control" id="filterName" placeholder="Mã hồ sơ" />
+                        </div>
+                        <div class="col-8">
+                            <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="filterTable()" id="btn_search">
+                                <i class="material-icons mdc-button__icon">search</i>
+                                Tìm kiếm
+                            </button>
+                            <button class="mdc-button mdc-button--outlined outlined-button--danger mdc-ripple-upgraded" onclick="delete_all()">
+                                <i class="material-icons mdc-button__icon">delete_forever</i>
+                                Xóa tất cả hồ sơ tìm thấy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-unlocks" class="mdl-data-table" style="width: 100%"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popupPlaceholder"></div>
+@section script{
+<script src="~/Scripts/jquery.multi-select.js"></script>
+<script>
+    $(document).ready(function () {
+        var t = $('#tbl-unlocks').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            ajax: {
+                url: "@Url.Action("GetListDeleteRecord", "DeleteRecord")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 5, searchable: false, orderable: false }
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "Mã hồ sơ", data: "RecordCode", name: "RecordCode" },
+                { title: "Thông tin bệnh nhân", data: "CustomerInfo", name: "CustomerInfo" },
+                { title: "Điều dưỡng", data: "Nurse", name: "Nurse" },
+                { title: "Bác sĩ", data: "Doctor", name: "Doctor" },
+                {
+                    title: "Xóa", render: function (data, type, full, meta) {
+                        return `
+                        <button type="button" class="mdc-button mdc-button--raised icon-button filled-button--danger mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" onclick="delete_record('${full.Id}')">
+                            <i class="material-icons mdc-button__icon">delete_forever</i>
+                        </button>
+                        `;
+                    }
+                }
+            ]
+        });
+
+        var input = document.getElementById("filterName");
+        input.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+           event.preventDefault();
+           document.getElementById("btn_search").click();
+          }
+        });
+    })
+
+    function filterTable() {
+        var oTable = $('#tbl-unlocks').DataTable();
+        oTable.columns(1).search($("#filterName").val()).draw();
+    }
+
+    function delete_record(id) {
+        
+        if (!confirm("Chắc chắn xóa ?")) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("DeleteRecordItem", "DeleteRecord")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    function delete_all() {
+        var oTable = $('#tbl-unlocks').DataTable();
+        var ids = oTable.columns(0).data()[0];
+        if (ids.length == 0) {
+            return false;
+        }
+
+        if (!confirm("Chắc chắn xóa ?")) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: { ids : ids, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("DeleteRecordAll", "DeleteRecord")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+</script>
+}

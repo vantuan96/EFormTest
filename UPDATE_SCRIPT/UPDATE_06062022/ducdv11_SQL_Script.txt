@@ -1,0 +1,4 @@
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][XEM] Danh sách bảng đánh giá nhu cầu trang thiết bị/ nhân lực vận chuyển ngoại viện' , N'IPDEXTA5', (select id from VisitTypeGroups where Code = 'IPD'));
+
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[ED][XEM] Danh sách bảng đánh giá nhu cầu trang thiết bị/ nhân lực vận chuyển ngoại viện' , N'EEXTA5', (select id from VisitTypeGroups where Code = 'ED'));
+

@@ -1,0 +1,1920 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF4E8C47-95B5-43E6-A3EA-422265B61961}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EmergencyDepartmentContext.cs" />
+    <Compile Include="Migrations\201911040706553_Initial.cs" />
+    <Compile Include="Migrations\201911040706553_Initial.designer.cs">
+      <DependentUpon>201911040706553_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911050513033_newFK.cs" />
+    <Compile Include="Migrations\201911050513033_newFK.Designer.cs">
+      <DependentUpon>201911050513033_newFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911060355302_change_gender.cs" />
+    <Compile Include="Migrations\201911060355302_change_gender.Designer.cs">
+      <DependentUpon>201911060355302_change_gender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911070342227_create_user.cs" />
+    <Compile Include="Migrations\201911070342227_create_user.Designer.cs">
+      <DependentUpon>201911070342227_create_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911120353093_Change_data_type_masterdata.cs" />
+    <Compile Include="Migrations\201911120353093_Change_data_type_masterdata.Designer.cs">
+      <DependentUpon>201911120353093_Change_data_type_masterdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911120725260_add_master_data_level_group.cs" />
+    <Compile Include="Migrations\201911120725260_add_master_data_level_group.Designer.cs">
+      <DependentUpon>201911120725260_add_master_data_level_group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911120739485_add_order_masterdata.cs" />
+    <Compile Include="Migrations\201911120739485_add_order_masterdata.Designer.cs">
+      <DependentUpon>201911120739485_add_order_masterdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911120939370_add_form.cs" />
+    <Compile Include="Migrations\201911120939370_add_form.Designer.cs">
+      <DependentUpon>201911120939370_add_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911130924197_ad_room.cs" />
+    <Compile Include="Migrations\201911130924197_ad_room.Designer.cs">
+      <DependentUpon>201911130924197_ad_room.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911140739443_change_data.cs" />
+    <Compile Include="Migrations\201911140739443_change_data.Designer.cs">
+      <DependentUpon>201911140739443_change_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911190815207_add_customer_status.cs" />
+    <Compile Include="Migrations\201911190815207_add_customer_status.Designer.cs">
+      <DependentUpon>201911190815207_add_customer_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911190927529_add_ed_status.cs" />
+    <Compile Include="Migrations\201911190927529_add_ed_status.Designer.cs">
+      <DependentUpon>201911190927529_add_ed_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911200757404_add_admiited_date.cs" />
+    <Compile Include="Migrations\201911200757404_add_admiited_date.Designer.cs">
+      <DependentUpon>201911200757404_add_admiited_date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911200823183_add_phone_in_customer.cs" />
+    <Compile Include="Migrations\201911200823183_add_phone_in_customer.Designer.cs">
+      <DependentUpon>201911200823183_add_phone_in_customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911201004404_change_ed_status.cs" />
+    <Compile Include="Migrations\201911201004404_change_ed_status.Designer.cs">
+      <DependentUpon>201911201004404_change_ed_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911201022349_change_name_initialassessment.cs" />
+    <Compile Include="Migrations\201911201022349_change_name_initialassessment.Designer.cs">
+      <DependentUpon>201911201022349_change_name_initialassessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911270228094_add_note.cs" />
+    <Compile Include="Migrations\201911270228094_add_note.Designer.cs">
+      <DependentUpon>201911270228094_add_note.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912030412020_observation_chart.cs" />
+    <Compile Include="Migrations\201912030412020_observation_chart.Designer.cs">
+      <DependentUpon>201912030412020_observation_chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912030436134_observation.cs" />
+    <Compile Include="Migrations\201912030436134_observation.Designer.cs">
+      <DependentUpon>201912030436134_observation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912030954566_discharge_inforati.cs" />
+    <Compile Include="Migrations\201912030954566_discharge_inforati.Designer.cs">
+      <DependentUpon>201912030954566_discharge_inforati.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912031026435_ad_noe_at.cs" />
+    <Compile Include="Migrations\201912031026435_ad_noe_at.Designer.cs">
+      <DependentUpon>201912031026435_ad_noe_at.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912031029536_add_note_at.cs" />
+    <Compile Include="Migrations\201912031029536_add_note_at.Designer.cs">
+      <DependentUpon>201912031029536_add_note_at.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912050340529_update.cs" />
+    <Compile Include="Migrations\201912050340529_update.Designer.cs">
+      <DependentUpon>201912050340529_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912100419323_change log.cs" />
+    <Compile Include="Migrations\201912100419323_change log.Designer.cs">
+      <DependentUpon>201912100419323_change log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912100425158_rename_log.cs" />
+    <Compile Include="Migrations\201912100425158_rename_log.Designer.cs">
+      <DependentUpon>201912100425158_rename_log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912101033403_chang log.cs" />
+    <Compile Include="Migrations\201912101033403_chang log.Designer.cs">
+      <DependentUpon>201912101033403_chang log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912110331469_add_field_log.cs" />
+    <Compile Include="Migrations\201912110331469_add_field_log.Designer.cs">
+      <DependentUpon>201912110331469_add_field_log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912110432173_new_log_data.cs" />
+    <Compile Include="Migrations\201912110432173_new_log_data.Designer.cs">
+      <DependentUpon>201912110432173_new_log_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912110502023_updte.cs" />
+    <Compile Include="Migrations\201912110502023_updte.Designer.cs">
+      <DependentUpon>201912110502023_updte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912120331008_add_readonly_masterdata.cs" />
+    <Compile Include="Migrations\201912120331008_add_readonly_masterdata.Designer.cs">
+      <DependentUpon>201912120331008_add_readonly_masterdata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912120943341_add_data_in_master_data.cs" />
+    <Compile Include="Migrations\201912120943341_add_data_in_master_data.Designer.cs">
+      <DependentUpon>201912120943341_add_data_in_master_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912121056439_update_room.cs" />
+    <Compile Include="Migrations\201912121056439_update_room.Designer.cs">
+      <DependentUpon>201912121056439_update_room.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912130739490_add_status.cs" />
+    <Compile Include="Migrations\201912130739490_add_status.Designer.cs">
+      <DependentUpon>201912130739490_add_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912131013522_add-job-in-cutomer.cs" />
+    <Compile Include="Migrations\201912131013522_add-job-in-cutomer.Designer.cs">
+      <DependentUpon>201912131013522_add-job-in-cutomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912160919345_chot_lan_n.cs" />
+    <Compile Include="Migrations\201912160919345_chot_lan_n.Designer.cs">
+      <DependentUpon>201912160919345_chot_lan_n.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912180507532_update_log.cs" />
+    <Compile Include="Migrations\201912180507532_update_log.Designer.cs">
+      <DependentUpon>201912180507532_update_log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912190302052_add-health-insurance.cs" />
+    <Compile Include="Migrations\201912190302052_add-health-insurance.Designer.cs">
+      <DependentUpon>201912190302052_add-health-insurance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912190749045_remove-log-id.cs" />
+    <Compile Include="Migrations\201912190749045_remove-log-id.Designer.cs">
+      <DependentUpon>201912190749045_remove-log-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912200818258_add-handover-check.cs" />
+    <Compile Include="Migrations\201912200818258_add-handover-check.Designer.cs">
+      <DependentUpon>201912200818258_add-handover-check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912270400046_icd.cs" />
+    <Compile Include="Migrations\201912270400046_icd.Designer.cs">
+      <DependentUpon>201912270400046_icd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912300531116_udate-user-ad.cs" />
+    <Compile Include="Migrations\201912300531116_udate-user-ad.Designer.cs">
+      <DependentUpon>201912300531116_udate-user-ad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912300837192_update-user-mult-site.cs" />
+    <Compile Include="Migrations\201912300837192_update-user-mult-site.Designer.cs">
+      <DependentUpon>201912300837192_update-user-mult-site.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912310320571_add-monitoring.cs" />
+    <Compile Include="Migrations\201912310320571_add-monitoring.Designer.cs">
+      <DependentUpon>201912310320571_add-monitoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912310337435_upate-monitoring.cs" />
+    <Compile Include="Migrations\201912310337435_upate-monitoring.Designer.cs">
+      <DependentUpon>201912310337435_upate-monitoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001030328584_sponge-add.cs" />
+    <Compile Include="Migrations\202001030328584_sponge-add.Designer.cs">
+      <DependentUpon>202001030328584_sponge-add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001030751527_upate-ed.cs" />
+    <Compile Include="Migrations\202001030751527_upate-ed.Designer.cs">
+      <DependentUpon>202001030751527_upate-ed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001030826576_remove in pre-operative.cs" />
+    <Compile Include="Migrations\202001030826576_remove in pre-operative.Designer.cs">
+      <DependentUpon>202001030826576_remove in pre-operative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001050348338_update-ammiteddate.cs" />
+    <Compile Include="Migrations\202001050348338_update-ammiteddate.Designer.cs">
+      <DependentUpon>202001050348338_update-ammiteddate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001050612067_update-bed.cs" />
+    <Compile Include="Migrations\202001050612067_update-bed.Designer.cs">
+      <DependentUpon>202001050612067_update-bed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001050836044_update-role.cs" />
+    <Compile Include="Migrations\202001050836044_update-role.Designer.cs">
+      <DependentUpon>202001050836044_update-role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001060444594_update-role-v2.cs" />
+    <Compile Include="Migrations\202001060444594_update-role-v2.Designer.cs">
+      <DependentUpon>202001060444594_update-role-v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001060458443_add-name-for-role.cs" />
+    <Compile Include="Migrations\202001060458443_add-name-for-role.Designer.cs">
+      <DependentUpon>202001060458443_add-name-for-role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001060708497_add-site.cs" />
+    <Compile Include="Migrations\202001060708497_add-site.Designer.cs">
+      <DependentUpon>202001060708497_add-site.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001060750421_upate-user-role.cs" />
+    <Compile Include="Migrations\202001060750421_upate-user-role.Designer.cs">
+      <DependentUpon>202001060750421_upate-user-role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071344490_update-chart.cs" />
+    <Compile Include="Migrations\202001071344490_update-chart.Designer.cs">
+      <DependentUpon>202001071344490_update-chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001080353296_update-order-info.cs" />
+    <Compile Include="Migrations\202001080353296_update-order-info.Designer.cs">
+      <DependentUpon>202001080353296_update-order-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001080811040_change-role.cs" />
+    <Compile Include="Migrations\202001080811040_change-role.Designer.cs">
+      <DependentUpon>202001080811040_change-role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001090824439_doctocoirm.cs" />
+    <Compile Include="Migrations\202001090824439_doctocoirm.Designer.cs">
+      <DependentUpon>202001090824439_doctocoirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001200451576_upate-log-and-index.cs" />
+    <Compile Include="Migrations\202001200451576_upate-log-and-index.Designer.cs">
+      <DependentUpon>202001200451576_upate-log-and-index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002141133396_abc.cs" />
+    <Compile Include="Migrations\202002141133396_abc.Designer.cs">
+      <DependentUpon>202002141133396_abc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002170855489_add-user-admin-roles.cs" />
+    <Compile Include="Migrations\202002170855489_add-user-admin-roles.Designer.cs">
+      <DependentUpon>202002170855489_add-user-admin-roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002170919578_change-admin-roles.cs" />
+    <Compile Include="Migrations\202002170919578_change-admin-roles.Designer.cs">
+      <DependentUpon>202002170919578_change-admin-roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002180325328_add-admin-role-description.cs" />
+    <Compile Include="Migrations\202002180325328_add-admin-role-description.Designer.cs">
+      <DependentUpon>202002180325328_add-admin-role-description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002200421473_update-examination-note.cs" />
+    <Compile Include="Migrations\202002200421473_update-examination-note.Designer.cs">
+      <DependentUpon>202002200421473_update-examination-note.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002260301230_add-hando-over-check-list.cs" />
+    <Compile Include="Migrations\202002260301230_add-hando-over-check-list.Designer.cs">
+      <DependentUpon>202002260301230_add-hando-over-check-list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002260713503_update-hand-over-check-list.cs" />
+    <Compile Include="Migrations\202002260713503_update-hand-over-check-list.Designer.cs">
+      <DependentUpon>202002260713503_update-hand-over-check-list.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002260949115_update-hand-over-check-list-2.cs" />
+    <Compile Include="Migrations\202002260949115_update-hand-over-check-list-2.Designer.cs">
+      <DependentUpon>202002260949115_update-hand-over-check-list-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003040927212_add-transfer-id.cs" />
+    <Compile Include="Migrations\202003040927212_add-transfer-id.Designer.cs">
+      <DependentUpon>202003040927212_add-transfer-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003060351302_create-clinic.cs" />
+    <Compile Include="Migrations\202003060351302_create-clinic.Designer.cs">
+      <DependentUpon>202003060351302_create-clinic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003060735446_update1.cs" />
+    <Compile Include="Migrations\202003060735446_update1.Designer.cs">
+      <DependentUpon>202003060735446_update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003110410439_add-standing-order-master-data.cs" />
+    <Compile Include="Migrations\202003110410439_add-standing-order-master-data.Designer.cs">
+      <DependentUpon>202003110410439_add-standing-order-master-data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003110417446_update-standing-order-mster-data.cs" />
+    <Compile Include="Migrations\202003110417446_update-standing-order-mster-data.Designer.cs">
+      <DependentUpon>202003110417446_update-standing-order-mster-data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003110820529_add-standing-for-opd-order.cs" />
+    <Compile Include="Migrations\202003110820529_add-standing-for-opd-order.Designer.cs">
+      <DependentUpon>202003110820529_add-standing-for-opd-order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003161044377_add-complex-case.cs" />
+    <Compile Include="Migrations\202003161044377_add-complex-case.Designer.cs">
+      <DependentUpon>202003161044377_add-complex-case.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003170345402_add-unlock-form-to-update.cs" />
+    <Compile Include="Migrations\202003170345402_add-unlock-form-to-update.Designer.cs">
+      <DependentUpon>202003170345402_add-unlock-form-to-update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003190732006_remove-room-in-opd-initial-assessment.cs" />
+    <Compile Include="Migrations\202003190732006_remove-room-in-opd-initial-assessment.Designer.cs">
+      <DependentUpon>202003190732006_remove-room-in-opd-initial-assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003231018461_add-ehos-account.cs" />
+    <Compile Include="Migrations\202003231018461_add-ehos-account.Designer.cs">
+      <DependentUpon>202003231018461_add-ehos-account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004030336381_update-order.cs" />
+    <Compile Include="Migrations\202004030336381_update-order.Designer.cs">
+      <DependentUpon>202004030336381_update-order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004070933520_add-patient-and-family-educatio.cs" />
+    <Compile Include="Migrations\202004070933520_add-patient-and-family-educatio.Designer.cs">
+      <DependentUpon>202004070933520_add-patient-and-family-educatio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004080736445_update-patient-family-education-form.cs" />
+    <Compile Include="Migrations\202004080736445_update-patient-family-education-form.Designer.cs">
+      <DependentUpon>202004080736445_update-patient-family-education-form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004081046423_update-patient-education-form.cs" />
+    <Compile Include="Migrations\202004081046423_update-patient-education-form.Designer.cs">
+      <DependentUpon>202004081046423_update-patient-education-form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004140405497_add-record-code.cs" />
+    <Compile Include="Migrations\202004140405497_add-record-code.Designer.cs">
+      <DependentUpon>202004140405497_add-record-code.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004140425098_add-specialty-no.cs" />
+    <Compile Include="Migrations\202004140425098_add-specialty-no.Designer.cs">
+      <DependentUpon>202004140425098_add-specialty-no.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004150435585_update-unlock-form.cs" />
+    <Compile Include="Migrations\202004150435585_update-unlock-form.Designer.cs">
+      <DependentUpon>202004150435585_update-unlock-form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004160910212_add-form-table.cs" />
+    <Compile Include="Migrations\202004160910212_add-form-table.Designer.cs">
+      <DependentUpon>202004160910212_add-form-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004170329270_add-opd-patient-progress-note.cs" />
+    <Compile Include="Migrations\202004170329270_add-opd-patient-progress-note.Designer.cs">
+      <DependentUpon>202004170329270_add-opd-patient-progress-note.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004200807115_add-initial-assessment-for-tetehealth.cs" />
+    <Compile Include="Migrations\202004200807115_add-initial-assessment-for-tetehealth.Designer.cs">
+      <DependentUpon>202004200807115_add-initial-assessment-for-tetehealth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004270534230_update-location-unit.cs" />
+    <Compile Include="Migrations\202004270534230_update-location-unit.Designer.cs">
+      <DependentUpon>202004270534230_update-location-unit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005041001223_update-log.cs" />
+    <Compile Include="Migrations\202005041001223_update-log.Designer.cs">
+      <DependentUpon>202005041001223_update-log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005050401138_add-translation.cs" />
+    <Compile Include="Migrations\202005050401138_add-translation.Designer.cs">
+      <DependentUpon>202005050401138_add-translation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005050415089_update-tralation.cs" />
+    <Compile Include="Migrations\202005050415089_update-tralation.Designer.cs">
+      <DependentUpon>202005050415089_update-tralation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005050843479_update_2_translation.cs" />
+    <Compile Include="Migrations\202005050843479_update_2_translation.Designer.cs">
+      <DependentUpon>202005050843479_update_2_translation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005050852557_update-3-translation.cs" />
+    <Compile Include="Migrations\202005050852557_update-3-translation.Designer.cs">
+      <DependentUpon>202005050852557_update-3-translation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005060421168_update-trans-4.cs" />
+    <Compile Include="Migrations\202005060421168_update-trans-4.Designer.cs">
+      <DependentUpon>202005060421168_update-trans-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005140715021_add-notification-POCT.cs" />
+    <Compile Include="Migrations\202005140715021_add-notification-POCT.Designer.cs">
+      <DependentUpon>202005140715021_add-notification-POCT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005140916456_update-POCT.cs" />
+    <Compile Include="Migrations\202005140916456_update-POCT.Designer.cs">
+      <DependentUpon>202005140916456_update-POCT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150318373_update-poct-2.cs" />
+    <Compile Include="Migrations\202005150318373_update-poct-2.Designer.cs">
+      <DependentUpon>202005150318373_update-poct-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005150525206_update-poct-3.cs" />
+    <Compile Include="Migrations\202005150525206_update-poct-3.Designer.cs">
+      <DependentUpon>202005150525206_update-poct-3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005280216215_change-type-result.cs" />
+    <Compile Include="Migrations\202005280216215_change-type-result.Designer.cs">
+      <DependentUpon>202005280216215_change-type-result.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006020344270_update-poct-4.cs" />
+    <Compile Include="Migrations\202006020344270_update-poct-4.Designer.cs">
+      <DependentUpon>202006020344270_update-poct-4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006020857537_update-note-in-standing-order.cs" />
+    <Compile Include="Migrations\202006020857537_update-note-in-standing-order.Designer.cs">
+      <DependentUpon>202006020857537_update-note-in-standing-order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006030434226_add-session.cs" />
+    <Compile Include="Migrations\202006030434226_add-session.Designer.cs">
+      <DependentUpon>202006030434226_add-session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006040713312_add-login-table%3b.cs" />
+    <Compile Include="Migrations\202006040713312_add-login-table%3b.Designer.cs">
+      <DependentUpon>202006040713312_add-login-table%3b.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006090459515_add-retail-service.cs" />
+    <Compile Include="Migrations\202006090459515_add-retail-service.Designer.cs">
+      <DependentUpon>202006090459515_add-retail-service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006100327213_add-standing-order-for-retail-service.cs" />
+    <Compile Include="Migrations\202006100327213_add-standing-order-for-retail-service.Designer.cs">
+      <DependentUpon>202006100327213_add-standing-order-for-retail-service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006130421271_add-invalid-session.cs" />
+    <Compile Include="Migrations\202006130421271_add-invalid-session.Designer.cs">
+      <DependentUpon>202006130421271_add-invalid-session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006150755254_delete-invalid-session.cs" />
+    <Compile Include="Migrations\202006150755254_delete-invalid-session.Designer.cs">
+      <DependentUpon>202006150755254_delete-invalid-session.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006170722449_add-reason-and-primary-nurse.cs" />
+    <Compile Include="Migrations\202006170722449_add-reason-and-primary-nurse.Designer.cs">
+      <DependentUpon>202006170722449_add-reason-and-primary-nurse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006180801283_add-group-visit.cs" />
+    <Compile Include="Migrations\202006180801283_add-group-visit.Designer.cs">
+      <DependentUpon>202006180801283_add-group-visit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007080359065_add-index.cs" />
+    <Compile Include="Migrations\202007080359065_add-index.Designer.cs">
+      <DependentUpon>202007080359065_add-index.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007090218508_add_3_form.cs" />
+    <Compile Include="Migrations\202007090218508_add_3_form.Designer.cs">
+      <DependentUpon>202007090218508_add_3_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007100831135_update-allergy-wei-hei.cs" />
+    <Compile Include="Migrations\202007100831135_update-allergy-wei-hei.Designer.cs">
+      <DependentUpon>202007100831135_update-allergy-wei-hei.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007140738243_update-kind-of-allrgy.cs" />
+    <Compile Include="Migrations\202007140738243_update-kind-of-allrgy.Designer.cs">
+      <DependentUpon>202007140738243_update-kind-of-allrgy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007220335162_add-procedure-summarry.cs" />
+    <Compile Include="Migrations\202007220335162_add-procedure-summarry.Designer.cs">
+      <DependentUpon>202007220335162_add-procedure-summarry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007220723531_add-user-specialty.cs" />
+    <Compile Include="Migrations\202007220723531_add-user-specialty.Designer.cs">
+      <DependentUpon>202007220723531_add-user-specialty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007240254336_update-procedure-summary.cs" />
+    <Compile Include="Migrations\202007240254336_update-procedure-summary.Designer.cs">
+      <DependentUpon>202007240254336_update-procedure-summary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007290809000_add-m2m-user-position.cs" />
+    <Compile Include="Migrations\202007290809000_add-m2m-user-position.Designer.cs">
+      <DependentUpon>202007290809000_add-m2m-user-position.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008170410194_add_surgiacl.cs" />
+    <Compile Include="Migrations\202008170410194_add_surgiacl.Designer.cs">
+      <DependentUpon>202008170410194_add_surgiacl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008180316597_update_joint_consultation_group_minute.cs" />
+    <Compile Include="Migrations\202008180316597_update_joint_consultation_group_minute.Designer.cs">
+      <DependentUpon>202008180316597_update_joint_consultation_group_minute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008200817077_add-request-supply-confirmation.cs" />
+    <Compile Include="Migrations\202008200817077_add-request-supply-confirmation.Designer.cs">
+      <DependentUpon>202008200817077_add-request-supply-confirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008260459356_update-log-remove-logdetail-add-bloodchecklist.cs" />
+    <Compile Include="Migrations\202008260459356_update-log-remove-logdetail-add-bloodchecklist.Designer.cs">
+      <DependentUpon>202008260459356_update-log-remove-logdetail-add-bloodchecklist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008280317164_add-cardiac-arrest-record.cs" />
+    <Compile Include="Migrations\202008280317164_add-cardiac-arrest-record.Designer.cs">
+      <DependentUpon>202008280317164_add-cardiac-arrest-record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008310247431_update-cardiac-arrest-reocrd.cs" />
+    <Compile Include="Migrations\202008310247431_update-cardiac-arrest-reocrd.Designer.cs">
+      <DependentUpon>202008310247431_update-cardiac-arrest-reocrd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009010237267_add-certificate.cs" />
+    <Compile Include="Migrations\202009010237267_add-certificate.Designer.cs">
+      <DependentUpon>202009010237267_add-certificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009010407286_update-order-caridal.cs" />
+    <Compile Include="Migrations\202009010407286_update-order-caridal.Designer.cs">
+      <DependentUpon>202009010407286_update-order-caridal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009040803111_update-blood-tranfusion-int-to-strin.cs" />
+    <Compile Include="Migrations\202009040803111_update-blood-tranfusion-int-to-strin.Designer.cs">
+      <DependentUpon>202009040803111_update-blood-tranfusion-int-to-strin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009050456364_update-transfusion-other-check.cs" />
+    <Compile Include="Migrations\202009050456364_update-transfusion-other-check.Designer.cs">
+      <DependentUpon>202009050456364_update-transfusion-other-check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009080756168_update-time-blood-request-supply-confirm.cs" />
+    <Compile Include="Migrations\202009080756168_update-time-blood-request-supply-confirm.Designer.cs">
+      <DependentUpon>202009080756168_update-time-blood-request-supply-confirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009100244311_add-mortality-report.cs" />
+    <Compile Include="Migrations\202009100244311_add-mortality-report.Designer.cs">
+      <DependentUpon>202009100244311_add-mortality-report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009100759429_update-IPD-mortality-report.cs" />
+    <Compile Include="Migrations\202009100759429_update-IPD-mortality-report.Designer.cs">
+      <DependentUpon>202009100759429_update-IPD-mortality-report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009110410502_add-patient-own-medication-chart.cs" />
+    <Compile Include="Migrations\202009110410502_add-patient-own-medication-chart.Designer.cs">
+      <DependentUpon>202009110410502_add-patient-own-medication-chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009150709507_add-nurse-confirm-order.cs" />
+    <Compile Include="Migrations\202009150709507_add-nurse-confirm-order.Designer.cs">
+      <DependentUpon>202009150709507_add-nurse-confirm-order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009160306351_add-assessment-external-tran.cs" />
+    <Compile Include="Migrations\202009160306351_add-assessment-external-tran.Designer.cs">
+      <DependentUpon>202009160306351_add-assessment-external-tran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009170355585_add-blood-type-for-custome.cs" />
+    <Compile Include="Migrations\202009170355585_add-blood-type-for-custome.Designer.cs">
+      <DependentUpon>202009170355585_add-blood-type-for-custome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009210825398_add-ambulance-run-report.cs" />
+    <Compile Include="Migrations\202009210825398_add-ambulance-run-report.Designer.cs">
+      <DependentUpon>202009210825398_add-ambulance-run-report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010010437111_init-ipd.cs" />
+    <Compile Include="Migrations\202010010437111_init-ipd.Designer.cs">
+      <DependentUpon>202010010437111_init-ipd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010020349435_add-patient-progress-not-ipd.cs" />
+    <Compile Include="Migrations\202010020349435_add-patient-progress-not-ipd.Designer.cs">
+      <DependentUpon>202010020349435_add-patient-progress-not-ipd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010060743378_add-initial-assessment-ipd.cs" />
+    <Compile Include="Migrations\202010060743378_add-initial-assessment-ipd.Designer.cs">
+      <DependentUpon>202010060743378_add-initial-assessment-ipd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010070727044_update-customer-info.cs" />
+    <Compile Include="Migrations\202010070727044_update-customer-info.Designer.cs">
+      <DependentUpon>202010070727044_update-customer-info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010080833185_update-ipd-initial-assessment.cs" />
+    <Compile Include="Migrations\202010080833185_update-ipd-initial-assessment.Designer.cs">
+      <DependentUpon>202010080833185_update-ipd-initial-assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010130324051_add-current-and-doctor-ed.cs" />
+    <Compile Include="Migrations\202010130324051_add-current-and-doctor-ed.Designer.cs">
+      <DependentUpon>202010130324051_add-current-and-doctor-ed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010141029538_add-ipd-plan-of-care.cs" />
+    <Compile Include="Migrations\202010141029538_add-ipd-plan-of-care.Designer.cs">
+      <DependentUpon>202010141029538_add-ipd-plan-of-care.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010150712482_add-ipd-ia-special-request.cs" />
+    <Compile Include="Migrations\202010150712482_add-ipd-ia-special-request.Designer.cs">
+      <DependentUpon>202010150712482_add-ipd-ia-special-request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010160440315_update-ipd-ia-special-request.cs" />
+    <Compile Include="Migrations\202010160440315_update-ipd-ia-special-request.Designer.cs">
+      <DependentUpon>202010160440315_update-ipd-ia-special-request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010170417283_add-fall-risk-assessment.cs" />
+    <Compile Include="Migrations\202010170417283_add-fall-risk-assessment.Designer.cs">
+      <DependentUpon>202010170417283_add-fall-risk-assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010170455366_update-ipd-special-request-is-key.cs" />
+    <Compile Include="Migrations\202010170455366_update-ipd-special-request-is-key.Designer.cs">
+      <DependentUpon>202010170455366_update-ipd-special-request-is-key.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010200323229_add-field-datatype-ipd-ia-special-request.cs" />
+    <Compile Include="Migrations\202010200323229_add-field-datatype-ipd-ia-special-request.Designer.cs">
+      <DependentUpon>202010200323229_add-field-datatype-ipd-ia-special-request.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010200956218_add-human-resource-assessment.cs" />
+    <Compile Include="Migrations\202010200956218_add-human-resource-assessment.Designer.cs">
+      <DependentUpon>202010200956218_add-human-resource-assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010210448101_add-human-resource-assessment-shift.cs" />
+    <Compile Include="Migrations\202010210448101_add-human-resource-assessment-shift.Designer.cs">
+      <DependentUpon>202010210448101_add-human-resource-assessment-shift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010231002128_update-human-resource-assessment.cs" />
+    <Compile Include="Migrations\202010231002128_update-human-resource-assessment.Designer.cs">
+      <DependentUpon>202010231002128_update-human-resource-assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011030335401_add-bed-for-retail-service.cs" />
+    <Compile Include="Migrations\202011030335401_add-bed-for-retail-service.Designer.cs">
+      <DependentUpon>202011030335401_add-bed-for-retail-service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011120309097_add-ipd-fall-risk-assessment-obstetric.cs" />
+    <Compile Include="Migrations\202011120309097_add-ipd-fall-risk-assessment-obstetric.Designer.cs">
+      <DependentUpon>202011120309097_add-ipd-fall-risk-assessment-obstetric.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011180737352_add-ipd-medical-record.cs" />
+    <Compile Include="Migrations\202011180737352_add-ipd-medical-record.Designer.cs">
+      <DependentUpon>202011180737352_add-ipd-medical-record.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011240326072_add-medical-record-data.cs" />
+    <Compile Include="Migrations\202011240326072_add-medical-record-data.Designer.cs">
+      <DependentUpon>202011240326072_add-medical-record-data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011260758303_update-moh-customer.cs" />
+    <Compile Include="Migrations\202011260758303_update-moh-customer.Designer.cs">
+      <DependentUpon>202011260758303_update-moh-customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011300952281_add-customer-moh-address.cs" />
+    <Compile Include="Migrations\202011300952281_add-customer-moh-address.Designer.cs">
+      <DependentUpon>202011300952281_add-customer-moh-address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012020327373_add-ipd-medical-report.cs" />
+    <Compile Include="Migrations\202012020327373_add-ipd-medical-report.Designer.cs">
+      <DependentUpon>202012020327373_add-ipd-medical-report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012040727239_update-dmr-time.cs" />
+    <Compile Include="Migrations\202012040727239_update-dmr-time.Designer.cs">
+      <DependentUpon>202012040727239_update-dmr-time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012070842147_add-referral-transfer-letter.cs" />
+    <Compile Include="Migrations\202012070842147_add-referral-transfer-letter.Designer.cs">
+      <DependentUpon>202012070842147_add-referral-transfer-letter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012281033563_update-eio-procedure-summary.cs" />
+    <Compile Include="Migrations\202012281033563_update-eio-procedure-summary.Designer.cs">
+      <DependentUpon>202012281033563_update-eio-procedure-summary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012290742303_update-eio-joint-consultant-for-approval.cs" />
+    <Compile Include="Migrations\202012290742303_update-eio-joint-consultant-for-approval.Designer.cs">
+      <DependentUpon>202012290742303_update-eio-joint-consultant-for-approval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101050254488_add-ipd-guss.cs" />
+    <Compile Include="Migrations\202101050254488_add-ipd-guss.Designer.cs">
+      <DependentUpon>202101050254488_add-ipd-guss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101070253134_add-system-config-and-notification.cs" />
+    <Compile Include="Migrations\202101070253134_add-system-config-and-notification.Designer.cs">
+      <DependentUpon>202101070253134_add-system-config-and-notification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101120313309_add-version-initassessment.cs" />
+    <Compile Include="Migrations\202101120313309_add-version-initassessment.Designer.cs">
+      <DependentUpon>202101120313309_add-version-initassessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101120440199_update-version-initassessment.cs" />
+    <Compile Include="Migrations\202101120440199_update-version-initassessment.Designer.cs">
+      <DependentUpon>202101120440199_update-version-initassessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101200708105_update-blood-transfusion-thawed-time.cs" />
+    <Compile Include="Migrations\202101200708105_update-blood-transfusion-thawed-time.Designer.cs">
+      <DependentUpon>202101200708105_update-blood-transfusion-thawed-time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103100332559_add-clinic-data.cs" />
+    <Compile Include="Migrations\202103100332559_add-clinic-data.Designer.cs">
+      <DependentUpon>202103100332559_add-clinic-data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103160404168_create-opd-observation-chart.cs" />
+    <Compile Include="Migrations\202103160404168_create-opd-observation-chart.Designer.cs">
+      <DependentUpon>202103160404168_create-opd-observation-chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103180336272_update-pre-operative-procedure.cs" />
+    <Compile Include="Migrations\202103180336272_update-pre-operative-procedure.Designer.cs">
+      <DependentUpon>202103180336272_update-pre-operative-procedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103230328209_add-authorized-doctor.cs" />
+    <Compile Include="Migrations\202103230328209_add-authorized-doctor.Designer.cs">
+      <DependentUpon>202103230328209_add-authorized-doctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104060354266_update-eio-skin-test.cs" />
+    <Compile Include="Migrations\202104060354266_update-eio-skin-test.Designer.cs">
+      <DependentUpon>202104060354266_update-eio-skin-test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104130309106_add-IsAuthorizedDoctorChangeForm.cs" />
+    <Compile Include="Migrations\202104130309106_add-IsAuthorizedDoctorChangeForm.Designer.cs">
+      <DependentUpon>202104130309106_add-IsAuthorizedDoctorChangeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104150820487_opd-assessment-for-retail-service.cs" />
+    <Compile Include="Migrations\202104150820487_opd-assessment-for-retail-service.Designer.cs">
+      <DependentUpon>202104150820487_opd-assessment-for-retail-service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104200430417_update-patient-owner-medication-chart.cs" />
+    <Compile Include="Migrations\202104200430417_update-patient-owner-medication-chart.Designer.cs">
+      <DependentUpon>202104200430417_update-patient-owner-medication-chart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104210206574_update-cardiac-arrest-record-ver-2.cs" />
+    <Compile Include="Migrations\202104210206574_update-cardiac-arrest-record-ver-2.Designer.cs">
+      <DependentUpon>202104210206574_update-cardiac-arrest-record-ver-2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105040804060_add-IsDoctorChangeForm.cs" />
+    <Compile Include="Migrations\202105040804060_add-IsDoctorChangeForm.Designer.cs">
+      <DependentUpon>202105040804060_add-IsDoctorChangeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105060843555_add-EFormVisitId.cs" />
+    <Compile Include="Migrations\202105060843555_add-EFormVisitId.Designer.cs">
+      <DependentUpon>202105060843555_add-EFormVisitId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105260323561_add-TestCovid2Confirmation-and-update-customer.cs" />
+    <Compile Include="Migrations\202105260323561_add-TestCovid2Confirmation-and-update-customer.Designer.cs">
+      <DependentUpon>202105260323561_add-TestCovid2Confirmation-and-update-customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105260347390_add-TestCovid2Confirmation-Foreign-on-ed-opd.cs" />
+    <Compile Include="Migrations\202105260347390_add-TestCovid2Confirmation-Foreign-on-ed-opd.Designer.cs">
+      <DependentUpon>202105260347390_add-TestCovid2Confirmation-Foreign-on-ed-opd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106140837015_initHighlyResAnitimicrobialConsult.cs" />
+    <Compile Include="Migrations\202106140837015_initHighlyResAnitimicrobialConsult.Designer.cs">
+      <DependentUpon>202106140837015_initHighlyResAnitimicrobialConsult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106160439409_update-table-highly-res-ant-con.cs" />
+    <Compile Include="Migrations\202106160439409_update-table-highly-res-ant-con.Designer.cs">
+      <DependentUpon>202106160439409_update-table-highly-res-ant-con.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106160518061_add-table-formdatas.cs" />
+    <Compile Include="Migrations\202106160518061_add-table-formdatas.Designer.cs">
+      <DependentUpon>202106160518061_add-table-formdatas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106220217180_EDVerbalOrderTable.cs" />
+    <Compile Include="Migrations\202106220217180_EDVerbalOrderTable.Designer.cs">
+      <DependentUpon>202106220217180_EDVerbalOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106220221521_update-EDVerbalOrderTable.cs" />
+    <Compile Include="Migrations\202106220221521_update-EDVerbalOrderTable.Designer.cs">
+      <DependentUpon>202106220221521_update-EDVerbalOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106220754143_update-order-table.cs" />
+    <Compile Include="Migrations\202106220754143_update-order-table.Designer.cs">
+      <DependentUpon>202106220754143_update-order-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107070346043_init-endoscopy.cs" />
+    <Compile Include="Migrations\202107070346043_init-endoscopy.Designer.cs">
+      <DependentUpon>202107070346043_init-endoscopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107070723222_add-tranfer-endoscopy.cs" />
+    <Compile Include="Migrations\202107070723222_add-tranfer-endoscopy.Designer.cs">
+      <DependentUpon>202107070723222_add-tranfer-endoscopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107070744287_update-tranfer-endoscopy.cs" />
+    <Compile Include="Migrations\202107070744287_update-tranfer-endoscopy.Designer.cs">
+      <DependentUpon>202107070744287_update-tranfer-endoscopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107070954380_update-tranfer-endoscopy2.cs" />
+    <Compile Include="Migrations\202107070954380_update-tranfer-endoscopy2.Designer.cs">
+      <DependentUpon>202107070954380_update-tranfer-endoscopy2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107120939498_update-eoc-tbl.cs" />
+    <Compile Include="Migrations\202107120939498_update-eoc-tbl.Designer.cs">
+      <DependentUpon>202107120939498_update-eoc-tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107130344085_add-new-eoc-table.cs" />
+    <Compile Include="Migrations\202107130344085_add-new-eoc-table.Designer.cs">
+      <DependentUpon>202107130344085_add-new-eoc-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107140334475_update-formData.cs" />
+    <Compile Include="Migrations\202107140334475_update-formData.Designer.cs">
+      <DependentUpon>202107140334475_update-formData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107140355431_update-eoc-tables2.cs" />
+    <Compile Include="Migrations\202107140355431_update-eoc-tables2.Designer.cs">
+      <DependentUpon>202107140355431_update-eoc-tables2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107140431569_init-tbl-EOCOutpatientExaminationNote.cs" />
+    <Compile Include="Migrations\202107140431569_init-tbl-EOCOutpatientExaminationNote.Designer.cs">
+      <DependentUpon>202107140431569_init-tbl-EOCOutpatientExaminationNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107190349578_init-EOCHandOverCheckList.cs" />
+    <Compile Include="Migrations\202107190349578_init-EOCHandOverCheckList.Designer.cs">
+      <DependentUpon>202107190349578_init-EOCHandOverCheckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107300202462_update-status-table.cs" />
+    <Compile Include="Migrations\202107300202462_update-status-table.Designer.cs">
+      <DependentUpon>202107300202462_update-status-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108060544428_update-eoc-progressnote.cs" />
+    <Compile Include="Migrations\202108060544428_update-eoc-progressnote.Designer.cs">
+      <DependentUpon>202108060544428_update-eoc-progressnote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108080912552_update-eoc-pk.cs" />
+    <Compile Include="Migrations\202108080912552_update-eoc-pk.Designer.cs">
+      <DependentUpon>202108080912552_update-eoc-pk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108150910557_update-ed-model.cs" />
+    <Compile Include="Migrations\202108150910557_update-ed-model.Designer.cs">
+      <DependentUpon>202108150910557_update-ed-model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108150926025_update-ed-model3.cs" />
+    <Compile Include="Migrations\202108150926025_update-ed-model3.Designer.cs">
+      <DependentUpon>202108150926025_update-ed-model3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202108160215061_update-ed-model4.cs" />
+    <Compile Include="Migrations\202108160215061_update-ed-model4.Designer.cs">
+      <DependentUpon>202108160215061_update-ed-model4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109041018072_updarw-ob.cs" />
+    <Compile Include="Migrations\202109041018072_updarw-ob.Designer.cs">
+      <DependentUpon>202109041018072_updarw-ob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109210229200_new-table-covid19-takeofcare.cs" />
+    <Compile Include="Migrations\202109210229200_new-table-covid19-takeofcare.Designer.cs">
+      <DependentUpon>202109210229200_new-table-covid19-takeofcare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109271013418_update-covideasssitotavke.cs" />
+    <Compile Include="Migrations\202109271013418_update-covideasssitotavke.Designer.cs">
+      <DependentUpon>202109271013418_update-covideasssitotavke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109280819477_add-table-EDSelfHarmRiskScreeningTool.cs" />
+    <Compile Include="Migrations\202109280819477_add-table-EDSelfHarmRiskScreeningTool.Designer.cs">
+      <DependentUpon>202109280819477_add-table-EDSelfHarmRiskScreeningTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109280828192_update-table-EDSelfHarmRiskScreeningTool.cs" />
+    <Compile Include="Migrations\202109280828192_update-table-EDSelfHarmRiskScreeningTool.Designer.cs">
+      <DependentUpon>202109280828192_update-table-EDSelfHarmRiskScreeningTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110050811005_update-ed-model-tbl.cs" />
+    <Compile Include="Migrations\202110050811005_update-ed-model-tbl.Designer.cs">
+      <DependentUpon>202110050811005_update-ed-model-tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110051014303_add-eio-physician-note-tbl.cs" />
+    <Compile Include="Migrations\202110051014303_add-eio-physician-note-tbl.Designer.cs">
+      <DependentUpon>202110051014303_add-eio-physician-note-tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110070836327_add-care-note-tbl.cs" />
+    <Compile Include="Migrations\202110070836327_add-care-note-tbl.Designer.cs">
+      <DependentUpon>202110070836327_add-care-note-tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110190147190_add-col-to-IPDMedicalRecords-22.cs" />
+    <Compile Include="Migrations\202110190147190_add-col-to-IPDMedicalRecords-22.Designer.cs">
+      <DependentUpon>202110190147190_add-col-to-IPDMedicalRecords-22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110220720207_add-col-to-ipd-ed.cs" />
+    <Compile Include="Migrations\202110220720207_add-col-to-ipd-ed.Designer.cs">
+      <DependentUpon>202110220720207_add-col-to-ipd-ed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110270451165_add-more-relationship-information.cs" />
+    <Compile Include="Migrations\202110270451165_add-more-relationship-information.Designer.cs">
+      <DependentUpon>202110270451165_add-more-relationship-information.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111030432510_add-consulation-drug-with-asterisk-mark.cs" />
+    <Compile Include="Migrations\202111030432510_add-consulation-drug-with-asterisk-mark.Designer.cs">
+      <DependentUpon>202111030432510_add-consulation-drug-with-asterisk-mark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111100435209_add-ipd-discharge-checklist-tables.cs" />
+    <Compile Include="Migrations\202111100435209_add-ipd-discharge-checklist-tables.Designer.cs">
+      <DependentUpon>202111100435209_add-ipd-discharge-checklist-tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111110925506_add-eio-table.cs" />
+    <Compile Include="Migrations\202111110925506_add-eio-table.Designer.cs">
+      <DependentUpon>202111110925506_add-eio-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111111023414_update-eio-table.cs" />
+    <Compile Include="Migrations\202111111023414_update-eio-table.Designer.cs">
+      <DependentUpon>202111111023414_update-eio-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112010457038_update-specialty.cs" />
+    <Compile Include="Migrations\202112010457038_update-specialty.designer.cs">
+      <DependentUpon>202112010457038_update-specialty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112010700140_update-specialty-rename-headcode.cs" />
+    <Compile Include="Migrations\202112010700140_update-specialty-rename-headcode.designer.cs">
+      <DependentUpon>202112010700140_update-specialty-rename-headcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112031111576_create_Prescription.cs" />
+    <Compile Include="Migrations\202112031111576_create_Prescription.Designer.cs">
+      <DependentUpon>202112031111576_create_Prescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112040752476_update-site-table.cs" />
+    <Compile Include="Migrations\202112040752476_update-site-table.Designer.cs">
+      <DependentUpon>202112040752476_update-site-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112060655575_add-drs-tbl.cs" />
+    <Compile Include="Migrations\202112060655575_add-drs-tbl.Designer.cs">
+      <DependentUpon>202112060655575_add-drs-tbl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112060928387_test.cs" />
+    <Compile Include="Migrations\202112060928387_test.designer.cs">
+      <DependentUpon>202112060928387_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112060938263_fix-site-table.cs" />
+    <Compile Include="Migrations\202112060938263_fix-site-table.designer.cs">
+      <DependentUpon>202112060938263_fix-site-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112061141345_add-col-drs.cs" />
+    <Compile Include="Migrations\202112061141345_add-col-drs.Designer.cs">
+      <DependentUpon>202112061141345_add-col-drs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112070827060_test1.cs" />
+    <Compile Include="Migrations\202112070827060_test1.designer.cs">
+      <DependentUpon>202112070827060_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112090433580_update-table-customer.cs" />
+    <Compile Include="Migrations\202112090433580_update-table-customer.designer.cs">
+      <DependentUpon>202112090433580_update-table-customer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112090502348_add-charge-tbls.cs" />
+    <Compile Include="Migrations\202112090502348_add-charge-tbls.Designer.cs">
+      <DependentUpon>202112090502348_add-charge-tbls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112100734011_create-column-PIDEhos.cs" />
+    <Compile Include="Migrations\202112100734011_create-column-PIDEhos.designer.cs">
+      <DependentUpon>202112100734011_create-column-PIDEhos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112151013471_create-new-table-ConfirmDischarge.cs" />
+    <Compile Include="Migrations\202112151013471_create-new-table-ConfirmDischarge.designer.cs">
+      <DependentUpon>202112151013471_create-new-table-ConfirmDischarge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112170158487_update-table-IPDConfirmDischarge.cs" />
+    <Compile Include="Migrations\202112170158487_update-table-IPDConfirmDischarge.designer.cs">
+      <DependentUpon>202112170158487_update-table-IPDConfirmDischarge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112170815062_update-add-column-CustomerName-IPDConfirmDischare.cs" />
+    <Compile Include="Migrations\202112170815062_update-add-column-CustomerName-IPDConfirmDischare.Designer.cs">
+      <DependentUpon>202112170815062_update-add-column-CustomerName-IPDConfirmDischare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112171038407_update-add-column-DoctorFullName-IPDConfirmDischare.cs" />
+    <Compile Include="Migrations\202112171038407_update-add-column-DoctorFullName-IPDConfirmDischare.Designer.cs">
+      <DependentUpon>202112171038407_update-add-column-DoctorFullName-IPDConfirmDischare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112180807484_add-time-colsx.cs" />
+    <Compile Include="Migrations\202112180807484_add-time-colsx.designer.cs">
+      <DependentUpon>202112180807484_add-time-colsx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112211040082_add-col-parent-id.cs" />
+    <Compile Include="Migrations\202112211040082_add-col-parent-id.designer.cs">
+      <DependentUpon>202112211040082_add-col-parent-id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseModel\VBaseModel.cs" />
+    <Compile Include="Models\EDModel\EDAmbulanceRunReport.cs" />
+    <Compile Include="Models\EDModel\EDAmbulanceRunReportData.cs" />
+    <Compile Include="Models\EDModel\EDAmbulanceTransferPatientsRecord.cs" />
+    <Compile Include="Models\EDModel\EDSelfHarmRiskScreeningTool.cs" />
+    <Compile Include="Models\EDModel\EDVerbalOrder.cs" />
+    <Compile Include="Models\EDModel\EDInjuryCertificate.cs" />
+    <Compile Include="Models\EDModel\EDBase.cs" />
+    <Compile Include="Models\EIOModel\EIOCareNote.cs" />
+    <Compile Include="Models\EIOModel\EIOForm.cs" />
+    <Compile Include="Models\EIOModel\EIOPhysicianNote.cs" />
+    <Compile Include="Models\EIOModel\EIOTestCovid2Confirmation.cs" />
+    <Compile Include="Models\EIOModel\EIOExternalTransportationAssessment.cs" />
+    <Compile Include="Models\EIOModel\EIOExternalTransportationAssessmentData.cs" />
+    <Compile Include="Models\EIOModel\EIOExternalTransportationAssessmentEquipment.cs" />
+    <Compile Include="Models\EIOModel\EIOMortalityReport.cs" />
+    <Compile Include="Models\EIOModel\EIOMortalityReportMember.cs" />
+    <Compile Include="Models\EDModel\EDEmergencyTriageRecordData.cs" />
+    <Compile Include="Models\EIOModel\EIOBloodProductData.cs" />
+    <Compile Include="Models\EIOModel\EIOBloodSupplyData.cs" />
+    <Compile Include="Models\EIOModel\EIOBloodRequestSupplyAndConfirmation.cs" />
+    <Compile Include="Models\EIOModel\EIOBloodTransfusionChecklist.cs" />
+    <Compile Include="Models\EIOModel\EIOBloodTransfusionChecklistData.cs" />
+    <Compile Include="Models\EIOModel\EIOCardiacArrestRecord.cs" />
+    <Compile Include="Models\EIOModel\EIOCardiacArrestRecordData.cs" />
+    <Compile Include="Models\EIOModel\EIOCardiacArrestRecordTable.cs" />
+    <Compile Include="Models\EIOModel\EIOJointConsultationGroupMinutes.cs" />
+    <Compile Include="Models\EIOModel\EIOJointConsultationGroupMinutesData.cs" />
+    <Compile Include="Models\EIOModel\EIOJointConsultationGroupMinutesMember.cs" />
+    <Compile Include="Models\EIOModel\EIOPatientOwnMedicationsChart.cs" />
+    <Compile Include="Models\EIOModel\EIOSurgicalProcedureSafetyChecklist.cs" />
+    <Compile Include="Models\EIOModel\EIOSurgicalProcedureSafetyChecklistData.cs" />
+    <Compile Include="Models\EIOModel\EIOSurgicalProcedureSafetyChecklistSignIn.cs" />
+    <Compile Include="Models\EIOModel\EIOSurgicalProcedureSafetyChecklistSignOut.cs" />
+    <Compile Include="Models\EIOModel\EIOSurgicalProcedureSafetyChecklistTimeOut.cs" />
+    <Compile Include="Models\EIOModel\EIOPatientOwnMedicationsChartData.cs" />
+    <Compile Include="Models\EIOModel\HighlyRestrictedAntimicrobialConsultAntimicrobialOrder.cs" />
+    <Compile Include="Models\EIOModel\HighlyRestrictedAntimicrobialConsultMicrobiologicalResults.cs" />
+    <Compile Include="Models\EIOModel\HighlyRestrictedAntimicrobialConsult.cs" />
+    <Compile Include="Models\EOCModel\EOCHandOverCheckList.cs" />
+    <Compile Include="Models\EOCModel\EOC.cs" />
+    <Compile Include="Models\EOCModel\EOCBase.cs" />
+    <Compile Include="Models\EOCModel\EOCTransfer.cs" />
+    <Compile Include="Models\EOCModel\EOCFallRiskScreening.cs" />
+    <Compile Include="Models\EOCModel\EOCInitialAssessmentForOnGoing.cs" />
+    <Compile Include="Models\EOCModel\EOCInitialAssessmentForShortTerm.cs" />
+    <Compile Include="Models\EOCModel\EOCOutpatientExaminationNote.cs" />
+    <Compile Include="Models\GeneralModel\Action.cs" />
+    <Compile Include="Models\GeneralModel\AdminRole.cs" />
+    <Compile Include="Models\BaseModel\IEntiy.cs" />
+    <Compile Include="Models\GeneralModel\Charge.cs" />
+    <Compile Include="Models\GeneralModel\ChargeDraft.cs" />
+    <Compile Include="Models\GeneralModel\ChargeItem.cs" />
+    <Compile Include="Models\GeneralModel\ChargeItemMicrobiology.cs" />
+    <Compile Include="Models\GeneralModel\ChargeItemPathology.cs" />
+    <Compile Include="Models\GeneralModel\Clinic.cs" />
+    <Compile Include="Models\EIOModel\ComplexOutpatientCaseSummary.cs" />
+    <Compile Include="Models\EDModel\EDDischargeInformationData.cs" />
+    <Compile Include="Models\EDModel\EDArterialBloodGasTest.cs" />
+    <Compile Include="Models\EDModel\EDArterialBloodGasTestData.cs" />
+    <Compile Include="Models\EIOModel\EIOAssessmentForRetailServicePatient.cs" />
+    <Compile Include="Models\EIOModel\EIOAssessmentForRetailServicePatientData.cs" />
+    <Compile Include="Models\EDModel\EDChemicalBiologyTest.cs" />
+    <Compile Include="Models\EDModel\EDChemicalBiologyTestData.cs" />
+    <Compile Include="Models\EDModel\EDConsultationDrugWithAnAsteriskMark.cs" />
+    <Compile Include="Models\EIOModel\EIOJointConsultationForApprovalOfSurgery.cs" />
+    <Compile Include="Models\EIOModel\EIOJointConsultationForApprovalOfSurgeryData.cs" />
+    <Compile Include="Models\EDModel\EDPointOfCareTestingMasterData.cs" />
+    <Compile Include="Models\EIOModel\EIOSkinTestResult.cs" />
+    <Compile Include="Models\EIOModel\EIOSkinTestResultData.cs" />
+    <Compile Include="Models\EIOModel\EIOStandingOrderForRetailService.cs" />
+    <Compile Include="Models\GeneralModel\CpoeOrderable.cs" />
+    <Compile Include="Models\GeneralModel\EDStatus.cs" />
+    <Compile Include="Models\EDModel\EDDischargeInformation.cs" />
+    <Compile Include="Models\EDModel\EDHandOverCheckList.cs" />
+    <Compile Include="Models\EDModel\EDHandOverCheckListData.cs" />
+    <Compile Include="Models\GeneralModel\Form.cs" />
+    <Compile Include="Models\GeneralModel\FormDatas.cs" />
+    <Compile Include="Models\GeneralModel\HumanResourceAssessment.cs" />
+    <Compile Include="Models\GeneralModel\HumanResourceAssessmentShift.cs" />
+    <Compile Include="Models\GeneralModel\HumanResourceAssessmentStaff.cs" />
+    <Compile Include="Models\GeneralModel\HumanResourceAssessmentPosition.cs" />
+    <Compile Include="Models\GeneralModel\ICD10.cs" />
+    <Compile Include="Models\GeneralModel\ICDSpecialty.cs" />
+    <Compile Include="Models\EDModel\EDMonitoringChartAndHandoverForm.cs" />
+    <Compile Include="Models\EDModel\EDMonitoringChartAndHandoverFormData.cs" />
+    <Compile Include="Models\EDModel\EDObservationChart.cs" />
+    <Compile Include="Models\EDModel\EDObservationChartData.cs" />
+    <Compile Include="Models\GeneralModel\LabOrderableRef.cs" />
+    <Compile Include="Models\GeneralModel\LogInFail.cs" />
+    <Compile Include="Models\GeneralModel\MedicationMasterdata.cs" />
+    <Compile Include="Models\GeneralModel\Notification.cs" />
+    <Compile Include="Models\GeneralModel\RadiologyProcedurePlanRef.cs" />
+    <Compile Include="Models\GeneralModel\Service.cs" />
+    <Compile Include="Models\GeneralModel\ServiceGroup.cs" />
+    <Compile Include="Models\GeneralModel\SystemConfig.cs" />
+    <Compile Include="Models\GeneralModel\SystemNotification.cs" />
+    <Compile Include="Models\GeneralModel\UnlockFormToUpdate.cs" />
+    <Compile Include="Models\IPDModel\IPDAdultVitalSignMonitorData.cs" />
+    <Compile Include="Models\IPDModel\IPDAdultVitalSignMonitor.cs" />
+    <Compile Include="Models\IPDModel\IPDBase.cs" />
+    <Compile Include="Models\IPDModel\IPD.cs" />
+    <Compile Include="Models\IPDModel\IPDConfirmDischargeWithoutDirect.cs" />
+    <Compile Include="Models\IPDModel\IPDConsultationDrugWithAnAsteriskMark.cs" />
+    <Compile Include="Models\IPDModel\IPDDischargePreparationChecklist.cs" />
+    <Compile Include="Models\IPDModel\IPDDischargePreparationChecklistData.cs" />
+    <Compile Include="Models\IPDModel\IPDGuggingSwallowingScreen.cs" />
+    <Compile Include="Models\IPDModel\IPDGuggingSwallowingScreenData.cs" />
+    <Compile Include="Models\IPDModel\IPDDischargeMedicalReport.cs" />
+    <Compile Include="Models\IPDModel\IPDFallRiskAssessmentForAdult.cs" />
+    <Compile Include="Models\IPDModel\IPDFallRiskAssessmentForAdultData.cs" />
+    <Compile Include="Models\IPDModel\IPDFallRiskAssessmentForObstetric.cs" />
+    <Compile Include="Models\IPDModel\IPDFallRiskAssessmentForObstetricData.cs" />
+    <Compile Include="Models\IPDModel\IPDHandOverCheckList.cs" />
+    <Compile Include="Models\IPDModel\IPDHandOverCheckListData.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentForAdult.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentForAdultData.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentForChemotherapy.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentForChemotherapyData.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentForFrailElderly.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentForFrailElderlyData.cs" />
+    <Compile Include="Models\IPDModel\IPDInitialAssessmentSpecialRequest.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecord.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordData.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordPart1.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordPart1Data.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordPart2.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordPart2Data.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordPart3.cs" />
+    <Compile Include="Models\IPDModel\IPDMedicalRecordPart3Data.cs" />
+    <Compile Include="Models\IPDModel\IPDPatientProgressNote.cs" />
+    <Compile Include="Models\IPDModel\IPDPatientProgressNoteData.cs" />
+    <Compile Include="Models\IPDModel\IPDPlanOfCare.cs" />
+    <Compile Include="Models\IPDModel\IPDReferralLetter.cs" />
+    <Compile Include="Models\IPDModel\IPDTakeCareOfPatientsWithCovid19Recomment.cs" />
+    <Compile Include="Models\IPDModel\IPDTransferLetter.cs" />
+    <Compile Include="Models\IPDModel\IPDTakeCareOfPatientsWithCovid19Assessment.cs" />
+    <Compile Include="Models\IPDModel\IPDVitalSignForAdult.cs" />
+    <Compile Include="Models\OPDModel\OPD.cs" />
+    <Compile Include="Models\OPDModel\OPDHandOverCheckList.cs" />
+    <Compile Include="Models\OPDModel\OPDHandOverCheckListData.cs" />
+    <Compile Include="Models\OPDModel\OPDInitialAssessmentForTelehealth.cs" />
+    <Compile Include="Models\OPDModel\OPDInitialAssessmentForTelehealthData.cs" />
+    <Compile Include="Models\OPDModel\OPDObservationChart.cs" />
+    <Compile Include="Models\OPDModel\OPDObservationChartData.cs" />
+    <Compile Include="Models\OPDModel\OPDOutpatientExaminationNote.cs" />
+    <Compile Include="Models\OPDModel\OPDFallRiskScreening.cs" />
+    <Compile Include="Models\OPDModel\OPDOutpatientExaminationNoteData.cs" />
+    <Compile Include="Models\OPDModel\OPDFallRiskScreeningData.cs" />
+    <Compile Include="Models\OPDModel\OPDInitialAssessmentForOnGoing.cs" />
+    <Compile Include="Models\OPDModel\OPDInitialAssessmentForOnGoingData.cs" />
+    <Compile Include="Models\OPDModel\OPDInitialAssessmentForShortTerm.cs" />
+    <Compile Include="Models\OPDModel\OPDInitialAssessmentForShortTermData.cs" />
+    <Compile Include="Models\OPDModel\OPDPatientProgressNote.cs" />
+    <Compile Include="Models\OPDModel\OPDPatientProgressNoteData.cs" />
+    <Compile Include="Models\EIOModel\EIOProcedureSummary.cs" />
+    <Compile Include="Models\EIOModel\EIOProcedureSummaryData.cs" />
+    <Compile Include="Models\EIOModel\PatientAndFamilyEducation.cs" />
+    <Compile Include="Models\EIOModel\PatientAndFamilyEducationContent.cs" />
+    <Compile Include="Models\EIOModel\PatientAndFamilyEducationContentData.cs" />
+    <Compile Include="Models\EIOModel\PatientAndFamilyEducationData.cs" />
+    <Compile Include="Models\GeneralModel\PositionUser.cs" />
+    <Compile Include="Models\GeneralModel\RoleAction.cs" />
+    <Compile Include="Models\GeneralModel\Role.cs" />
+    <Compile Include="Models\GeneralModel\RoleSpecialty.cs" />
+    <Compile Include="Models\GeneralModel\Room.cs" />
+    <Compile Include="Models\GeneralModel\Specialty.cs" />
+    <Compile Include="Models\EIOModel\EIOSpongeSharpsAndInstrumentsCountsSheet.cs" />
+    <Compile Include="Models\EIOModel\EIOSpongeSharpsAndInstrumentsCountsSheetData.cs" />
+    <Compile Include="Models\GeneralModel\StandingOrderMasterData.cs" />
+    <Compile Include="Models\EIOModel\Translation.cs" />
+    <Compile Include="Models\EIOModel\TranslationData.cs" />
+    <Compile Include="Models\GeneralModel\User.cs" />
+    <Compile Include="Models\GeneralModel\Customer.cs" />
+    <Compile Include="Models\EDModel\ED.cs" />
+    <Compile Include="Models\EDModel\EDEmergencyTriageRecord.cs" />
+    <Compile Include="Models\GeneralModel\MasterData.cs" />
+    <Compile Include="Models\EDModel\EDEmergencyRecord.cs" />
+    <Compile Include="Models\EDModel\EDEmergencyRecordData.cs" />
+    <Compile Include="Models\GeneralModel\Order.cs" />
+    <Compile Include="Models\EDModel\EDPatientProgressNote.cs" />
+    <Compile Include="Models\EDModel\EDPatientProgressNoteData.cs" />
+    <Compile Include="Models\EIOModel\EIOPreOperativeProcedureHandoverChecklist.cs" />
+    <Compile Include="Models\EIOModel\EIOPreOperativeProcedureHandoverChecklistData.cs" />
+    <Compile Include="Models\GeneralModel\Site.cs" />
+    <Compile Include="Models\GeneralModel\Log.cs" />
+    <Compile Include="Models\GeneralModel\UserAdminRole.cs" />
+    <Compile Include="Models\GeneralModel\UserClinic.cs" />
+    <Compile Include="Models\GeneralModel\Position.cs" />
+    <Compile Include="Models\GeneralModel\UserRole.cs" />
+    <Compile Include="Models\GeneralModel\UserSpecialty.cs" />
+    <Compile Include="Models\GeneralModel\VisitTypeGroup.cs" />
+    <Compile Include="Models\PrescriptionModel\PrescriptionNoteModel.cs" />
+    <Compile Include="Repository\EfGenericRepository.cs" />
+    <Compile Include="Repository\EfUnitOfWork.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Repository\IUnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201911040706553_Initial.resx">
+      <DependentUpon>201911040706553_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911050513033_newFK.resx">
+      <DependentUpon>201911050513033_newFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911060355302_change_gender.resx">
+      <DependentUpon>201911060355302_change_gender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911070342227_create_user.resx">
+      <DependentUpon>201911070342227_create_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911120353093_Change_data_type_masterdata.resx">
+      <DependentUpon>201911120353093_Change_data_type_masterdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911120725260_add_master_data_level_group.resx">
+      <DependentUpon>201911120725260_add_master_data_level_group.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911120739485_add_order_masterdata.resx">
+      <DependentUpon>201911120739485_add_order_masterdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911120939370_add_form.resx">
+      <DependentUpon>201911120939370_add_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911130924197_ad_room.resx">
+      <DependentUpon>201911130924197_ad_room.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911140739443_change_data.resx">
+      <DependentUpon>201911140739443_change_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911190815207_add_customer_status.resx">
+      <DependentUpon>201911190815207_add_customer_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911190927529_add_ed_status.resx">
+      <DependentUpon>201911190927529_add_ed_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911200757404_add_admiited_date.resx">
+      <DependentUpon>201911200757404_add_admiited_date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911200823183_add_phone_in_customer.resx">
+      <DependentUpon>201911200823183_add_phone_in_customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911201004404_change_ed_status.resx">
+      <DependentUpon>201911201004404_change_ed_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911201022349_change_name_initialassessment.resx">
+      <DependentUpon>201911201022349_change_name_initialassessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911270228094_add_note.resx">
+      <DependentUpon>201911270228094_add_note.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912030412020_observation_chart.resx">
+      <DependentUpon>201912030412020_observation_chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912030436134_observation.resx">
+      <DependentUpon>201912030436134_observation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912030954566_discharge_inforati.resx">
+      <DependentUpon>201912030954566_discharge_inforati.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031026435_ad_noe_at.resx">
+      <DependentUpon>201912031026435_ad_noe_at.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912031029536_add_note_at.resx">
+      <DependentUpon>201912031029536_add_note_at.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912050340529_update.resx">
+      <DependentUpon>201912050340529_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912100419323_change log.resx">
+      <DependentUpon>201912100419323_change log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912100425158_rename_log.resx">
+      <DependentUpon>201912100425158_rename_log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912101033403_chang log.resx">
+      <DependentUpon>201912101033403_chang log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912110331469_add_field_log.resx">
+      <DependentUpon>201912110331469_add_field_log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912110432173_new_log_data.resx">
+      <DependentUpon>201912110432173_new_log_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912110502023_updte.resx">
+      <DependentUpon>201912110502023_updte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912120331008_add_readonly_masterdata.resx">
+      <DependentUpon>201912120331008_add_readonly_masterdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912120943341_add_data_in_master_data.resx">
+      <DependentUpon>201912120943341_add_data_in_master_data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912121056439_update_room.resx">
+      <DependentUpon>201912121056439_update_room.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912130739490_add_status.resx">
+      <DependentUpon>201912130739490_add_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912131013522_add-job-in-cutomer.resx">
+      <DependentUpon>201912131013522_add-job-in-cutomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912160919345_chot_lan_n.resx">
+      <DependentUpon>201912160919345_chot_lan_n.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912180507532_update_log.resx">
+      <DependentUpon>201912180507532_update_log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912190302052_add-health-insurance.resx">
+      <DependentUpon>201912190302052_add-health-insurance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912190749045_remove-log-id.resx">
+      <DependentUpon>201912190749045_remove-log-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912200818258_add-handover-check.resx">
+      <DependentUpon>201912200818258_add-handover-check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912270400046_icd.resx">
+      <DependentUpon>201912270400046_icd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912300531116_udate-user-ad.resx">
+      <DependentUpon>201912300531116_udate-user-ad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912300837192_update-user-mult-site.resx">
+      <DependentUpon>201912300837192_update-user-mult-site.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912310320571_add-monitoring.resx">
+      <DependentUpon>201912310320571_add-monitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912310337435_upate-monitoring.resx">
+      <DependentUpon>201912310337435_upate-monitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001030328584_sponge-add.resx">
+      <DependentUpon>202001030328584_sponge-add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001030751527_upate-ed.resx">
+      <DependentUpon>202001030751527_upate-ed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001030826576_remove in pre-operative.resx">
+      <DependentUpon>202001030826576_remove in pre-operative.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001050348338_update-ammiteddate.resx">
+      <DependentUpon>202001050348338_update-ammiteddate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001050612067_update-bed.resx">
+      <DependentUpon>202001050612067_update-bed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001050836044_update-role.resx">
+      <DependentUpon>202001050836044_update-role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001060444594_update-role-v2.resx">
+      <DependentUpon>202001060444594_update-role-v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001060458443_add-name-for-role.resx">
+      <DependentUpon>202001060458443_add-name-for-role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001060708497_add-site.resx">
+      <DependentUpon>202001060708497_add-site.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001060750421_upate-user-role.resx">
+      <DependentUpon>202001060750421_upate-user-role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071344490_update-chart.resx">
+      <DependentUpon>202001071344490_update-chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001080353296_update-order-info.resx">
+      <DependentUpon>202001080353296_update-order-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001080811040_change-role.resx">
+      <DependentUpon>202001080811040_change-role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001090824439_doctocoirm.resx">
+      <DependentUpon>202001090824439_doctocoirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001200451576_upate-log-and-index.resx">
+      <DependentUpon>202001200451576_upate-log-and-index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141133396_abc.resx">
+      <DependentUpon>202002141133396_abc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002170855489_add-user-admin-roles.resx">
+      <DependentUpon>202002170855489_add-user-admin-roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002170919578_change-admin-roles.resx">
+      <DependentUpon>202002170919578_change-admin-roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002180325328_add-admin-role-description.resx">
+      <DependentUpon>202002180325328_add-admin-role-description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002200421473_update-examination-note.resx">
+      <DependentUpon>202002200421473_update-examination-note.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002260301230_add-hando-over-check-list.resx">
+      <DependentUpon>202002260301230_add-hando-over-check-list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002260713503_update-hand-over-check-list.resx">
+      <DependentUpon>202002260713503_update-hand-over-check-list.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002260949115_update-hand-over-check-list-2.resx">
+      <DependentUpon>202002260949115_update-hand-over-check-list-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003040927212_add-transfer-id.resx">
+      <DependentUpon>202003040927212_add-transfer-id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003060351302_create-clinic.resx">
+      <DependentUpon>202003060351302_create-clinic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003060735446_update1.resx">
+      <DependentUpon>202003060735446_update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003110410439_add-standing-order-master-data.resx">
+      <DependentUpon>202003110410439_add-standing-order-master-data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003110417446_update-standing-order-mster-data.resx">
+      <DependentUpon>202003110417446_update-standing-order-mster-data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003110820529_add-standing-for-opd-order.resx">
+      <DependentUpon>202003110820529_add-standing-for-opd-order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003161044377_add-complex-case.resx">
+      <DependentUpon>202003161044377_add-complex-case.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003170345402_add-unlock-form-to-update.resx">
+      <DependentUpon>202003170345402_add-unlock-form-to-update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003190732006_remove-room-in-opd-initial-assessment.resx">
+      <DependentUpon>202003190732006_remove-room-in-opd-initial-assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003231018461_add-ehos-account.resx">
+      <DependentUpon>202003231018461_add-ehos-account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004030336381_update-order.resx">
+      <DependentUpon>202004030336381_update-order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004070933520_add-patient-and-family-educatio.resx">
+      <DependentUpon>202004070933520_add-patient-and-family-educatio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004080736445_update-patient-family-education-form.resx">
+      <DependentUpon>202004080736445_update-patient-family-education-form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004081046423_update-patient-education-form.resx">
+      <DependentUpon>202004081046423_update-patient-education-form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004140405497_add-record-code.resx">
+      <DependentUpon>202004140405497_add-record-code.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004140425098_add-specialty-no.resx">
+      <DependentUpon>202004140425098_add-specialty-no.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004150435585_update-unlock-form.resx">
+      <DependentUpon>202004150435585_update-unlock-form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004160910212_add-form-table.resx">
+      <DependentUpon>202004160910212_add-form-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004170329270_add-opd-patient-progress-note.resx">
+      <DependentUpon>202004170329270_add-opd-patient-progress-note.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004200807115_add-initial-assessment-for-tetehealth.resx">
+      <DependentUpon>202004200807115_add-initial-assessment-for-tetehealth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004270534230_update-location-unit.resx">
+      <DependentUpon>202004270534230_update-location-unit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005041001223_update-log.resx">
+      <DependentUpon>202005041001223_update-log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005050401138_add-translation.resx">
+      <DependentUpon>202005050401138_add-translation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005050415089_update-tralation.resx">
+      <DependentUpon>202005050415089_update-tralation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005050843479_update_2_translation.resx">
+      <DependentUpon>202005050843479_update_2_translation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005050852557_update-3-translation.resx">
+      <DependentUpon>202005050852557_update-3-translation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005060421168_update-trans-4.resx">
+      <DependentUpon>202005060421168_update-trans-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005140715021_add-notification-POCT.resx">
+      <DependentUpon>202005140715021_add-notification-POCT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005140916456_update-POCT.resx">
+      <DependentUpon>202005140916456_update-POCT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150318373_update-poct-2.resx">
+      <DependentUpon>202005150318373_update-poct-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005150525206_update-poct-3.resx">
+      <DependentUpon>202005150525206_update-poct-3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005280216215_change-type-result.resx">
+      <DependentUpon>202005280216215_change-type-result.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020344270_update-poct-4.resx">
+      <DependentUpon>202006020344270_update-poct-4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006020857537_update-note-in-standing-order.resx">
+      <DependentUpon>202006020857537_update-note-in-standing-order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006030434226_add-session.resx">
+      <DependentUpon>202006030434226_add-session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006040713312_add-login-table%3b.resx">
+      <DependentUpon>202006040713312_add-login-table%3b.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006090459515_add-retail-service.resx">
+      <DependentUpon>202006090459515_add-retail-service.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006100327213_add-standing-order-for-retail-service.resx">
+      <DependentUpon>202006100327213_add-standing-order-for-retail-service.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006130421271_add-invalid-session.resx">
+      <DependentUpon>202006130421271_add-invalid-session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006150755254_delete-invalid-session.resx">
+      <DependentUpon>202006150755254_delete-invalid-session.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006170722449_add-reason-and-primary-nurse.resx">
+      <DependentUpon>202006170722449_add-reason-and-primary-nurse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006180801283_add-group-visit.resx">
+      <DependentUpon>202006180801283_add-group-visit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007080359065_add-index.resx">
+      <DependentUpon>202007080359065_add-index.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007090218508_add_3_form.resx">
+      <DependentUpon>202007090218508_add_3_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007100831135_update-allergy-wei-hei.resx">
+      <DependentUpon>202007100831135_update-allergy-wei-hei.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007140738243_update-kind-of-allrgy.resx">
+      <DependentUpon>202007140738243_update-kind-of-allrgy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007220335162_add-procedure-summarry.resx">
+      <DependentUpon>202007220335162_add-procedure-summarry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007220723531_add-user-specialty.resx">
+      <DependentUpon>202007220723531_add-user-specialty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007240254336_update-procedure-summary.resx">
+      <DependentUpon>202007240254336_update-procedure-summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007290809000_add-m2m-user-position.resx">
+      <DependentUpon>202007290809000_add-m2m-user-position.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008170410194_add_surgiacl.resx">
+      <DependentUpon>202008170410194_add_surgiacl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008180316597_update_joint_consultation_group_minute.resx">
+      <DependentUpon>202008180316597_update_joint_consultation_group_minute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008200817077_add-request-supply-confirmation.resx">
+      <DependentUpon>202008200817077_add-request-supply-confirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008260459356_update-log-remove-logdetail-add-bloodchecklist.resx">
+      <DependentUpon>202008260459356_update-log-remove-logdetail-add-bloodchecklist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008280317164_add-cardiac-arrest-record.resx">
+      <DependentUpon>202008280317164_add-cardiac-arrest-record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008310247431_update-cardiac-arrest-reocrd.resx">
+      <DependentUpon>202008310247431_update-cardiac-arrest-reocrd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009010237267_add-certificate.resx">
+      <DependentUpon>202009010237267_add-certificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009010407286_update-order-caridal.resx">
+      <DependentUpon>202009010407286_update-order-caridal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009040803111_update-blood-tranfusion-int-to-strin.resx">
+      <DependentUpon>202009040803111_update-blood-tranfusion-int-to-strin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009050456364_update-transfusion-other-check.resx">
+      <DependentUpon>202009050456364_update-transfusion-other-check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009080756168_update-time-blood-request-supply-confirm.resx">
+      <DependentUpon>202009080756168_update-time-blood-request-supply-confirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009100244311_add-mortality-report.resx">
+      <DependentUpon>202009100244311_add-mortality-report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009100759429_update-IPD-mortality-report.resx">
+      <DependentUpon>202009100759429_update-IPD-mortality-report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009110410502_add-patient-own-medication-chart.resx">
+      <DependentUpon>202009110410502_add-patient-own-medication-chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009150709507_add-nurse-confirm-order.resx">
+      <DependentUpon>202009150709507_add-nurse-confirm-order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009160306351_add-assessment-external-tran.resx">
+      <DependentUpon>202009160306351_add-assessment-external-tran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009170355585_add-blood-type-for-custome.resx">
+      <DependentUpon>202009170355585_add-blood-type-for-custome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009210825398_add-ambulance-run-report.resx">
+      <DependentUpon>202009210825398_add-ambulance-run-report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010010437111_init-ipd.resx">
+      <DependentUpon>202010010437111_init-ipd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010020349435_add-patient-progress-not-ipd.resx">
+      <DependentUpon>202010020349435_add-patient-progress-not-ipd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010060743378_add-initial-assessment-ipd.resx">
+      <DependentUpon>202010060743378_add-initial-assessment-ipd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010070727044_update-customer-info.resx">
+      <DependentUpon>202010070727044_update-customer-info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010080833185_update-ipd-initial-assessment.resx">
+      <DependentUpon>202010080833185_update-ipd-initial-assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010130324051_add-current-and-doctor-ed.resx">
+      <DependentUpon>202010130324051_add-current-and-doctor-ed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010141029538_add-ipd-plan-of-care.resx">
+      <DependentUpon>202010141029538_add-ipd-plan-of-care.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010150712482_add-ipd-ia-special-request.resx">
+      <DependentUpon>202010150712482_add-ipd-ia-special-request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010160440315_update-ipd-ia-special-request.resx">
+      <DependentUpon>202010160440315_update-ipd-ia-special-request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010170417283_add-fall-risk-assessment.resx">
+      <DependentUpon>202010170417283_add-fall-risk-assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010170455366_update-ipd-special-request-is-key.resx">
+      <DependentUpon>202010170455366_update-ipd-special-request-is-key.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010200323229_add-field-datatype-ipd-ia-special-request.resx">
+      <DependentUpon>202010200323229_add-field-datatype-ipd-ia-special-request.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010200956218_add-human-resource-assessment.resx">
+      <DependentUpon>202010200956218_add-human-resource-assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010210448101_add-human-resource-assessment-shift.resx">
+      <DependentUpon>202010210448101_add-human-resource-assessment-shift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010231002128_update-human-resource-assessment.resx">
+      <DependentUpon>202010231002128_update-human-resource-assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011030335401_add-bed-for-retail-service.resx">
+      <DependentUpon>202011030335401_add-bed-for-retail-service.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011120309097_add-ipd-fall-risk-assessment-obstetric.resx">
+      <DependentUpon>202011120309097_add-ipd-fall-risk-assessment-obstetric.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011180737352_add-ipd-medical-record.resx">
+      <DependentUpon>202011180737352_add-ipd-medical-record.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011240326072_add-medical-record-data.resx">
+      <DependentUpon>202011240326072_add-medical-record-data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011260758303_update-moh-customer.resx">
+      <DependentUpon>202011260758303_update-moh-customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011300952281_add-customer-moh-address.resx">
+      <DependentUpon>202011300952281_add-customer-moh-address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012020327373_add-ipd-medical-report.resx">
+      <DependentUpon>202012020327373_add-ipd-medical-report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012040727239_update-dmr-time.resx">
+      <DependentUpon>202012040727239_update-dmr-time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012070842147_add-referral-transfer-letter.resx">
+      <DependentUpon>202012070842147_add-referral-transfer-letter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012281033563_update-eio-procedure-summary.resx">
+      <DependentUpon>202012281033563_update-eio-procedure-summary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012290742303_update-eio-joint-consultant-for-approval.resx">
+      <DependentUpon>202012290742303_update-eio-joint-consultant-for-approval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101050254488_add-ipd-guss.resx">
+      <DependentUpon>202101050254488_add-ipd-guss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101070253134_add-system-config-and-notification.resx">
+      <DependentUpon>202101070253134_add-system-config-and-notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101120313309_add-version-initassessment.resx">
+      <DependentUpon>202101120313309_add-version-initassessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101120440199_update-version-initassessment.resx">
+      <DependentUpon>202101120440199_update-version-initassessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101200708105_update-blood-transfusion-thawed-time.resx">
+      <DependentUpon>202101200708105_update-blood-transfusion-thawed-time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103100332559_add-clinic-data.resx">
+      <DependentUpon>202103100332559_add-clinic-data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103160404168_create-opd-observation-chart.resx">
+      <DependentUpon>202103160404168_create-opd-observation-chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103180336272_update-pre-operative-procedure.resx">
+      <DependentUpon>202103180336272_update-pre-operative-procedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103230328209_add-authorized-doctor.resx">
+      <DependentUpon>202103230328209_add-authorized-doctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104060354266_update-eio-skin-test.resx">
+      <DependentUpon>202104060354266_update-eio-skin-test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104130309106_add-IsAuthorizedDoctorChangeForm.resx">
+      <DependentUpon>202104130309106_add-IsAuthorizedDoctorChangeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104150820487_opd-assessment-for-retail-service.resx">
+      <DependentUpon>202104150820487_opd-assessment-for-retail-service.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104200430417_update-patient-owner-medication-chart.resx">
+      <DependentUpon>202104200430417_update-patient-owner-medication-chart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104210206574_update-cardiac-arrest-record-ver-2.resx">
+      <DependentUpon>202104210206574_update-cardiac-arrest-record-ver-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105040804060_add-IsDoctorChangeForm.resx">
+      <DependentUpon>202105040804060_add-IsDoctorChangeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060843555_add-EFormVisitId.resx">
+      <DependentUpon>202105060843555_add-EFormVisitId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105260323561_add-TestCovid2Confirmation-and-update-customer.resx">
+      <DependentUpon>202105260323561_add-TestCovid2Confirmation-and-update-customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105260347390_add-TestCovid2Confirmation-Foreign-on-ed-opd.resx">
+      <DependentUpon>202105260347390_add-TestCovid2Confirmation-Foreign-on-ed-opd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106140837015_initHighlyResAnitimicrobialConsult.resx">
+      <DependentUpon>202106140837015_initHighlyResAnitimicrobialConsult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106160439409_update-table-highly-res-ant-con.resx">
+      <DependentUpon>202106160439409_update-table-highly-res-ant-con.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106160518061_add-table-formdatas.resx">
+      <DependentUpon>202106160518061_add-table-formdatas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106220217180_EDVerbalOrderTable.resx">
+      <DependentUpon>202106220217180_EDVerbalOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106220221521_update-EDVerbalOrderTable.resx">
+      <DependentUpon>202106220221521_update-EDVerbalOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106220754143_update-order-table.resx">
+      <DependentUpon>202106220754143_update-order-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107070346043_init-endoscopy.resx">
+      <DependentUpon>202107070346043_init-endoscopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107070723222_add-tranfer-endoscopy.resx">
+      <DependentUpon>202107070723222_add-tranfer-endoscopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107070744287_update-tranfer-endoscopy.resx">
+      <DependentUpon>202107070744287_update-tranfer-endoscopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107070954380_update-tranfer-endoscopy2.resx">
+      <DependentUpon>202107070954380_update-tranfer-endoscopy2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107120939498_update-eoc-tbl.resx">
+      <DependentUpon>202107120939498_update-eoc-tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107130344085_add-new-eoc-table.resx">
+      <DependentUpon>202107130344085_add-new-eoc-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107140334475_update-formData.resx">
+      <DependentUpon>202107140334475_update-formData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107140355431_update-eoc-tables2.resx">
+      <DependentUpon>202107140355431_update-eoc-tables2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107140431569_init-tbl-EOCOutpatientExaminationNote.resx">
+      <DependentUpon>202107140431569_init-tbl-EOCOutpatientExaminationNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107190349578_init-EOCHandOverCheckList.resx">
+      <DependentUpon>202107190349578_init-EOCHandOverCheckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107300202462_update-status-table.resx">
+      <DependentUpon>202107300202462_update-status-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108060544428_update-eoc-progressnote.resx">
+      <DependentUpon>202108060544428_update-eoc-progressnote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108080912552_update-eoc-pk.resx">
+      <DependentUpon>202108080912552_update-eoc-pk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108150910557_update-ed-model.resx">
+      <DependentUpon>202108150910557_update-ed-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108150926025_update-ed-model3.resx">
+      <DependentUpon>202108150926025_update-ed-model3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108160215061_update-ed-model4.resx">
+      <DependentUpon>202108160215061_update-ed-model4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109041018072_updarw-ob.resx">
+      <DependentUpon>202109041018072_updarw-ob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109210229200_new-table-covid19-takeofcare.resx">
+      <DependentUpon>202109210229200_new-table-covid19-takeofcare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109271013418_update-covideasssitotavke.resx">
+      <DependentUpon>202109271013418_update-covideasssitotavke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109280819477_add-table-EDSelfHarmRiskScreeningTool.resx">
+      <DependentUpon>202109280819477_add-table-EDSelfHarmRiskScreeningTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109280828192_update-table-EDSelfHarmRiskScreeningTool.resx">
+      <DependentUpon>202109280828192_update-table-EDSelfHarmRiskScreeningTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110050811005_update-ed-model-tbl.resx">
+      <DependentUpon>202110050811005_update-ed-model-tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110051014303_add-eio-physician-note-tbl.resx">
+      <DependentUpon>202110051014303_add-eio-physician-note-tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110070836327_add-care-note-tbl.resx">
+      <DependentUpon>202110070836327_add-care-note-tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110190147190_add-col-to-IPDMedicalRecords-22.resx">
+      <DependentUpon>202110190147190_add-col-to-IPDMedicalRecords-22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110220720207_add-col-to-ipd-ed.resx">
+      <DependentUpon>202110220720207_add-col-to-ipd-ed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110270451165_add-more-relationship-information.resx">
+      <DependentUpon>202110270451165_add-more-relationship-information.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111030432510_add-consulation-drug-with-asterisk-mark.resx">
+      <DependentUpon>202111030432510_add-consulation-drug-with-asterisk-mark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111100435209_add-ipd-discharge-checklist-tables.resx">
+      <DependentUpon>202111100435209_add-ipd-discharge-checklist-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111110925506_add-eio-table.resx">
+      <DependentUpon>202111110925506_add-eio-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111111023414_update-eio-table.resx">
+      <DependentUpon>202111111023414_update-eio-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112010457038_update-specialty.resx">
+      <DependentUpon>202112010457038_update-specialty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112010700140_update-specialty-rename-headcode.resx">
+      <DependentUpon>202112010700140_update-specialty-rename-headcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112031111576_create_Prescription.resx">
+      <DependentUpon>202112031111576_create_Prescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112040752476_update-site-table.resx">
+      <DependentUpon>202112040752476_update-site-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112060655575_add-drs-tbl.resx">
+      <DependentUpon>202112060655575_add-drs-tbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112060928387_test.resx">
+      <DependentUpon>202112060928387_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112060938263_fix-site-table.resx">
+      <DependentUpon>202112060938263_fix-site-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112061141345_add-col-drs.resx">
+      <DependentUpon>202112061141345_add-col-drs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112070827060_test1.resx">
+      <DependentUpon>202112070827060_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112090433580_update-table-customer.resx">
+      <DependentUpon>202112090433580_update-table-customer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112090502348_add-charge-tbls.resx">
+      <DependentUpon>202112090502348_add-charge-tbls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112100734011_create-column-PIDEhos.resx">
+      <DependentUpon>202112100734011_create-column-PIDEhos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112151013471_create-new-table-ConfirmDischarge.resx">
+      <DependentUpon>202112151013471_create-new-table-ConfirmDischarge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112170158487_update-table-IPDConfirmDischarge.resx">
+      <DependentUpon>202112170158487_update-table-IPDConfirmDischarge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112170815062_update-add-column-CustomerName-IPDConfirmDischare.resx">
+      <DependentUpon>202112170815062_update-add-column-CustomerName-IPDConfirmDischare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112171038407_update-add-column-DoctorFullName-IPDConfirmDischare.resx">
+      <DependentUpon>202112171038407_update-add-column-DoctorFullName-IPDConfirmDischare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112180807484_add-time-colsx.resx">
+      <DependentUpon>202112180807484_add-time-colsx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112211040082_add-col-parent-id.resx">
+      <DependentUpon>202112211040082_add-col-parent-id.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Notes.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

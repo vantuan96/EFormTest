@@ -1,0 +1,158 @@
+﻿@using Admin.Common
+@using Admin.Models
+@model UserViewModel
+
+<div class="modal" tabindex="-1" role="dialog" id="modalEditUser">
+    <div class="modal-dialog" role="document" style="max-width: 720px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm người dùng</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmEditUser">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(s => s.Id)
+                    <div class="row">
+                        <div class="col-3"><b>Tài khoản AD:</b></div>
+                        <div class="col-7">@Model.UserName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><b>Tên hiển thị:</b></div>
+                        <div class="col-7">@Model.DisplayName</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><b>Tài khoản EHOS:</b></div>
+                        <div class="col-7">
+                            @Html.TextBoxFor(s => s.EHOSAccount, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><b>Phòng ban:</b></div>
+                        <div class="col-7">@Model.Department</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3"><b>Chức danh:</b></div>
+                        <div class="col-7">@Model.Title</div>
+                    </div>
+                    @if (User.IsInRole(Constant.AdminRoles.SuperAdmin))
+                    {
+                        <div class="row">
+                            <div class="col-3 mdc-label"><b>Quản trị viên:</b></div>
+                            <div class="col-2">
+                                <div class="toggle">
+                                    @Html.CheckBoxFor(s => s.IsAdminUser, new { @class = "check", id = "editIsAdminUser", onchange = "changeIsAdmin(this)" })
+                                    <b class="b switch"></b>
+                                    <b class="b track"></b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 5px;" id="editAdminRolesSection">
+                            <div class="col-3 mdc-label"><b>Phân quyền quản trị:</b></div>
+                            <div class="col-9">
+                                @Html.DropDownListFor(s => s.AdminRoles, Model.ListAdminRoles, new { multiple = "multiple", id = "editAdminRoles" })
+                            </div>
+                        </div>
+                    }
+                    <div class="row" style="padding-top: 5px;">
+                        <div class="col-3 mdc-label"><b>Vị trí:</b></div>
+                        <div class="col-9">
+                            @Html.DropDownListFor(s => s.Positions, Model.ListPositions, new { multiple = "multiple", id = "editPositions", @class="allow-search"  })
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 5px;">
+                        <div class="col-3 mdc-label"><b>Phân quyền:</b></div>
+                        <div class="col-9">
+                            @Html.DropDownListFor(s => s.Roles, Model.ListRoles, new { multiple = "multiple", id = "editRoles", @class="allow-search"   })
+                        </div>
+                    </div>
+                    <div class="row" style="padding-top: 5px;">
+                        <div class="col-3 mdc-label"><b>Khu vực:</b></div>
+                        <div class="col-9">
+                            @Html.DropDownListFor(s => s.Specialties, Model.ListSpecialties, new { multiple = "multiple", id = "editSpecialties", @class="allow-search"   })
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="editUser()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeIsAdmin(elm) {
+        if (elm.checked) {
+            $('#editAdminRolesSection').show();
+        } else {
+            $('#editAdminRoles').multiSelect('deselect_all');
+            $('#editAdminRolesSection').hide();
+        }
+    }
+
+    function editUser() {
+        $.ajax(
+            {
+                type: "POST",
+                data: $('#frmEditUser').serializeArray(),
+                url: "@Url.Action("EditUser", "User")",
+                success: function (data) {
+                    if (data) {
+                        $("#modalEditUser").modal('hide');
+                        $('#tbl-users').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+        }
+
+    $(document).ready(function () {
+        
+        var config = {
+            selectableHeader: "<input type='text' class='form-control' autocomplete='off' placeholder='Tìm kiếm...'>",
+            selectionHeader: "<input type='text' class='form-control' autocomplete='off' placeholder='Tìm kiếm...'>",
+            afterInit: function (ms) {
+                let that = this,
+                    $selectableSearch = that.$selectableUl.prev(),
+                    $selectionSearch = that.$selectionUl.prev(),
+                    selectableSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selectable:not(.ms-selected)',
+                    selectionSearchString = '#' + that.$container.attr('id') + ' .ms-elem-selection.ms-selected';
+                that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                    .on('keydown', function (e) {
+                        if (e.which === 40) {
+                            that.$selectableUl.focus();
+                            return false;
+                        }
+                    });
+
+                that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                    .on('keydown', function (e) {
+                        if (e.which == 40) {
+                            that.$selectionUl.focus();
+                            return false;
+                        }
+                    });
+            },
+
+            afterSelect: function () {
+                this.qs1.cache();
+                this.qs2.cache();
+            },
+
+            afterDeselect: function () {
+                this.qs1.cache();
+                this.qs2.cache();
+            }
+        };
+        $('#editIsAdminUser').trigger('change');
+        $('#editPositions').multiSelect(config).multiSelect('select', @Html.Raw(Json.Encode(Model.Positions)));
+        $('#editRoles').multiSelect(config).multiSelect('select', @Html.Raw(Json.Encode(Model.Roles)));
+        $('#editSpecialties').multiSelect(config).multiSelect('select', @Html.Raw(Json.Encode(Model.Specialties)));
+        $('#editAdminRoles').multiSelect(config).multiSelect('select', @Html.Raw(Json.Encode(Model.AdminRoles)));
+    })
+</script>

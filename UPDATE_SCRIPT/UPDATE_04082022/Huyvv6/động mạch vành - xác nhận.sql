@@ -1,0 +1,1 @@
+﻿insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD][BS Xác nhận] Điều trị can thiệp động mạch vành' , N'DTCTDMV3', (select id from VisitTypeGroups where Code = 'IPD'));

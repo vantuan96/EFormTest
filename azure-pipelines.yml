@@ -1,0 +1,40 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+
+variables:
+  solution: 'EFormCustomBuilder.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+jobs:
+  - job: checkout_code_from_repo
+    displayName: 'Checkout code from repo'
+    strategy:
+     matrix:
+      Server81:
+       AGENT_NAME: 'Agent-server-81'
+    pool:
+     name: 'EFormCI'
+     demands:
+     - agent.name -equals $(AGENT_NAME)
+    steps:
+      - checkout: 'none'
+        displayName: 'Checkout code from repo'
+      - script: |
+          echo ##[command]
+          cd C:\\agents\\_work\\2\\s
+          echo ##[command]
+          git pull origin master
+        displayName: 'Get newest code'
+      - task: MSBuild@1
+        inputs:
+          solution: 'EFormCustomBuilder.sln'
+          msbuildLocationMethod: 'location'
+          msbuildLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin'
+          platform: 'Any CPU'
+          clean: true

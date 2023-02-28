@@ -1,0 +1,1 @@
+sqlcmd -S 'your server name' -U 'user name of server' -P 'password of server' -d     'db name'-i script.sql

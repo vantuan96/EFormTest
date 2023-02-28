@@ -1,0 +1,28 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- UAT
+
+pool:
+  name: 'Default'
+
+steps:
+- checkout: 'none'
+  displayName: 'Checkout code from repo'
+- script: |
+    echo ##[command]
+    cd C:\\agents\\_work\\4\\s
+    echo ##[command]
+    git pull origin UAT
+  displayName: 'Get newest code from UAT'
+- task: MSBuild@1
+  inputs:
+    solution: '**/*.sln'
+    msbuildLocationMethod: 'location'
+    msbuildLocation: 'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin'
+    platform: 'Any CPU'
+    configuration: Release
+    clean: false

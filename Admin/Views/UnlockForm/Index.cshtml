@@ -1,0 +1,693 @@
+﻿@using Admin.Models
+@using Admin.Common
+@model UnlockFormViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-users {
+        width: 100% !important;
+    }
+
+    .ms-container {
+        width: 500px;
+    }
+</style>
+@Html.AntiForgeryToken()
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý mở khóa hồ sơ
+                    <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="showModalAddUnlock()">
+                        <i class="material-icons mdc-button__icon">add</i>
+                        Thêm
+                    </button>
+                </h6>
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-2" style="max-width: 100px; margin-top: 7px;"><b>Tìm kiếm:</b></div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" id="filterName" placeholder="Mã hồ sơ" onchange="filterTable()" />
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-unlocks" class="mdl-data-table" style="width: 100%"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalAddUnlock">
+    <div class="modal-dialog" role="document" style="max-width: 720px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title d-flex justify-content-center align-items-center" style="white-space: nowrap">
+                    Mở khóa hồ sơ:
+                    <select id="selectOptionUnlock" onchange="selectedValue()" class="form-select" aria-label="Default select example" style="height:30px;margin-left:78px">
+                        <option selected value="unLock24H">Mở khóa 24h</option>
+                        <option value="unLockConfirm">Mở khóa xác nhận</option>
+                    </select>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddNewUnlock">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-3 mdc-label"><b>Mã hồ sơ:</b></div>
+                        <div class="col-7">
+                            <input class="form-control" id="RecordCode" />
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kiểm tra" onclick="checkRecordCode()"><i class="material-icons mdc-button__icon">check</i></button>
+                        </div>
+                    </div>
+                    <div class="row col-12" id="userError" style="display: none;">
+                        <b style="color: red;" id="usrErrMsg"></b>
+                    </div>
+                    <div class="row" id="unlock_user" style="display: none;">
+                        <div class="col-3 mdc-label"><b>TK AD người được mở:</b></div>
+                        <div class="col-7">
+                            <input class="form-control" id="UnlockUser" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row" id="unlock_idForm" style="display: none; margin-top: 10px;">
+                        <div class="col-3 mdc-label"><b>ID Form được mở:</b></div>
+                        <div class="col-7">
+                            <input class="form-control" id="UnlockIdForm" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row" id="unlock_search" style="display: none; margin-top:10px;">
+                        <div class="col-3 mdc-label"><b>Biểu mẫu cần mở:</b></div>
+                        <div class="col-7">
+                            <input type="text" class="form-control" id="filterForm" placeholder="Tìm kiếm" onKeyUp="filterFormByName()" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row" id="form_list" style="display: none; margin-top: 10px;">
+                        <div class="col-3 mdc-label"></div>
+                        <div class="col-9" id="form_list_checkbox" style="display: flex;flex-direction: column;">
+
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <input class="form-control" id="VisitId" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="display: none;" id="userActions">
+                <button type="button" class="btn btn-success" onclick="clearDataAddUnlock()">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="addUnlock()">Mở khóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupPlaceholder"></div>
+@section script{
+    <script src="~/Scripts/jquery.multi-select.js"></script>
+    <script>
+    var dataFormList;
+    var visitId;
+    var dataFormChecked = [];
+    var selected = document.getElementById('selectOptionUnlock');
+    function filterTable()
+    {
+        var oTable = $('#tbl-unlocks').DataTable();
+        oTable.columns(1).search($("#filterName").val().trim()).draw();
+    }
+
+    function filterFormByName()
+    {
+        var val = $("#filterForm").val().trim();
+        val = makeComp(val);
+        var dataFormListFilter = dataFormList.filter(
+            function (str)
+            {
+                var nameForm = makeComp(str.Name);
+                return nameForm.indexOf(val) >= 0;
+            });
+        handleDataFormList(dataFormListFilter);
+    }
+
+    function showModalAddUnlock()
+    {
+        $("#modalAddUnlock").modal();
+    }
+
+    function clearDataAddUnlock()
+    {
+        $("#RecordCode").val('');
+        $("#unlock_idForm").hide();
+        $("#unlock_user").hide();
+        $("#unlock_search").hide();
+        $("#UnlockIdForm").val('');
+        $("#UnlockUser").val('');
+        $("#VisitId").val('');
+        $("#filterForm").val('');
+        $('#form_list_checkbox').html("");
+        $('#form_list').hide();
+        $('#userActions').hide();
+        $('#userError').hide();
+    }
+
+    $('#modalAddUnlock').on('hide.bs.modal', function ()
+    {
+        dataFormChecked = [];
+        clearDataAddUnlock();
+        selected.selectedIndex = 0;
+        $('#tbl-unlocks').DataTable().ajax.reload();
+    })
+
+    $('#modalAddUnlock').on('shown.bs.modal', function ()
+    {
+        $('#RecordCode').trigger('focus');
+    })
+
+    function checkRecordCode()
+    {
+        $("#unlock_idForm").hide();
+        document.getElementById("unlock_idForm").style.marginTop = "0px";
+        $.ajax({
+            type: "POST",
+            data: { record_code : $('#RecordCode').val(), "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("CheckRecordCode", "UnlockForm")",
+            success: function (data) {
+                if (data.IsInvalidRecordCode)
+                {
+                    $('#userError').show();
+                    $('#usrErrMsg').text('Mã hồ sơ không hợp lệ');
+                } else
+                {
+                    $("#usrErrMsg").hide();
+                    dataFormList = [];
+                    for (var item of data.FormList)
+                    {
+                        if (selected.value == 'unLockConfirm')
+                        {
+                            if (listFormConfirm.includes(item.Name.trim()))
+                            {
+                                dataFormList.push(item);
+                            }
+                        }
+                        else
+                        {
+                            dataFormList.push(item);
+                        }
+                    }
+
+                    dataFormChecked = [];
+                    visitId = data.VisitId;
+                    handleDataFormList(dataFormList);
+                    filterFormByName();
+                }
+            }
+        })
+    }
+    function handleDataFormList(dataFormListFilter)
+    {
+        //$("#VisitId").val(dataFormListFilter.VisitId);
+        $('#unlock_user').show();
+        $('#unlock_search').show();
+        var form_list_html = '';
+        var checked = '';
+        for (var i of dataFormListFilter)
+        {
+            checked = '';
+            if (dataFormChecked.includes(i))
+            {
+                checked = 'checked';
+            }
+            form_list_html += `
+                        <div class="mdc-form-field">
+                          <div class="mdc-checkbox">
+                            <input type="checkbox" onclick="checkUnlockForm()" class="mdc-checkbox__native-control form_list_cb" id="${i.Id}" data-name="${i.Name}" ${checked} />
+                            <div class="mdc-checkbox__background">
+                              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                              </svg>
+                              <div class="mdc-checkbox__mixedmark"></div>
+                            </div>
+                            <div class="mdc-checkbox__ripple"></div>
+                          </div>
+                          <label for="${i.Code}">${i.Name}</label>
+                        </div>
+                        `;
+        }
+        $('#form_list_checkbox').html(form_list_html);
+        $('#form_list').show();
+        $('#userActions').show();
+    }
+    function makeComp(input)
+    {
+        input = input.toLowerCase();
+        var output = '';
+        for (var i = 0; i < input.length; i++)
+        {
+            var tex = input.charAt(i);
+            if ('à á ạ ả ã â ầ ấ ậ ẩ ẫ ă ắ ằ ặ ẳ ẵ'.indexOf(tex) >= 0)
+                output = output + 'a'
+            else if ('è é ẹ ẻ ẽ ê ề ế ệ ể ễ'.indexOf(input.charAt(i)) >= 0)
+                output = output + 'e';
+            else if ('ì í ị ỉ ĩ'.indexOf(input.charAt(i)) >= 0)
+                output = output + 'i';
+            else if ('đ'.indexOf(input.charAt(i)) >= 0)
+                output = output + 'd';
+            else if ('ò ó ọ ỏ õ ô ồ ố ộ ổ ỗ ơ ờ ớ ợ ở ỡ'.indexOf(input.charAt(i)) >= 0)
+                output = output + 'o';
+            else if ('ù ú ụ ủ ũ ư ừ ứ ự ử ữ'.indexOf(input.charAt(i)) >= 0)
+                output = output + 'u';
+            else if ('ỳ  ý ỵ ỷ ỹ'.indexOf(input.charAt(i)) >= 0)
+                output = output + 'y';
+            else
+                output = output + input.charAt(i);
+        }
+        return output;
+    }
+    function deactiveUnlock(id)
+    {
+        $.ajax({
+            type: "POST",
+            data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("DeactivateUnlock", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    function activeUnlock(id) {
+        $.ajax({
+            type: "POST",
+            data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("ActivateUnlock", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    function checkUnlockForm()
+    {
+        // Chỉ cho tích chọn nhiều phiếu
+        if (selected.value == 'unLock24H')
+        {
+            for (var item of dataFormList)
+            {
+                var checkbox = document.getElementById(item.Id);
+                if (checkbox == null || checkbox == undefined)
+                {
+                    continue;
+                }
+                if (checkbox.checked)
+                {
+                    var index = dataFormChecked.indexOf(item);
+                    if (index < 0)
+                    {
+                        dataFormChecked.push(item);
+                    }
+                }
+                else
+                {
+                    var index = dataFormChecked.indexOf(item);
+                    if (index > -1)
+                    {
+                        dataFormChecked.splice(index, 1); // 2nd parameter means remove one item only
+                    }
+                }
+            }
+        }
+        // Chỉ cho tích chọn 1 phiếu
+        else if (selected.value == 'unLockConfirm')
+        {
+            $("#unlock_idForm").hide();
+            document.getElementById("unlock_idForm").style.marginTop = "0px";
+            for (var item of dataFormList)
+            {
+                if (dataFormChecked.includes(item))
+                {
+                    var checkbox1 = document.getElementById(item.Id);
+                    if (checkbox1 != null && checkbox1 != undefined)
+                    {
+                        checkbox1.checked = false;
+                    }
+                }
+            }
+            dataFormChecked = [];
+            for (var item of dataFormList)
+            {
+                var checkbox2 = document.getElementById(item.Id);
+                if (checkbox2 == null || checkbox2 == undefined)
+                {
+                    continue;
+                }
+                if (checkbox2.checked)
+                {
+                    if (!listFormConfirmByVisitId.includes(item.Name.trim()))
+                    {
+                        $('#unlock_idForm').show();
+                        document.getElementById("unlock_idForm").style.marginTop = "10px";
+                    }
+                    dataFormChecked.push(item);
+                    //handleDataFormList(dataFormList);
+                    return;
+                }
+            }
+        }
+
+    }
+    function selectedValue()
+    {
+        $("#unlock_idForm").hide();
+        document.getElementById("unlock_idForm").style.marginTop = "0px";
+        if (dataFormList != null && dataFormList != undefined && dataFormList.length > 0)
+        {
+            checkRecordCode();
+        }
+    }
+
+    function isUUID(listUuid)
+    {
+        listUuid = listUuid.trim();
+        arrUuid = listUuid.split(",");
+        for (var uuid of arrUuid)
+        {
+            uuid = uuid.trim();
+            let s = "" + uuid;
+            s = s.match('^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$');
+            if (s === null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function addUnlock()
+    {
+        var record_code = $("#RecordCode").val();
+        var unlock_idForm = $("#UnlockIdForm").val();
+        var unlock_user = $("#UnlockUser").val();
+        var dataUnlock;
+        var urlUnlock;
+        if (unlock_user == '' || unlock_user == undefined)
+        {
+            alert('Bạn chưa nhập tài khoản cần mở');
+            return;
+        }
+        if (dataFormChecked == null || dataFormChecked == undefined || dataFormChecked.length == 0)
+        {
+            alert('Bạn chưa chọn mẫu form cần mở');
+            return;
+        }
+        // Trường hợp là mở khóa xác nhận
+        if (selected.value == 'unLockConfirm')
+        {
+            // Trường hợp mở khóa xác nhận theo VisitId
+            if (listFormConfirmByVisitId.includes(dataFormChecked[0].Name.trim()))
+            {
+                unlock_idForm = visitId;
+            }
+            // Trường hợp mở khóa xác nhận theo FormId
+            else
+            {
+                if (unlock_idForm == '' || unlock_idForm == undefined)
+                {
+                    alert('Bạn chưa nhập ID Form cần mở');
+                    return;
+                }
+                if (!isUUID(unlock_idForm))
+                {
+                    alert('Bạn chưa nhập đúng định dạng ID form');
+                }
+            }
+
+        }
+        // Trường hợp là mở khóa 24H || xác nhận
+        if (selected.value == 'unLock24H')
+        {
+            urlUnlock = "@Url.Action("AddUnlock24H", "UnlockForm")";
+            dataUnlock =
+            {
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                "record_code": record_code,
+                "visit_id": visitId,
+                "unlock_user": unlock_user,
+                "list_form": JSON.stringify(dataFormChecked),
+            }
+        }
+        else
+        {
+            urlUnlock = "@Url.Action("AddUnlockConfirm", "UnlockForm")";
+            dataUnlock =
+            {
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                "record_code": record_code,
+                "visit_id": visitId,
+                "list_form_id": JSON.stringify(unlock_idForm),
+                "unlock_user": unlock_user,
+                "list_form": JSON.stringify(dataFormChecked),
+            }
+        }
+        //var list_form = [];
+        //$('.form_list_cb:checked').each(function ()
+        //{
+        //    list_form.push({
+        //        "Id": $(this).attr('id'),
+        //        "Code": $(this).attr('code'),
+        //        "Name": $(this).data('name')
+        //    });
+        //});
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            data: dataUnlock,
+            url: urlUnlock,
+            success: function (data)
+            {
+                if (data.IsUnlock)
+                {
+                    dataFormChecked = [];
+                    clearDataAddUnlock();
+                    alert(data.Message);
+                }
+                else
+                {
+                    alert(data.Message);
+                }
+            }
+        })
+    }
+
+    function updateExpire(id)
+    {
+
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            data: {
+                id: id,
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+            },
+            url: "@Url.Action("UpdateExpire", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    $(document).ready(function ()
+    {
+        var t = $('#tbl-unlocks').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            ajax:
+            {
+                url: "@Url.Action("GetListUnlockForms", "UnlockForm")",
+                type: "POST"
+            },
+            columnDefs:
+            [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 1, width: "150px", searchable: true },
+                { targets: 2, width: "150px", searchable: false, orderable: false },
+                { targets: 3, width: "150px" },
+                { targets: 4, width: "200px" },
+                { targets: 5, width: "200px" },
+                { targets: 6, visible: false, searchable: false, orderable: false },
+                { targets: 7, searchable: false, orderable: false }
+            ],
+            columns:
+            [
+                { data: "Id", name: "Id" },
+                { title: "Mã hồ sơ", data: "RecordCode", name: "RecordCode" },
+                { title: "Loại mở khóa", data: "LockType", name: "LockType" },
+                { title: "Tên biểu mẫu", data: "FormName", name: "FormName" },
+                { title: "Ngày hết hạn", data: "ExpiredAt", name: "ExpiredAt" },
+                { title: "Người được mở biểu mẫu", data: "Username", name: "Username" },
+                { title: "IsDeleted", data: "IsDeleted", name: "IsDeleted" },
+                {
+                    title: "Thao tác", render: function (data, type, full, meta)
+                    {
+                        var render = '';
+                        if (full.LockType == "Khóa 24h")
+                        {
+                            if (full.IsDeleted)
+                            {
+                                render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kích hoạt" onclick="activeUnlock(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">check</i></button>';
+                            } else
+                            {
+                                render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Vô hiệu" onclick="deactiveUnlock(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">clear</i></button>';
+                            }
+                            render += '&nbsp;<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" title="Gia hạn 24h" onclick="updateExpire(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">alarm_add</i></button>';
+                        }
+                        return render;
+                    }
+                }
+            ]
+        });
+    })
+    var listFormConfirmByVisitId =
+        [
+            //'Ghi nhận thực hiện thuốc standing order'
+        ]
+    var listFormConfirm =
+        [
+            'Xét nghiệm tại chỗ - Khí máu và điện giải EG7+',
+            'Giấy chuyển viện',
+            'Giấy chứng nhận bệnh nhân cấp cứu',
+            'Bảng kiểm chuẩn bị và bàn giao NB trước phẫu thuật',
+            'Báo cáo y tế',
+            'Đánh giá ban đầu NB ngoại trú thông thường',
+            'ĐGBĐ sản phụ chuyển dạ',
+            'Đánh giá ban đầu trẻ nội trú nhi',
+            'Đánh giá ban đầu trẻ sơ sinh nội trú',
+            'Đánh giá sàng lọc ngã',
+            'Phiếu sàng lọc nguy cơ ngã dành cho NB ngoại trú',
+            'Ghi nhận thực hiện thuốc standing order',
+            'Đánh giá ban đầu NB chăm sóc từ xa',
+            'Đánh giá ban đầu NB ngoại trú dài hạn',
+            'Phiếu điều trị',
+            'Phiếu chăm sóc',
+            'Bệnh án cấp cứu',
+            'Bệnh án cấp cứu ngoại viện',
+            'Đánh giá tình trạng trẻ trong 2 giờ sau sinh',
+            'Bản cam kết xin lấy bánh rau không theo quy định quản lý của Bệnh viện',
+            'Biên bản kiểm thảo tử vong',
+            'Phiếu khai thác tiền sử dùng thuốc',
+            'Phiếu khai thác tiền sử dùng thuốc - Nhi',
+            'Phiếu sơ kết 15 ngày điều trị',
+            'Giấy chứng nhận phẫu thuật',
+            'Phiếu dự trù máu',
+            'Bảng đánh giá nhu cầu trang thiết bị/ nhân lực vận chuyển ngoại viện',
+            'Biên bản hội chẩn',
+            'Biên bản hội chẩn bệnh nhân sử dụng thuốc có dấu sao (*)',
+            'Biên bản hội chẩn sử dụng kháng sinh cần ưu tiên quản lý',
+            'Biên bản hội chẩn thông qua mổ',
+            'Bảng kiểm an toàn phẫu thuật/ thủ thuật',
+            'Phiếu ghi nhận sử dụng thuốc do BN mang vào',
+            'Bảng hồi sinh tim phổi',
+            'Biên bản phối hợp với bệnh nhân, gia đình xử lý thai chết lưu',
+            'Điều trị can thiệp động mạch vành',
+            'Tóm tắt thủ thuật',
+            'Thang đánh giá ý tưởng tự sát và mức độ ý tưởng tự sát',
+            'Giấy xác nhận tình trạng bệnh tật',
+            'Giấy chuyển tuyến',
+            'Giấy ra viện',
+            'Báo cáo y tế ra viện',
+            'Báo cáo y tế',
+            'Giấy xác nhận ra viện không theo chỉ định của bác sĩ',
+            'Đánh giá nguy cơ thuyên tắc mạch',
+            'Xét nghiệm tại chỗ - Khí máu Cartridge CG4',
+            'Xét nghiệm tại chỗ - Sinh hóa máu(Nội trú ICU)',
+            'Biên bản phối hợp với bệnh nhân, gia đình xử lý thai chết lưu',
+            'Phiếu khám lâm sàng vú',
+            'Thông tin khách hàng đánh giá nguy cơ ung thư',
+            'Phiếu đánh giá tiêu chuẩn chỉ định xét nghiệm GEN BRCA',
+            'Phiếu phẫu thuật/ thủ thuật',
+            'Quản lý thai nghén',
+            'Bảng theo dõi hồi tỉnh',
+            'Phiếu truyền máu',
+            'Bệnh án ung bướu',
+            'Bảng điểm GLAMORGAN sàng lọc loét do tỳ ép ở trẻ nhi và sơ sinh',
+            'Bệnh án nhi khoa',
+            'Phiếu tóm tắt thủ thuật',
+            'Phiếu ghi nhận thuốc y lệnh miệng',
+            'Phiếu đánh giá nguy cơ di truyền trong sàng lọc ung thư vú',
+            'Kết quả test da',
+            'Ghi nhận thực hiện thuốc',
+            'Ghi nhận thực hiện thuốc NB dịch vụ lẻ',
+            'Bệnh án sơ sinh',
+            'Bệnh án sản khoa',
+            'Tóm tắt thủ thuật can thiệp động mạch vành',
+            'Xét nghiệm tại chỗ - Sinh hóa máu Catridge CHEM8+',
+            'Giấy chứng nhận thương tích',
+            'Ghi nhận thực hiện thuốc standing order',
+            'Tóm tắt phẫu thuật',
+            'PROM bệnh nhân mạch vành',
+            'PROM bệnh nhân suy tim',
+            'Tóm tắt phẫu thuật version 3',
+            'Đánh giá ban đầu cho trẻ vừa sinh',
+            'Xét nghiệm tại chỗ - ACT Cartridge Celite',
+            'XNTC - Đông máu ACT (Cartridge Kaolin ACT)',
+            'Quản lý thai nghén', 
+            'Phiếu khám gây mê',
+            'Bệnh án cấp cứu ngoại viện',
+            'Đánh giá nguy cơ thuyên tắc mạch',
+            'Đánh giá nguy cơ thuyên tắc mạch ngoại khoa', 
+            'Bảng kiểm an toàn Phẫu thuật/ Phủ thuật trong phòng Mổ và phòng Can thiệp tim mạch',
+            'Đánh giá ban đầu người bệnh điều trị hóa trị trong ngày',
+            'Báo cáo y tế ra viện',
+            'Giấy ra viện',
+            'Bảng kiểm an toàn Phẫu thuật/ Phủ thuật trong phòng Mổ và phòng Can thiệp tim mạch_Tab1 phần gây mê',
+            'Bảng kiểm an toàn Phẫu thuật/ Phủ thuật trong phòng Mổ và phòng Can thiệp tim mạch_Tab1 điều dưỡng dụng cụ kiểm tra',
+            'Bảng kiểm an toàn Phẫu thuật/ Phủ thuật trong phòng Mổ và phòng Can thiệp tim mạch_Tab1 phần điều dưỡng chạy ngoài thực hiện',
+            'Phiếu GDSK cho NB và thân nhân',
+            'ĐGBĐ NB hóa trị',
+            'Đánh giá ban đầu người bệnh nội trú thông thường',
+            'ĐGBĐ NB cao tuổi/ cuối đời',
+            'ĐGBĐ NB hóa trị',
+            'Bệnh án ngoại trú'
+        ]
+    </script>
+}

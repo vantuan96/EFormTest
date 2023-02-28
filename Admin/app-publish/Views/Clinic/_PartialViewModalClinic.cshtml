@@ -1,0 +1,82 @@
+﻿@using Admin.Models
+@model ClinicViewModel
+
+<div class="modal" tabindex="-1" role="dialog" id="modalEditSpecialty">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @if (!Model.IsEdit)
+                {
+                    <h5 class="modal-title">Thêm phòng khám</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Sửa phòng khám</h5>
+                }
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmSpecialtyDetail">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(s => s.Id)
+                    <div class="row">
+                        <div class="col-4 mdc-label"><b>Tên tiếng Việt:</b></div>
+                        <div class="col-8">
+                            @Html.TextBoxFor(s => s.ViName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mdc-label"><b>Tên tiếng Anh:</b></div>
+                        <div class="col-8">
+                            @Html.TextBoxFor(s => s.EnName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mdc-label"><b>Mã:</b></div>
+                        <div class="col-8">
+                            @Html.TextBoxFor(s => s.Code, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mdc-label"><b>Chuyên khoa:</b></div>
+                        <div class="col-8">
+                            @Html.DropDownListFor(s => s.SpecialtyId, Model.ListSpecialties, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @if (!Model.IsEdit)
+                {
+                    <button type="button" class="btn btn-success" onclick="saveSpecialty()">Thêm</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-success" onclick="saveSpecialty()">Lưu</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function saveSpecialty() {
+        $.ajax(
+            {
+                type: "POST",
+                data: $('#frmSpecialtyDetail').serializeArray(),
+                url: "@Url.Action("SaveClinic", "Clinic")",
+                success: function (data) {
+                    if (data != null) {
+                        $("#modalEditSpecialty").modal('hide');
+                        $('#tbl-specialties').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+        }
+</script>

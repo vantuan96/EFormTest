@@ -1,0 +1,7 @@
+Update MasterDatas set EnNamme = N'ICD 10 Pre-operation' where Code = 'EIOPS59';
+Update MasterDatas set EnNamme = N'ICD 10 Pre-operation' where Code = 'EIOPS60';
+Update MasterDatas set EnName = N'ICD 10 Post-Operation' where Code = 'EIOPS61';
+Update MasterDatas set EnName = N'ICD 10 Post-Operation' where Code = 'EIOPS62';
+
+Update MasterDatas set ViName = N'Sạch nhiễm', EnName = N'Clean-contaminated' where Code = 'EIOPS38';
+Update MasterDatas set ViName = N'Nhiễm', EnName = 'Contaminated' where  Code = 'EIOPS39';

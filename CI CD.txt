@@ -1,0 +1,45 @@
+1. Cài đặt Window agents
+- Yêu cầu tối thiểu:
+	+) HĐH Window Server 2008 R2 SP1 trở lên
+	+) Power Shell 3.0 trở lên
+	+) .NET Framework 4.6.2 trở lên (yêu cầu bắt buộc từ tháng 12/2019)
+- Khuyến khích cài đặt Visual Studio Build Tools
+
+- Tải và cài đặt agent pool: https://tfs.vinmec.com/Vinmec/eForm/_settings/agentqueues?queueId=15&view=agents
+
+- Access Token: 2fryhgje2u26q7awb3yeuqrpwfu5wyeda4wyr7ctycqxfxeieg3a
+aucjqs5tnb5tzloqhpjthkkdsblyeq6f4tmuvwywhvakjrvghbiq
+
+https://dev.azure.com/Vinmec
+
+https://tfs.vinmec.com/Vinmec -> server cần kết nối dc đến url này
+
+Các url cần kết nối:
+- https://download.visualstudio.microsoft.com/
+- https://api.nuget.org/
+- https://tfs.vinmec.com/Vinmec
+
+
+vs_BuildTools.exe --layout c:\localVSlayout --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.WebBuildTools --includeOptional --lang en-US
+
+vs_BuildTools.exe --noweb c:\localVSlayout --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.WebBuildTools --includeOptional
+
+
+--layout c:\--VSOfflineInstall --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.Azure --includeOptional --lang en-US
+
+
+- script: |
+    echo ##[command]
+    cd C:\\agents\\_work\\2\\s
+    echo ##[command]
+    git add *
+    git commit -m 'Update'
+    git pull origin sprint-17
+    echo ##[command]
+    npm run build_test
+  displayName: 'npm install and build'
+- script: |
+    echo ##[command]
+    rmdir E:\\Projects\\eform\\dev_ci\\static
+    echo ##[command]
+    xcopy C:\\agents\\_work\\2\\s\\dist\\production E:\\Projects\\eform\\dev_ci /E /Y

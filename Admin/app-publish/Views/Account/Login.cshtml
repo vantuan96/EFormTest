@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Login</title>
+
+    <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery/jquery-3.3.1.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        .g-recaptcha {
+            transform: scale(1.12);
+            transform-origin: 0 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-form">
+        <div class="form-group" style="text-align: center;">
+            <img src="~/assets/images/logo_vinmec.png" height="80" />
+        </div>
+
+        <form role="form" method="post" data-parsley-validate="">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group ">
+                <input type="text" class="form-control" placeholder="Your AD account" id="UserName" name="UserName">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group log-status" id="txtPassword" style="margin-bottom: 10px;">
+                <input type="password" class="form-control" placeholder="Your password" id="Password" name="Password">
+                <i class="fa fa-lock"></i>
+            </div>
+            @if (ViewBag.ShowCaptcha)
+            {
+                <div class="form-group" style="margin-bottom:10px;">
+                    <div class='g-recaptcha' data-sitekey='@System.Configuration.ConfigurationManager.AppSettings["ReCaptCha-Site-Key"]' data-callback='enableBtn'></div>
+                </div>
+                <script>
+                    window.onload = function () {
+                        document.getElementById('login').disabled = true;
+                        $('#login').css('background', '#ccc')
+                    }
+                    function enableBtn() {
+                        document.getElementById('login').disabled = false;
+                        $('#login').css('background', '#0AC986')
+                    }
+                </script>
+              }
+
+            <span id="alert"></span>
+            <button type="submit" id="login" class="log-btn">
+                Đăng nhập
+            </button>
+        </form>
+    </div>
+    <script>
+        $('.form-control').keypress(function () {
+            $('.log-status').removeClass('wrong-entry');
+        });
+
+        $( document ).ready(function() {
+            if ('@ViewBag.Message' != '') {
+                $('#txtPassword').addClass('wrong-entry');
+                $('#alert').html('@ViewBag.Message')
+				$('#alert').fadeIn(500);
+				setTimeout( "$('#alert').fadeOut(1500);",3000 );
+            }
+
+            $('#UserName').trigger('change');
+        });
+    </script>
+</body>
+</html>

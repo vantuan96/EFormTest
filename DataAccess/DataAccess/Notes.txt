@@ -1,0 +1,2 @@
+﻿add-migration add-col-to-IPDMedicalRecords
+Update-Database

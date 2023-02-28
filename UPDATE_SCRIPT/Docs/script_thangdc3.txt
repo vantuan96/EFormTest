@@ -1,0 +1,13 @@
+﻿insert into AppConfigs (Id, [Key], [Label], [Value], IsDeleted) Values (NEWID(), 'ServiceGroupCodeAllowSetupQty', N'Cho phép Các [nhóm dịch vụ] có thể chỉ định số lượng > 1', 'FB.03.22.C',0)
+insert into AppConfigs (Id, [Key], [Label], [Value], IsDeleted) Values (NEWID(), 'ServiceCodeAllowSetupQty', N'Cho phép Các [dịch vụ] có thể chỉ định số lượng > 1', '22.17', 0)
+insert into AppConfigs (Id, [Key], [Label], [Value], IsDeleted) Values (NEWID(), 'LOCKUSER_MSG', N'Thông báo khi nâng cấp hệ thống.', N'Hệ thống đang nâng cấp, vui lòng thử lại sau!!!', 0)
+
+insert into AppConfigs (Id, [Key], [Label], [Value], IsDeleted) Values (NEWID(), 'OPD_VISIT_TYPE_CODE', N'OH VisitType có thể tiếp nhận vào OPD (tiếp nhận trong ngày).', N'VMOPD,VMPK,VMHC,OKBTX,VMIPD,VMDC,PKIPD', 0)
+insert into AppConfigs (Id, [Key], [Label], [Value], IsDeleted) Values (NEWID(), 'SPECIAL_VISIT_TYPE_CODE', N'OH VisitType có thể tiếp nhận vào OPD (Không giới hạn thời gian).', N'VMHC,VMIPD', 0)
+insert into AppConfigs (Id, [Key], [Label], [Value], IsDeleted) Values (NEWID(), 'TIME_TO_BLOCK', N'Thời gian khóa Hồ sơ OPD (Dvt ngày).', N'1', 0)
+update EDs set UnlockFor = 'ALL'
+update IPDs set UnlockFor = 'ALL'
+update OPDs set UnlockFor = 'ALL'
+update EOCs set UnlockFor = 'ALL'
+
+update MasterDatas set Note = N'lần/phút' where [Code] = 'IPDMRPTMACH'

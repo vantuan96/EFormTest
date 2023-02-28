@@ -1,0 +1,2 @@
+﻿insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD]Xác nhận đánh giá nguy cơ thuyên tắc mạch NB nội khoa' , N'CFA01_165_050919_VE', (select id from VisitTypeGroups where Code ='IPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD]Xác nhận đánh giá nguy cơ thuyên tắc mạch cho bệnh nhân ngoại tổng hợp' , N'CFA01_049_050919_VE', (select id from VisitTypeGroups where Code ='IPD'));

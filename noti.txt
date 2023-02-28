@@ -1,0 +1,95 @@
+exec send_message_all @vimes= N'<div>
+  <p><span style="font-size:12.0pt;"><i><strong>Kính gửi: Ban LĐ Bệnh viện (báo cáo),</strong></i></span></p>
+  <p><span style="font-size:12.0pt;"><i><strong>Kính gửi: các Bác sĩ và anh/chị Điều dưỡng (thông báo),</strong></i></span></p>
+  <p><span style="font-size:12.0pt;"><i><strong>Kính gửi: anh/chị các phòng ban ( phth),&nbsp;</strong></i></span></p>
+  <p><span style="font-size:12.0pt;">Bộ phận IT xin được gửi thông báo nâng cấp hệ thống Biểu mẫu điện tử EFORM hiện đang được triển khai tại các khu vực Ngoại trú, Cấp cứu và Nội trú. Nội dung nâng cấp như sau:&nbsp;</span></p>
+  <p><span style="font-size:12.0pt;"> Thời gian nâng cấp và gián đoạn hệ thống : </span><span style="background-color:yellow;font-size:12.0pt;">18h30 - 19h ngày 29/12/2022</span></p>
+  <p><span style="font-size:12.0pt;"><strong>Nội dung nâng cấp:</strong></span></p>
+
+  <h3><label class=""> I. Biểu mẫu HSBA:</label></h3>
+
+  <p><i>Thời điểm áp dụng: Hồ sơ tiếp nhận sau thời điểm nâng cấp hệ thống!</i></p>
+
+  <h4 style="padding-left: 10px">1. Nội trú Y học tái tạo và trị liệu tế bào: Thêm mới biểu mẫu</h4>
+    <p style="padding-left: 20px">• Đánh giá ban đầu trẻ nội trú nhi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ từ 1 đến dưới 3 tháng tuổi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ 3 - 12 tháng</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ 1 - dưới 4 tuổi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ 4 - 12 tuổi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ trên 12 tuổi</p>
+  <h4 style="padding-left: 10px">2. Đánh giá ban đầu người bệnh nội trú thông thường: Cập nhật version</h4>
+    <p style="padding-left: 20px">• Với lựa chọn ‘Khác’ cần mô tả cụ thể </p>
+    <p style="padding-left: 20px">• Thêm nút ‘Xác nhận’ cho Người thực hiện</p>
+  <h4 style="padding-left: 10px">3. Đánh giá ban đầu người bệnh cao tuổi cuối đời: Cập nhật version</h4>
+    <p style="padding-left: 20px">• Với lựa chọn ‘Khác’ cần mô tả cụ thể</p>
+    <p style="padding-left: 20px">• Thêm nút ‘Xác nhận’ cho Người thực hiện</p>
+  <h4 style="padding-left: 10px">4. Đánh giá ban đầu người bệnh hóa trị: Cập nhật version</h4>
+    
+  <h4 style="padding-left: 10px">5. XNTC - Khí máu và điện giải EG7: Thêm mới biểu mẫu mã  A03_165_061222_V</h4>
+  <h4 style="padding-left: 10px">6. XNTC - Khí máu Cartridge CG4+: Cập nhật biểu mẫu mã  A03_038_061222_ V_XNTC</h4>
+  <h4 style="padding-left: 10px">7. Kiểm thảo tử vong: Cập nhật biểu mẫu mã  A01_172_050919_V tại khu vực Cấp cứu</h4>
+  <h4 style="padding-left: 10px">8. Trích biên bản kiểm thảo tử vong: Thêm mới biểu mẫu mã  A01_154_050919_V tại khu vực Cấp cứu</h4>
+  <h4 style="padding-left: 10px">9. Thêm tính năng IN cho Kiểm thảo tử vong – Trích biên bản kiểm thảo tử vong tại khu vực Nội trú và Cấp cứu</h4>
+
+<h3><label class="">II. Bổ sung các tính năng</label></h3>
+  <h4 style="padding-left: 10px">1. Thêm ‘Patient Summary’ vào chi tiết hồ sơ người bệnh tại khoa: click vào Tên người bệnh</h4>
+  <h4 style="padding-left: 10px">2. Thanh thông tin người bệnh:</h4>
+    <p style="padding-left: 20px">• Thêm Thông tin hành chính</p>
+    <p style="padding-left: 20px">• Thêm Thông tin lượt khám gần nhất</p>
+  <h4 style="padding-left: 10px">3. Sắp xếp vị trí các cột trong Xem kết quả xét nghiệm</h4>
+
+
+  <p style="margin-left:1.0in;"><br data-cke-filler="true"></p>
+  <p style="line-break: anywhere;"><span style="font-size:12.0pt;">Anh/chị có thể truy cập đường dẫn sau để xem hướng dẫn sử dụng:&nbsp;</span><a href="https://vingroupjsc.sharepoint.com/sites/DR-VinMec/vmkht/vmcntt/tltk/Forms/Items.aspx?RootFolder=%2Fsites%2FDR%2DVinMec%2Fvmkht%2Fvmcntt%2Ftltk%2Fbieumau%2Ftlhdsd%2Fhdeform&FolderCTID=0x012000C7D06E1583C27D4D87181C7B29A9A99C&View=%7B65FA7BCF%2D5F5E%2D47E6%2D8FC4%2D5D87B2E98534%7D"><span style="color:#6888C9;font-size:12.0pt;"><u>https://vingroupjsc.sharepoint.com/sites/DR-VinMec/vmkht/vmcntt/tltk/Forms/Items.aspx?RootFolder=%2Fsites%2FDR%2DVinMec%2Fvmkht%2Fvmcntt%2Ftltk%2Fbieumau%2Ftlhdsd%2Fhdeform&FolderCTID=0x012000C7D06E1583C27D4D87181C7B29A9A99C&View=%7B65FA7BCF%2D5F5E%2D47E6%2D8FC4%2D5D87B2E98534%7D</u></span></a></p>
+  <p><span style="font-size:12.0pt;"><strong>Trong khoảng thời gian gián đoạn hệ thống trên, mọi người sẽ chạy </strong></span><span style="background-color:yellow;font-size:12.0pt;"><strong>plan B là sử dụng bản giấy thay thế</strong></span><span style="font-size:12.0pt;"><strong>, sau thời gian nâng cấp mọi người nhập lại thông tin lại vào hệ thống EFORM</strong>.</span></p>
+  <p><span style="font-size:12.0pt;"><strong>Lưu ý đối với những bệnh nhân cần trả BCYT trong khoảng thời gian nâng cấp, các bác sĩ cần hoàn thành hồ sơ </strong></span><span style="background-color:yellow;font-size:12.0pt;"><strong>trước 18h30</strong></span><span style="font-size:12.0pt;"><strong> để in và gửi cho bệnh nhân trước khi hệ thống tạm dừng hoạt động.</strong></span></p>
+  <p><span style="font-size:12.0pt;">Nếu cần thêm thông tin hoặc hỗ trợ trực tiếp, Anh/Chị vui lòng gửi lại phản hồi tới </span><a href="mailto:it@vinmec.com"><span style="font-size:12.0pt;">it@vinmec.com</span></a><span style="font-size:12.0pt;"> hoặc IT cơ sở để được giải đáp.</span></p>
+  <p><span style="font-size:12.0pt;">Trân trọng!</span></p>
+</div>', @enmes = N'<div>
+  <p><span style="font-size:12.0pt;"><i><strong>Kính gửi: Ban LĐ Bệnh viện (báo cáo),</strong></i></span></p>
+  <p><span style="font-size:12.0pt;"><i><strong>Kính gửi: các Bác sĩ và anh/chị Điều dưỡng (thông báo),</strong></i></span></p>
+  <p><span style="font-size:12.0pt;"><i><strong>Kính gửi: anh/chị các phòng ban ( phth),&nbsp;</strong></i></span></p>
+  <p><span style="font-size:12.0pt;">Bộ phận IT xin được gửi thông báo nâng cấp hệ thống Biểu mẫu điện tử EFORM hiện đang được triển khai tại các khu vực Ngoại trú, Cấp cứu và Nội trú. Nội dung nâng cấp như sau:&nbsp;</span></p>
+  <p><span style="font-size:12.0pt;"> Thời gian nâng cấp và gián đoạn hệ thống : </span><span style="background-color:yellow;font-size:12.0pt;">18h30 - 19h ngày 29/12/2022</span></p>
+  <p><span style="font-size:12.0pt;"><strong>Nội dung nâng cấp:</strong></span></p>
+
+  <h3><label class=""> I. Biểu mẫu HSBA:</label></h3>
+
+  <p><i>Thời điểm áp dụng: Hồ sơ tiếp nhận sau thời điểm nâng cấp hệ thống!</i></p>
+
+  <h4 style="padding-left: 10px">1. Nội trú Y học tái tạo và trị liệu tế bào: Thêm mới biểu mẫu</h4>
+    <p style="padding-left: 20px">• Đánh giá ban đầu trẻ nội trú nhi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ từ 1 đến dưới 3 tháng tuổi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ 3 - 12 tháng</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ 1 - dưới 4 tuổi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ 4 - 12 tuổi</p>
+    <p style="padding-left: 20px">• Bảng theo dõi DHST trẻ trên 12 tuổi</p>
+  <h4 style="padding-left: 10px">2. Đánh giá ban đầu người bệnh nội trú thông thường: Cập nhật version</h4>
+    <p style="padding-left: 20px">• Với lựa chọn ‘Khác’ cần mô tả cụ thể </p>
+    <p style="padding-left: 20px">• Thêm nút ‘Xác nhận’ cho Người thực hiện</p>
+  <h4 style="padding-left: 10px">3. Đánh giá ban đầu người bệnh cao tuổi cuối đời: Cập nhật version</h4>
+    <p style="padding-left: 20px">• Với lựa chọn ‘Khác’ cần mô tả cụ thể</p>
+    <p style="padding-left: 20px">• Thêm nút ‘Xác nhận’ cho Người thực hiện</p>
+  <h4 style="padding-left: 10px">4. Đánh giá ban đầu người bệnh hóa trị: Cập nhật version</h4>
+    
+  <h4 style="padding-left: 10px">5. XNTC - Khí máu và điện giải EG7: Thêm mới biểu mẫu mã  A03_165_061222_V</h4>
+  <h4 style="padding-left: 10px">6. XNTC - Khí máu Cartridge CG4+: Cập nhật biểu mẫu mã  A03_038_061222_ V_XNTC</h4>
+  <h4 style="padding-left: 10px">7. Kiểm thảo tử vong: Cập nhật biểu mẫu mã  A01_172_050919_V tại khu vực Cấp cứu</h4>
+  <h4 style="padding-left: 10px">8. Trích biên bản kiểm thảo tử vong: Thêm mới biểu mẫu mã  A01_154_050919_V tại khu vực Cấp cứu</h4>
+  <h4 style="padding-left: 10px">9. Thêm tính năng IN cho Kiểm thảo tử vong – Trích biên bản kiểm thảo tử vong tại khu vực Nội trú và Cấp cứu</h4>
+
+<h3><label class="">II. Bổ sung các tính năng</label></h3>
+  <h4 style="padding-left: 10px">1. Thêm ‘Patient Summary’ vào chi tiết hồ sơ người bệnh tại khoa: click vào Tên người bệnh</h4>
+  <h4 style="padding-left: 10px">2. Thanh thông tin người bệnh:</h4>
+    <p style="padding-left: 20px">• Thêm Thông tin hành chính</p>
+    <p style="padding-left: 20px">• Thêm Thông tin lượt khám gần nhất</p>
+  <h4 style="padding-left: 10px">3. Sắp xếp vị trí các cột trong Xem kết quả xét nghiệm</h4>
+
+
+  <p style="margin-left:1.0in;"><br data-cke-filler="true"></p>
+  <p style="line-break: anywhere;"><span style="font-size:12.0pt;">Anh/chị có thể truy cập đường dẫn sau để xem hướng dẫn sử dụng:&nbsp;</span><a href="https://vingroupjsc.sharepoint.com/sites/DR-VinMec/vmkht/vmcntt/tltk/Forms/Items.aspx?RootFolder=%2Fsites%2FDR%2DVinMec%2Fvmkht%2Fvmcntt%2Ftltk%2Fbieumau%2Ftlhdsd%2Fhdeform&FolderCTID=0x012000C7D06E1583C27D4D87181C7B29A9A99C&View=%7B65FA7BCF%2D5F5E%2D47E6%2D8FC4%2D5D87B2E98534%7D"><span style="color:#6888C9;font-size:12.0pt;"><u>https://vingroupjsc.sharepoint.com/sites/DR-VinMec/vmkht/vmcntt/tltk/Forms/Items.aspx?RootFolder=%2Fsites%2FDR%2DVinMec%2Fvmkht%2Fvmcntt%2Ftltk%2Fbieumau%2Ftlhdsd%2Fhdeform&FolderCTID=0x012000C7D06E1583C27D4D87181C7B29A9A99C&View=%7B65FA7BCF%2D5F5E%2D47E6%2D8FC4%2D5D87B2E98534%7D</u></span></a></p>
+  <p><span style="font-size:12.0pt;"><strong>Trong khoảng thời gian gián đoạn hệ thống trên, mọi người sẽ chạy </strong></span><span style="background-color:yellow;font-size:12.0pt;"><strong>plan B là sử dụng bản giấy thay thế</strong></span><span style="font-size:12.0pt;"><strong>, sau thời gian nâng cấp mọi người nhập lại thông tin lại vào hệ thống EFORM</strong>.</span></p>
+  <p><span style="font-size:12.0pt;"><strong>Lưu ý đối với những bệnh nhân cần trả BCYT trong khoảng thời gian nâng cấp, các bác sĩ cần hoàn thành hồ sơ </strong></span><span style="background-color:yellow;font-size:12.0pt;"><strong>trước 18h30</strong></span><span style="font-size:12.0pt;"><strong> để in và gửi cho bệnh nhân trước khi hệ thống tạm dừng hoạt động.</strong></span></p>
+  <p><span style="font-size:12.0pt;">Nếu cần thêm thông tin hoặc hỗ trợ trực tiếp, Anh/Chị vui lòng gửi lại phản hồi tới </span><a href="mailto:it@vinmec.com"><span style="font-size:12.0pt;">it@vinmec.com</span></a><span style="font-size:12.0pt;"> hoặc IT cơ sở để được giải đáp.</span></p>
+  <p><span style="font-size:12.0pt;">Trân trọng!</span></p>
+</div>'

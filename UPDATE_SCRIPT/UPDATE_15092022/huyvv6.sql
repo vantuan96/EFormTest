@@ -1,0 +1,11 @@
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD] Tạo mới bệnh án: Đánh giá nguy cơ người bệnh' , N'DGNCTTTPOST', (select id from VisitTypeGroups where Code = 'IPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD] Chỉnh sửa bệnh án: Đánh giá nguy cơ người bệnh' , N'DGNCTTTPUT', (select id from VisitTypeGroups where Code = 'IPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[IPD] Xem bệnh án: Đánh giá nguy cơ người bệnh' , N'DGNCTTTGET', (select id from VisitTypeGroups where Code = 'IPD'));
+
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD] Tạo biên bản hội chẩn thông qua mổ' , N'OPDJCFA1', (select id from VisitTypeGroups where Code = 'OPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD] Xem biên bản hội chẩn thông qua mổ' , N'OPDJCFA2', (select id from VisitTypeGroups where Code = 'OPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD] Chỉnh sửa  biên bản hội chẩn thông qua mổ' , N'OPDJCFA3', (select id from VisitTypeGroups where Code = 'OPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD] Đồng bộ xét nghiệm biên bản hội chẩn thông qua mổ' , N'OPDJCFA4', (select id from VisitTypeGroups where Code = 'OPD'));
+insert into Actions  (Id, CreatedAt, UpdatedAt, IsDeleted, Name , Code, VisitTypeGroupId) values (NEWID(), GETDATE(), GETDATE(), 'False',N'[OPD] Xác nhận  biên bản hội chẩn thông qua mổ' , N'OPDJCFA5', (select id from VisitTypeGroups where Code = 'OPD'));
+
+INSERT INTO [dbo].[Forms]([Id], [IsDeleted], [CreatedAt], [UpdatedAt], [Name], [Code], [VisitTypeGroupCode]) VALUES (NEWID(), 0, '2022-03-03 00:00:00.000', '2022-03-03 00:00:00.000',N'Biên bản hội chẩn thông qua mổ', 'A01_059_090822_VE', 'OPD')

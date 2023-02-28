@@ -1,0 +1,15 @@
+﻿select 
+OPDFallRiskScreeningId, OPDInitialAssessmentForOnGoingId, OPDInitialAssessmentForShortTermId, OPDOutpatientExaminationNoteId,
+OPDPatientProgressNoteId, OPDObservationChartId
+from OPDs where id = '749fdbe8-c8d8-4d14-8e71-ed88ad526988'
+--select * from users where Username = 'diepnb1' => AB9E722B-9261-4204-A167-E6F48F460100
+
+--update OPDs set PrimaryNurseId = 'AB9E722B-9261-4204-A167-E6F48F460100', CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1' where id = '749fdbe8-c8d8-4d14-8e71-ed88ad526988'
+
+update OPDFallRiskScreenings set CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1' where id = '3840CCA9-F2E9-4C48-B0BF-280DBBDBAB4D'
+update OPDInitialAssessmentForOnGoings set CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1'  where id = 'F47C1936-A805-4535-BA1A-17E663728944'
+update OPDInitialAssessmentForShortTerms set CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1'  where id = '3B9387E8-1F4E-43AF-88F0-8A7F9678CB98'
+update OPDOutpatientExaminationNotes set CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1'  where id = '8CE8373B-E88C-48CB-A52B-D3B0E0E098BC'
+update OPDPatientProgressNotes set CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1'  where id = '99512FD7-B8CE-48B6-A7C5-19CE685698BB'
+
+update OPDObservationCharts set CreatedBy = 'diepnb1', UpdatedBy = 'diepnb1'  where id = '5C6599A3-F359-4AD3-A470-99787E91F8B3'

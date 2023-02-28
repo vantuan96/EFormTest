@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        .tooltip-custom-alt .tooltip-inner {
+            background-color: #5b2da3;
+        }
+
+        .btn-custom {
+            color: #f21ead !important;
+            background-color: transparent !important;
+            background-image: none !important;
+            border-color: #007bff !important;
+        }
+
+        .btn1 {
+            display: inline-block;
+            font-weight: 400;
+            color: #353538;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            /* padding: 0.65rem 1rem; */
+            font-size: 1rem;
+            /* line-height: 1.5; */
+            border-radius: 0.25rem;
+            /*  -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        }
+
+        .iconcss {
+            font-size: 26px;
+            color: #6ebefe !important;
+            margin: 5px auto;
+            position: absolute;
+            margin-left: -9px;
+        }
+
+        span .iconcss i:hover {
+            color: orangered !important;
+        }
+
+        .tz8 {
+            margin-top: -4px
+        }
+
+        .textCus {
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
+            margin-right: 5px;
+            text-align: center;
+            font-size: 12px;
+            vertical-align: top !important;
+            display: block;
+            /**/ float: left;
+            margin-top: 15px;
+            margin-left: 25px
+        }
+        /*.sizeCss{
+            height: 90px;
+        }*/
+        .btn-warning {
+            background-image: linear-gradient(to bottom, #ffc51c, #fdd86b) !important;
+            color: #000000 !important;
+            /*  background-color: #ffca2d !important;*/
+            border-color: #d39e00 !important;
+        }
+
+
+            .btn-warning:hover {
+                color: #212529 !important;
+                background-image: linear-gradient(to bottom, #ffc51c, #fdd86b) !important;
+                border-color: #ffc51c !important;
+            }
+
+        .diff {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            color: #000000;
+            position: relative;
+            margin-right: 5px;
+            text-align: center;
+            font-size: 14px;
+            vertical-align: top !important;
+            display: inline-block;
+            /* float: left;*/
+            margin-top: 6px;
+            margin-left: 7px;
+        }
+
+        a :hover {
+            color: blueviolet !important;
+            text-decoration: underline;
+        }
+
+        .textAd {
+            margin-top: -12px;
+            position: initial;
+            font-family: Arial, Helvetica, sans-serif;
+            font-style: italic;
+            color: #ff0000
+        }
+
+        hr.new3 {
+            border-top: 1px dotted red;
+            margin-top: 38px;
+            /*  display : flex*/
+        }
+
+        hr.new4 {
+            border-top: 1px dotted red;
+            margin-top: 7px;
+            position: relative;
+        }
+
+        .tz2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .tz3 {
+            margin-top: 10px;
+            margin-left: 25px;
+        }
+
+        .tz4 {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+            margin: 0 auto;
+            vertical-align: middle;
+            margin-bottom: -30px;
+            margin-top: 7px;
+        }
+
+        .tz5 {
+            height: 32px;
+        }
+
+        .tz7 {
+            /* position : absolute*/
+            float: left;
+            margin-top: 3px;
+            margin-left: 3px;
+        }
+
+        .tz1 {
+            /*  margin-bottom: -35px;*/
+            margin-top: -45px
+        }
+
+        .scrollbar2 {
+            text-align: justify;
+            /*scroll-behavior: smooth;
+             float: right !important;*/
+            height: 96px !important;
+            /* width: 65px !important;*/
+            /*   background: #F5F5F5 !important;*/
+            overflow-y: auto !important;
+            overflow-x: hidden;
+        }
+
+
+            .scrollbar2::-webkit-scrollbar-track {
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+                border-radius: 5px;
+            }
+
+            .scrollbar2::-webkit-scrollbar {
+                width: 2px;
+                background-color: #F5F5F5;
+            }
+
+            .scrollbar2::-webkit-scrollbar-thumb {
+                border-radius: 5px;
+                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+                background-color: #11d9f5;
+            }
+
+        .force-overflow {
+            min-height: 1000px;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login - EForm </title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="~/Assets/img/ficon.ico" />
+    <!-- Bootstrap 3.3.7 -->
+    <link href="~/Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Assets/fontawesome-free-6.2.1-web/css/fontawesome.min.css" rel="stylesheet" />
+    @*<link href="~/Assets/fontawesome-free-6.0.0-web/css/fontawesome.min.css" rel="stylesheet" />*@
+    <link href="~/Assets/css/DropdownSelectMoreAppCustom.css" rel="stylesheet" />
+    <link href="~/Assets/css/loginStyle.css" rel="stylesheet" />
+    <link href="~/Assets/css/toastr.min.css" rel="stylesheet" />
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+
+    <!-- jQuery 3 -->
+    <script src="~/Assets/js/jquery.min.js"></script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/Assets/toastr/toastr.min.js"></script>
+    <script src="~/Assets/lib/textavatar/initial.min.js"></script>
+</head>
+@{
+    Layout = null;
+    var users = (List<string>)ViewBag.User;
+    var lst = (List<DataAccess.Models.User>)ViewBag.ListUser;
+
+
+}
+<body class=" login" style="margin-top : -50px">
+    <!--Block dropdown select more App-->
+    <div id="menu-on-top">
+        <ul class="nav navbar-nav navbar-right nav_right_menu  showApp">
+        </ul>
+    </div>
+    <div class="content">
+        <div style="text-align: center;font-size: 30px;">
+            <div class="text-center w-100 d-flex justify-content-center" style="margin-top:10px;"><img src="https://vis.vinmec.com/assets/media/login_logo.png" width="260" class="logo-login" alt=""></div>
+        </div>
+        <div class="row" style="border-top:3px solid #FFC107">
+            <div class="col-md-6">
+                <div class="login-card-body">
+                    <div class="" style="text-align : center">
+                        <h3 class="form-title"><b>EMR - BỆNH ÁN ĐIỆN TỬ</b></h3>
+                    </div>
+
+                    <div class="form-actions sizeCss" style="margin-top:-20px;">
+                        <div class="scrollbar2">
+                            @if (users.Any())
+                            {
+                                foreach (var item in users)
+                                {
+
+                                    <div class="tz5">
+                                        <div class=" tz4">
+                                            <div class="col-md-8" style="margin-bottom: -25px; height: 39px; clear: both; display: inline-block ">
+
+                                                <span class="iconcss" style="margin-right : 0px">
+                                                    @*<i class="fa fas  fa-user-circle"></i>*@
+                                                    <i class="fas fa-solid fa-circle-user"></i>
+                                                </span>
+                                                @{
+                                                    var obj = lst != null ? lst.FirstOrDefault(n => n.Username == item) : null;
+                                                    if (obj != null)
+                                                    {
+                                                        <span class="textCus  "> @obj.Fullname  (@obj.Username)</span>
+                                                    }
+                                                }
+
+
+
+                                            </div>
+                                            <div class="col-md-4 tz3" @*style="margin-bottom: -50px "*@>
+                                                @*<input type="hidden" name="showAll" value="false" id="showAllField" />*@
+                                                <input type="hidden" name="auctionEventId" class="txtValue" value="@item" />
+                                                <button type="button" class="btn1 btn-warning btnCus" name="">Đăng nhập</button>
+                                                @*<form action="/Authen/DoLoginLocal" id="filterForm">
+
+        </form>*@
+                                            </div>
+
+                                        </div>
+                                        <hr class="new3 " />
+                                    </div>
+
+                                }
+                            }
+                            else
+                            {
+
+                                <div class="form-actions" style="margin-top:10px;">
+                                    <form action="/Authen/SignIn">
+                                        <button type="submit" class="btn btn-info btnLogin" style="width: 100%">Đăng nhập</button>
+                                    </form>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class=@string.Format("{0}" , users.Count == 1 || users.Count == 0 ? "tz1 tz8" : "tz8" )>
+                        <img class="tz7" src="~/Assets/img/vecteezy_user-plus-icon_7275158.png" width="26" height="26" />
+                        <a class="" href="/Authen/SignInDiff">
+
+                            <span class="diff"> Sử dụng một tài khoản khác</span>
+                        </a>
+                        <hr class="new4" />
+                    </div>
+
+                    <div class="textAd">
+                        <span>Đăng nhập ứng dụng khác</span>
+                    </div>
+
+                    <div @*style="margin-top:150px;"*@ id="show">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 tz2" style="background: /*#efefef*/#efefef7a;">
+                <div class="login-card-guild">
+                    <h4 class="form-title"><b>Hướng dẫn đăng nhập</b></h4>
+                    <p><b>Tên đăng nhập:</b></p>
+                    <p style="font-size: 1.1rem;">Sử dụng account AD (là account đăng nhập vào máy tính với những máy Join domain Vingroup)</p>
+                    <p><b>Mật khẩu:</b></p>
+                    <p style="font-size: 1.1rem;">Mật khẩu account AD</p>
+                    <p style="font-size: 1.1rem;">Trường hợp không rõ Account AD của mình hoặc không đăng nhập được, vui lòng liên hệ bộ phận IT của đơn vị để kiểm tra</p>
+                    @*<p style="font-size: 1.1rem;margin-bottom:unset;"><a target="_blank" href="/huong-dan-su-dung"><b>Hướng dẫn sử dụng <i class="fa fa-arrow-circle-right"></i></b></a></p>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="notification" value="Thông báo" />
+    <input type="hidden" name="delFail" value="Địa chỉ không tồn tại" />
+    <script src="~/Assets/js/toastr.min.js"></script>
+    <script>
+        (function ($) {
+
+            if (typeof $.fn.tooltip.Constructor === 'undefined') {
+                throw new Error('Bootstrap Tooltip must be included first!');
+            }
+
+            var Tooltip = $.fn.tooltip.Constructor;
+
+            // add customClass option to Bootstrap Tooltip
+            $.extend(Tooltip.Default, {
+                customClass: ''
+            });
+
+            var _show = Tooltip.prototype.show;
+
+            Tooltip.prototype.show = function () {
+
+                // invoke parent method
+                _show.apply(this, Array.prototype.slice.apply(arguments));
+
+                if (this.config.customClass) {
+                    var tip = this.getTipElement();
+                    $(tip).addClass(this.config.customClass);
+                }
+
+            };
+
+        })(window.jQuery);
+    </script>
+    <script type="text/javascript">
+        function AjaxPost(url) {
+            return $.ajax({
+                type: "GET",
+                datatype: "json",
+                url: url,
+            });
+        }
+        function AJAX_Custom (url, username) {
+            return $.ajax({
+                type: "POST",
+                datatype: "json",
+                data: { username: username },
+                url: url
+            });
+        }
+        $(document).ready(function () {
+
+            $('.tz3').click(function () {
+
+                var vlue = $(this).find(".txtValue").val()
+                AJAX_Custom("/Authen/DoLoginLocal", vlue ).done(function (response) {
+                    if (response) {
+                        window.location.href = response
+                    }
+                });
+            });
+            $('.btn-custom').tooltip();
+            $('.btn-custom-alt').tooltip({
+                customClass: 'tooltip-custom-alt'
+            });
+            //$(function () {
+            // /*   $('[data-toggle="tooltip"]').tooltip()*/
+            //})
+            window.setInterval(function () {
+                var elem = document.getElementsByClassName('scrollbar1');
+                elem.scrollTop = elem.scrollHeight;
+            }, 5000);
+            AjaxPost("/Authen/GetListAppLogin").done(function (response) {
+                $(".showApp").html(response);
+                $(".img-circle").initial({ charCount: 1, seed: 100, width: 50, height: 50, fontSize: 30 });
+            });
+            AjaxPost("/Authen/GetListApp").done(function (response) {
+                $("#show").html(response);
+                $(".img-circle").initial({ charCount: 1, seed: 100, width: 50, height: 50, fontSize: 30 });
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

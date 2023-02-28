@@ -1,0 +1,158 @@
+﻿@using Admin.Models
+@model FiltersClinicViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-specialties {
+        width: 100% !important;
+    }
+</style>
+
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý phòng khám
+                    <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="showFormNewSpecialty()">
+                        <i class="material-icons mdc-button__icon">add</i>
+                        Thêm
+                    </button>
+                </h6>
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-2" style="max-width: 100px; margin-top: 7px;"><b>Tìm kiếm:</b></div>
+                        <div class="col-3">
+                            @Html.DropDownListFor(s => s.FilterSiteId, Model.ListFilterSites, new { @class = "form-control", onchange = "filterTable()" })
+                        </div>
+                        <div class="col-3">
+                            @Html.DropDownListFor(s => s.FilterSpecialtyId, Model.ListFilterVisitSpecialty, new { @class = "form-control", onchange = "filterTable()" })
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-specialties" class="mdl-data-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.AntiForgeryToken()
+<div id="popupPlaceholder"></div>
+
+@section script{
+<script>
+    var tbl;
+    function showFormNewSpecialty() {
+        var url = '@Url.Action("GetClinicDetail", "Clinic")';
+        $('#popupPlaceholder').load(url, { id: 0 }, function (response, status, xhr) {
+            $("#modalEditSpecialty").modal();
+        });
+    }
+
+    function viewDetail(id) {
+        var url = '@Url.Action("GetClinicDetail", "Clinic")';
+        $('#popupPlaceholder').load(url, { id: id }, function (response, status, xhr) {
+            $("#modalEditSpecialty").modal();
+        });
+    }
+
+    function deactiveSpecialty(id) {
+        $.ajax(
+            {
+                type: "POST",
+                data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("DeactivateClinic", "Clinic")",
+                success: function (data) {
+                    if (data) {
+                        $('#tbl-specialties').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+    }
+
+    function activeSpecialty(id) {
+        $.ajax(
+            {
+                type: "POST",
+                data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+                url: "@Url.Action("ActivateClinic", "Clinic")",
+                success: function (data) {
+                    if (data) {
+                        $('#tbl-specialties').DataTable().ajax.reload();
+                    }
+                    else {
+                        // show popup alert save false
+                    }
+                }
+            })
+        }
+
+    function filterTable() {
+        //var oTable = $('#table-specialties').DataTable();
+        tbl.columns(4).search($("#FilterSiteId").val()).columns(5).search($("#FilterVisitTypeId").val()).draw();
+    }
+
+    $(document).ready(function () {
+        tbl = $('#tbl-specialties').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            deferLoading: true,
+            ajax: {
+                url: "@Url.Action("GetListClinics", "Clinic")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 1, width: "150px" },
+                { targets: 3, width: "200px" },
+                { targets: 6, visible: false, searchable: false, orderable: false },
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "Tên tiếng Việt", data: "ViName", name: "ViName" },
+                { title: "Tên tiếng Anh", data: "EnName", name: "EnName" },
+                { title: "Mã", data: "Code", name: "Code" },
+                { title: "Bệnh viện", data: "Site", name: "Site" },
+                { title: "Chuyên khoa", data: "Specialty", name: "Specialty" },
+                { title: "IsDeleted", data: "IsDeleted", name: "IsDeleted" },
+                {
+                    title: "Thao tác", render: function (data, type, full, meta) {
+                        var render = '';
+                        if (full.IsDeleted) {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kích hoạt" onclick="activeSpecialty(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">check</i></button>';
+                        } else {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Vô hiệu" onclick="deactiveSpecialty(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">clear</i></button>';
+                        }
+                        render += '&nbsp;<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" onclick="viewDetail(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">edit</i></button>';
+                        return render;
+                    }
+                }
+            ]
+        });
+
+        filterTable();
+    })
+</script>
+}

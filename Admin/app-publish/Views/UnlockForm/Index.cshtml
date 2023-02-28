@@ -1,0 +1,311 @@
+﻿@using Admin.Models
+@using Admin.Common
+@model UnlockFormViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/multi-select.css" rel="stylesheet" />
+
+<style>
+    .dataTables_filter {
+        display: none;
+    }
+
+    .dataTables_length {
+        display: none;
+    }
+
+    #tbl-users {
+        width: 100% !important;
+    }
+
+    .ms-container {
+        width: 500px;
+    }
+</style>
+@Html.AntiForgeryToken()
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+            <div class="mdc-card p-0">
+                <h6 class="card-title card-padding pb-0">
+                    Quản lý mở khóa hồ sơ
+                    <button class="mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="showModalAddUnlock()">
+                        <i class="material-icons mdc-button__icon">add</i>
+                        Thêm
+                    </button>
+                </h6>
+                <div class="container" style="max-width: 100%;">
+                    <div class="row">
+                        <div class="col-2" style="max-width: 100px; margin-top: 7px;"><b>Tìm kiếm:</b></div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" id="filterName" placeholder="Mã hồ sơ" onchange="filterTable()"/>
+                        </div>
+                    </div>
+                </div>
+                <table id="tbl-unlocks" class="mdl-data-table" style="width: 100%"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="modalAddUnlock">
+    <div class="modal-dialog" role="document" style="max-width: 720px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Mở khóa hồ sơ</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmAddNewUnlock">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-3 mdc-label"><b>Mã hồ sơ:</b></div>
+                        <div class="col-7">
+                            <input class="form-control" id="RecordCode"/>
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kiểm tra" onclick="checkRecordCode()"><i class="material-icons mdc-button__icon">check</i></button>
+                        </div>
+                    </div>
+                    <div class="row col-12" id="userError" style="display: none;">
+                        <b style="color: red;" id="usrErrMsg"></b>
+                    </div>
+                    <div class="row" id="unlock_user" style="display: none;">
+                        <div class="col-3 mdc-label"><b>TK AD người được mở:</b></div>
+                        <div class="col-7">
+                            <input class="form-control" id="UnlockUser" />
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row" id="form_list" style="display: none;">
+                        <div class="col-3 mdc-label"><b>Mã hồ sơ:</b></div>
+                        <div class="col-9" id="form_list_checkbox">
+
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <input class="form-control" id="VisitId" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" style="display: none;" id="userActions">
+                <button type="button" class="btn btn-success" onclick="clearDataAddUnlock()">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="addUnlock()">Mở khóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="popupPlaceholder"></div>
+@section script{
+<script src="~/Scripts/jquery.multi-select.js"></script>
+<script>
+    function filterTable() {
+        var oTable = $('#tbl-unlocks').DataTable();
+        oTable.columns(1).search($("#filterName").val()).draw();
+    }
+
+    function showModalAddUnlock() {
+        $("#modalAddUnlock").modal();
+    }
+
+    function clearDataAddUnlock() {
+        $("#RecordCode").val('');
+        $("#unlock_user").hide();
+        $("#UnlockUser").val('');
+        $("#VisitId").val('');
+        $('#form_list_checkbox').html("");
+        $('#form_list').hide();
+        $('#userActions').hide();
+        $('#userError').hide();
+    }
+
+    $('#modalAddUnlock').on('hide.bs.modal', function () {
+        clearDataAddUnlock();
+        $('#tbl-unlocks').DataTable().ajax.reload();
+    })
+
+    $('#modalAddUnlock').on('shown.bs.modal', function () {
+        $('#RecordCode').trigger('focus');
+    })
+
+
+    function checkRecordCode() {
+        $.ajax({
+            type: "POST",
+            data: { record_code : $('#RecordCode').val(), "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("CheckRecordCode", "UnlockForm")",
+            success: function (data) {
+                if (data.IsInvalidRecordCode) {
+                    $('#userError').show();
+                    $('#usrErrMsg').text('Mã hồ sơ không hợp lệ');
+                } else {
+                    $("#VisitId").val(data.VisitId);
+                    $('#unlock_user').show();
+                    var form_list_html = '';
+                    for (var i of data.FormList) {
+                        form_list_html += `
+                        <div class="mdc-form-field">
+                          <div class="mdc-checkbox">
+                            <input type="checkbox"
+                                   class="mdc-checkbox__native-control form_list_cb"
+                                   id="${i.Code}" data-name="${i.Name}" />
+                            <div class="mdc-checkbox__background">
+                              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                              </svg>
+                              <div class="mdc-checkbox__mixedmark"></div>
+                            </div>
+                            <div class="mdc-checkbox__ripple"></div>
+                          </div>
+                          <label for="${i.Code}">${i.Name}</label>
+                        </div>
+                        `;
+                    }
+                    $('#form_list_checkbox').html(form_list_html);
+                    $('#form_list').show();
+                    $('#userActions').show();
+                }
+            }
+        })
+    }
+
+    function deactiveUnlock(id) {
+        $.ajax({
+            type: "POST",
+            data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("DeactivateUnlock", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    function activeUnlock(id) {
+        $.ajax({
+            type: "POST",
+            data: { id : id, "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value },
+            url: "@Url.Action("ActivateUnlock", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    function addUnlock() {
+        var record_code = $("#RecordCode").val();
+        var visit_id = $("#VisitId").val();
+        var unlock_user = $("#UnlockUser").val();
+        var list_form = [];
+        $('.form_list_cb:checked').each(function () {
+            list_form.push({
+                "Code": $(this).attr('id'),
+                "Name": $(this).data('name')
+            });
+        });
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            data: {
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                "record_code": record_code,
+                "visit_id": visit_id,
+                "unlock_user": unlock_user,
+                "list_form": JSON.stringify(list_form),
+            },
+            url: "@Url.Action("AddUnlock", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    clearDataAddUnlock();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    function updateExpire(id) {
+        
+        $.ajax({
+            type: "POST",
+            traditional: true,
+            data: {
+                id: id,
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+            },
+            url: "@Url.Action("UpdateExpire", "UnlockForm")",
+            success: function (data) {
+                if (data) {
+                    $('#tbl-unlocks').DataTable().ajax.reload();
+                }
+                else {
+                    // show popup alert save false
+                }
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        var t = $('#tbl-unlocks').DataTable({
+            autoWidth: true,
+            responsive: true,
+            processing: true,
+            paging: true,
+            serverSide: true,
+            filter: false,
+            orderMulti: false,
+            order: [[1, "asc"]],
+            searching: true,
+            lengthChange: false,
+            ajax: {
+                url: "@Url.Action("GetListUnlockForms", "UnlockForm")",
+                type: "POST"
+            },
+            columnDefs: [
+                { targets: 0, visible: false, searchable: false, orderable: false },
+                { targets: 1, width: "150px", searchable: true },
+                { targets: 2, width: "150px" },
+                { targets: 3, width: "200px" },
+                { targets: 4, width: "200px" },
+                { targets: 5, visible: false, searchable: false, orderable: false },
+                { targets: 6, searchable: false, orderable: false }
+            ],
+            columns: [
+                { data: "Id", name: "Id" },
+                { title: "Mã hồ sơ", data: "RecordCode", name: "RecordCode" },
+                { title: "Tên biểu mẫu", data: "FormName", name: "FormName" },
+                { title: "Ngày hết hạn", data: "ExpiredAt", name: "ExpiredAt" },
+                { title: "Người được mở biểu mẫu", data: "Username", name: "Username" },
+                { title: "IsDeleted", data: "IsDeleted", name: "IsDeleted" },
+                {
+                    title: "Thao tác", render: function (data, type, full, meta) {
+                        var render = '';
+                        if (full.IsDeleted) {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--success mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Kích hoạt" onclick="activeUnlock(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">check</i></button>';
+                        } else {
+                            render += '<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--secondary mdc-ripple-upgraded" style="width: 30px; padding: 0;" title="Vô hiệu" onclick="deactiveUnlock(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">clear</i></button>';
+                        }
+                        render += '&nbsp;<button type="button" class="mdc-button mdc-button--raised icon-button filled-button--info mdc-ripple-upgraded" style="width: 30px; margin-right: 5px; padding: 0;" title="Gia hạn 24h" onclick="updateExpire(\'' + full.Id + '\')"><i class="material-icons mdc-button__icon">alarm_add</i></button>';
+                        return render;
+                    }
+                }
+            ]
+        });
+    })
+    </script>
+}

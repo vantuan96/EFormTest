@@ -1,0 +1,56 @@
+﻿@using Admin.Models
+@model List<ActionViewModel>
+<div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-12-desktop stretch-card">
+            <div class="mdc-card">
+                <h6 class="card-title">Grant Permission</h6>
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div>
+                            @Html.CheckBoxFor(x=> item.IsChecked, new {@onclick="setPermission('"+item.Id+"','"+item.RoleId+"')" })
+                        </div>
+                        @*<div class="mdc-switch mdc-switch--success" data-mdc-auto-init="MDCSwitch">
+                            <div class="mdc-switch__track"></div>
+                            <div class="mdc-switch__thumb-underlay">
+                                <div class="mdc-switch__thumb">
+                                    <input type="checkbox" id="basic-switch" class="mdc-switch__native-control" role="switch">
+                                </div>
+                            </div>
+                        </div>*@
+                        <div style="margin-left: 10px;">@Html.Label(item.Name)</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setPermission(id, roleId) {
+        debugger;
+        $.ajax(
+            {
+                type: "POST",
+                data: { "id": id, "roleId": roleId },
+                url: "@Url.Action("SavePermission", "Role")",
+                success: function (data) {
+                    if (data) {
+                        $.alert({
+                            title: 'Update Permission',
+                            content: 'Success!!!',
+                            backgroundDismiss: true
+                        });
+                    }
+                    else {
+                        $.alert({
+                            title: 'Update Permission',
+                            content: 'Failed!!!',
+                            backgroundDismiss: true
+                        });
+                    }
+                }
+            })
+    }
+</script>
